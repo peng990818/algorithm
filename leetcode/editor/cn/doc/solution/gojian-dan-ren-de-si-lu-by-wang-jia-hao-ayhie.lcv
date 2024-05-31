@@ -1,0 +1,44 @@
+### 解题思路
+
+我看官解好复杂哦, 为什么不能每次找出一个最小值, 然后直接换就行了呢 ? 效率还挺高的
+
+### 代码
+
+* golang
+
+```golang
+func largestSumAfterKNegations(nums []int, k int) int {
+    for i := 0; i < k; i++ {
+        // 每次找到一个最小的值的下标
+        j := findMin(nums)
+        // 1. 是否为0, 如果为0直接跳出循环计算和
+        if nums[j] == 0 {
+            break
+        }else {
+            // 2. 如果为负数那么就将这位取反
+            // 3. 如果为正数也取反
+            nums[j] *= -1 
+        }
+    }
+    sum := 0
+    for _,  v := range nums {
+        sum += v
+    }
+    return sum
+}
+
+func findMin(nums []int) int {
+    n := len(nums)
+    minV := nums[0]
+    minIndex := 0
+    for i := 1; i < n; i++ {
+        if nums[i] < minV {
+            minIndex = i
+            minV = nums[i]
+        }
+    }
+    return minIndex
+}
+```
+
+![image.png](https://pic.leetcode-cn.com/1638499445-JpmzYw-image.png)
