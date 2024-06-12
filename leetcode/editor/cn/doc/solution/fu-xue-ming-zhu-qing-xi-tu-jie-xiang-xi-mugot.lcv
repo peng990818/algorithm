@@ -1,0 +1,286 @@
+大家好，我是 [@负雪明烛](https://leetcode-cn.com/u/fuxuemingzhu/)。点击右上方的「**+关注**」**↗**，优质题解不间断！
+​
+
+# 题意
+
+把一个数组中最大的三个位置设置成**金银铜**奖，其他位置是当前数字的排名。
+
+## 解题思路
+
+题目明显是个排序问题。**难点在于，排序之后数组和原数组的下标之间的对应。**
+
+![image.png](https://pic.leetcode-cn.com/1638407911-ugzvkK-image.png)
+
+**当我们遍历原数组寻找每个元素的相对名词时，我们不可能用 $O(N)$ 的时间复杂度，遍历寻找其在排序后的位置。**
+**​**
+
+题目的关键提示来了：
+
+- score 中的所有值 **互不相同**
+
+**​**
+
+**这告诉我们可以用个哈希表（HashMap）来存储排序后的数组中 元素与下标 的对应关系，那么对于原数组中的每个数字，都可以在 $O(1)$ 的时间复杂度内寻找到其在排序后数组中的下标。**
+**​**
+
+**看完了思路之后不要走开，下文中，我用了 4 种不同的方法，格局打开。**
+
+![image.png](https://pic.leetcode-cn.com/1638407921-ImZflW-image.png)
+
+## 排序 + 哈希表
+
+按照上面分析的思路写出的代码。
+需要注意：
+
+1. 排序需要逆序。
+2. 数组下标是从 0 开始的，但是排名是从 1 开始的。
+
+Python 代码如下：
+
+* python
+
+```python
+class Solution:
+    def findRelativeRanks(self, score: List[int]) -> List[str]:
+        ranks = sorted(score, reverse=True)
+        ranksIndex = dict()
+        for i in range(len(ranks)):
+            ranksIndex[ranks[i]] = i
+        res = []
+        for s in score:
+            rank = ranksIndex[s]
+            if rank == 0:
+                res.append("Gold Medal")
+            elif rank == 1:
+                res.append("Silver Medal")
+            elif rank == 2:
+                res.append("Bronze Medal")
+            else:
+                res.append(str(rank + 1))
+        return res
+```
+
+- **时间复杂度：$O(N*log(N))$，排序的时间复杂度。**
+- **空间复杂度：$O(N)$**
+
+## 排序 + pair
+
+除了使用 HashMap 以外，还有种巧妙的方法（挺常用），就是**把元素和下标放在一个 pair 里**，在排序之后， pair 的第一个值就是数组中的元素， pair 的第二个值就是其在原数组中的下标。
+​
+
+这种方法常用于保存元素出现的位置，当顺序打乱的时候，仍能找到每个元素的原始下标。
+​
+
+* 
+
+```
+原始数组：
+nums[i]    : [10, 3, 8, 9, 4]
+pair.first : [10, 3, 8, 9, 4]
+pair.second : [ 0, 1, 2, 3, 4]
+
+按照 pair.first 排序之后:
+pair.first : [10, 9, 8, 4, 3]
+pair.second : [ 0, 3, 2, 4, 1]
+```
+
+最后**根据 pair 的第二个元素（即原始数组中下标）颁奖就好。**
+**​**
+
+> 元素 10，在原始数组中的位置是 0，金奖；
+> 元素 9，在原始数组中的位置是 3，银奖；
+> 元素 8，在原始数组中的位置是 2， 铜奖；
+> 元素 4，在原始数组中的位置是 4， 第 4 名；
+> 元素 3，在原始数组中的位置是 1， 第 5 名。
+
+* []
+
+```Python
+class Solution:
+    def findRelativeRanks(self, score: List[int]) -> List[str]:
+        ranks = [(score[i], i) for i in range(len(score))]
+        ranks.sort(reverse=True)
+        res = [0] * len(score)
+        for i in range(len(ranks)):
+            r = ranks[i]
+            if i == 0:
+                res[r[1]] = "Gold Medal"
+            elif i == 1:
+                res[r[1]] = "Silver Medal"
+            elif i == 2:
+                res[r[1]] = "Bronze Medal"
+            else:
+                res[r[1]] = str(i + 1)
+        return res
+```
+
+* []
+
+```Java
+public class Solution {
+    public String[] findRelativeRanks(int[] nums) {
+		int pair[][] = new int[nums.length][2];
+		for (int i = 0; i < nums.length; i++) {
+			pair[i][0] = nums[i];
+			pair[i][1] = i;
+		}
+		Arrays.sort(pair, (a, b) -> (b[0] - a[0]));
+		String[] ans = new String[nums.length];
+		for (int i = 0; i < nums.length; i++) {
+			if (i == 0) {
+				ans[pair[i][1]] = "Gold Medal";
+			} else if (i == 1) {
+				ans[pair[i][1]] = "Silver Medal";
+			} else if (i == 2) {
+				ans[pair[i][1]] = "Bronze Medal";
+			} else {
+				ans[pair[i][1]] = "" + (i + 1);
+			}
+		}
+		return ans;
+    }
+}
+```
+
+* []
+
+```C++
+class Solution {
+public:
+    vector<string> findRelativeRanks(vector<int>& score) {
+        const int N = score.size();
+        vector<string> res(N);
+        vector<pair<int, int>> ranks;
+        for (int i = 0; i < N; ++i) {
+            ranks.push_back({score[i], i});
+        }
+        sort(ranks.begin(), ranks.end(), std::greater<>());
+        for (int i = 0; i < ranks.size(); ++i) {
+            auto& rank = ranks[i];
+            if (i == 0) {
+                res[rank.second] = "Gold Medal";
+            } else if (i == 1) {
+                res[rank.second] = "Silver Medal";
+            } else if (i == 2) {
+                res[rank.second] = "Bronze Medal";
+            } else {
+                res[rank.second] = to_string(i + 1);
+            }
+        }
+        return res;
+    }
+};
+```
+
+- **时间复杂度：$O(N*log(N))$，排序的时间复杂度。**
+- **空间复杂度：$O(N)$**
+
+## argsort
+
+Python 的科学计算库 NumPy 中有的 `argsort()` 函数，它的含义求每个元素在从小到大排序后的数组中的下标。
+​
+
+举例：
+
+* python
+
+```python
+>>> import numpy as np
+>>> nums = [10,3,8,9,4]
+>>> np.argsort(np.array(nums))
+array([1, 4, 2, 3, 0])
+```
+
+说明：
+
+`argsort()`函数告诉我们：
+
+> nums 中最小的元素在 nums 的第 1 个位置（即 3）；
+> nums 中第 2 小的元素在 nums 的第 4 个位置（即 4）；
+> nums 中第 3 小的元素在 nums 的第 2 个位置（即 8）；
+> nums 中第 4 小的元素在 nums 的第 3 个位置（即 9）；
+> nums 中第 5 小的元素在 nums 的第 0 个位置（即 10）；
+
+LeetCode也可以用Numpy的！！看我的解法！！
+
+* python
+
+```python
+import numpy as np
+class Solution:
+    def findRelativeRanks(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[str]
+        """
+        ranks = np.argsort(np.array(nums))[::-1]
+        N = len(nums)
+        res = list(map(str, ranks))
+        for r in range(N):
+            if r == 0:
+                res[ranks[0]] = "Gold Medal"
+            elif r == 1:
+                res[ranks[1]] = "Silver Medal"
+            elif r == 2:
+                res[ranks[2]] = "Bronze Medal"
+            else:
+                res[ranks[r]] = str(r + 1)
+        return res
+```
+
+- **时间复杂度：$O(N*log(N))$，排序的时间复杂度。**
+- **空间复杂度：$O(N)$**
+
+## 堆 + pair
+
+最后一个方法是用堆来实现。
+​
+
+原理跟「排序 + pair」中的思路一致：都是把元素和下标保存到一个 pair 里，那么即使顺序混乱之后，也能通过 pair 的第二个元素获取到该元素在原始数组中的下标，从而**颁奖**。
+​
+
+Python 代码如下：
+
+* python
+
+```python
+class Solution:
+    def findRelativeRanks(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[str]
+        """
+        heap = [(-num, i) for i, num in enumerate(nums)]
+        heapq.heapify(heap)
+        N = len(nums)
+        res = [""] * N
+        count = 1
+        while heap:
+            num, i = heapq.heappop(heap)
+            if count == 1:
+                res[i] = "Gold Medal"
+            elif count == 2:
+                res[i] = "Silver Medal"
+            elif count == 3:
+                res[i] = "Bronze Medal"
+            else:
+                res[i] = str(count)
+            count += 1
+        return res
+```
+
+- **时间复杂度：$O(N*log(N))$，排序的时间复杂度。**
+- **空间复杂度：$O(N)$**
+
+# 总结
+
+1. 今天的题目本质是排序问题；
+2. 难点在于，排序前后的元素怎么找到下标的对应关系：使用 哈希表 或者 pair 可以解决。
+
+---
+
+我是 [@负雪明烛](https://leetcode-cn.com/u/fuxuemingzhu/) ，刷算法题 1000 多道，写了 1000 多篇算法题解，收获阅读量 300 万。**关注我**，你将不会错过我的精彩动画题解、面试题分享、组队刷题活动，进入主页 [@负雪明烛](https://leetcode-cn.com/u/fuxuemingzhu/) 右侧有刷题组织，从此刷题不再孤单。
+
+- 在刷题的时候，如果你不知道该怎么刷题，可以看 [LeetCode 应该怎么刷？](https://mp.weixin.qq.com/s/viDYrSlF5INEhVWiJhM2EQ)
+- 如果你觉得题目太多，想在短时间内快速提高，可以看 [LeetCode 最经典的 100 道题](https://mp.weixin.qq.com/s/e51CEkEP6Wz850JYbgz8dw)。
+
