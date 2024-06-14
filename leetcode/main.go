@@ -3,8 +3,8 @@ package main
 import "fmt"
 
 func main() {
-    grid := [][]int{{0, 1, 0, 0}, {1, 1, 1, 0}, {0, 1, 0, 0}, {1, 1, 0, 0}}
-    fmt.Println(islandPerimeter(grid))
+    grid := [][]int{{2, 2}, {3, 3}}
+    fmt.Println(maxCount(3, 3, grid))
 }
 
 func islandPerimeter(grid [][]int) int {
@@ -57,4 +57,31 @@ func commonChars(words []string) []string {
         }
     }
     return res
+}
+
+func maxCount(m int, n int, ops [][]int) int {
+    res := make([][]int, m)
+    for i := range res {
+        res[i] = make([]int, n)
+    }
+    max := 0
+    for _, op := range ops {
+        for i := 0; i < op[0]; i++ {
+            for j := 0; j < op[1]; j++ {
+                res[i][j]++
+                if res[i][j] > max {
+                    max = res[i][j]
+                }
+            }
+        }
+    }
+    cnt := 0
+    for _, v := range res {
+        for _, val := range v {
+            if val == max {
+                cnt++
+            }
+        }
+    }
+    return cnt
 }

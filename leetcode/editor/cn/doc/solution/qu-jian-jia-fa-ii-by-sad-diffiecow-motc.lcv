@@ -1,0 +1,49 @@
+> Problem: [598. 区间加法 II](https://leetcode.cn/problems/range-addition-ii/description/)
+
+[TOC]
+
+# 思路
+
+找最左上角一直在累加的数量
+
+> 讲述看到这一题的思路
+
+# 解题方法
+
+遍历ops找最小值
+
+> 描述你的解题方法
+
+# 复杂度
+
+时间复杂度:
+
+> 添加时间复杂度, 示例： $O(n)$
+
+空间复杂度:
+
+> 添加空间复杂度, 示例： $O(n)$
+
+# Code
+
+* []
+
+```Python
+class Solution(object):
+    def maxCount(self, m, n, ops):
+        """
+        :type m: int
+        :type n: int
+        :type ops: List[List[int]]
+        :rtype: int
+        """
+        minx=m
+        miny=n
+        for i in ops:
+            if minx>i[0]:
+                minx=i[0]
+            if miny>i[1]:
+                miny=i[1]    
+        return minx*miny
+```
+
