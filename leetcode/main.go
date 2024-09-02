@@ -1,10 +1,56 @@
 package main
 
-import "fmt"
+import (
+    "fmt"
+)
 
 func main() {
-    grid := [][]int{{2, 2}, {3, 3}}
-    fmt.Println(maxCount(3, 3, grid))
+    // grid := [][]int{{2, 2}, {3, 3}}
+    // fmt.Println(maxCount(3, 3, grid))
+    // defer func() {
+    //     fmt.Println("test1")
+    // }()
+    // defer func() {
+    //     test()
+    // }()
+    // panic("test")
+    // go func() {
+    //     var b chan string
+    //     <-b
+    // }()
+    // go func() {
+    //     for {
+    //         fmt.Println("aaa")
+    //         time.Sleep(time.Second)
+    //     }
+    // }()
+    // select {}
+
+    // ch := make(chan int, 1)
+    //
+    // go func() {
+    //     // 向无缓冲 channel 发送数据
+    //     ch <- 42
+    //     fmt.Println("Sent value")
+    // }()
+    //
+    // time.Sleep(time.Second) // 模拟一些延迟
+    //
+    // // 从无缓冲 channel 接收数据
+    // value := <-ch
+    // fmt.Println("Received value:", value)
+    // select {}
+
+    tmp := [600]int{}
+    tmp1 := tmp[:600:600]
+    for i := 0; i < len(tmp1); i++ {
+        fmt.Println(tmp1[i])
+    }
+}
+
+func test() {
+    fmt.Println("test2")
+    recover()
 }
 
 func islandPerimeter(grid [][]int) int {
