@@ -1,0 +1,47 @@
+### 解题思路
+
+动态规划 `dp[i] = j`
+表示不包括 第 i 个字符 的 前 j 个字符是有效子串
+
+#### 逻辑
+
+每遇到 右括号 `s[i]`, 越过已知有效子串长度 `dp[i]`, 判断 `s[i-dp[i]-1]` 是否是 左括号
+如果是, 有效子串长度 加 2, 再加 `dp[i-dp[i]-1]`
+计算长度后, 令 后一位 `dp[i+1]` 记录该长度
+
+#### 示例
+
+输入 `()()() `
+
+`dp[0] = 0`,
+`dp[1] = 0`,  // 遇到 右括号, 令 dp[2] = dp[i] + 2, 更新 max = 2
+`dp[2] = 2`,
+`dp[3] = 0`,  // 遇到 右括号, 令 dp[4] = dp[3] + 2 + dp[2], 更新 max = 4
+`dp[4] = 4`,
+`dp[5] = 0`   // 遇到 右括号, 更新 max = 6
+
+### 代码
+
+* golang
+
+```golang
+func longestValidParentheses(s string) int {
+    max := 0
+    dp := make([]int, len(s))
+    for i,l := 1, len(s);i<l;i++{
+        if s[i] == ')'{
+            if k := i-dp[i]-1; k >= 0 && s[k] == '('{
+                m := dp[i]+ 2 + dp[k]
+                if i + 1 < l {
+                    dp[i+1] = m
+                }
+                if m > max{
+                    max = m
+                }
+            }
+        }
+    }
+    return max
+}
+```
+

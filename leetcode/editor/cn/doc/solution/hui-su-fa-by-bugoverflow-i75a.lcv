@@ -1,0 +1,57 @@
+思路就是当前层已经遍历过的数字就直接跳过，加速遍历。
+
+* 
+
+```
+package leetcode
+
+import (
+	"sort"
+)
+
+func CombinationSum2(candidates []int, target int) [][]int {
+	if len(candidates) == 0 {
+		return nil
+	}
+	sort.Ints(candidates)
+	if candidates[0] > target {
+		return nil
+	}
+
+	var answer []int
+	var output [][]int
+	var deep func(target int, index int)
+	preNum := 0 //记录一下当前层的前一个数
+	deep = func(target int, index int) {
+		for i := index; i >= 0; i-- {
+			//如果和前一数相等直接跳过，因为前一数已经参与遍历了
+			if preNum == candidates[i] {
+				continue
+			}
+			preNum = candidates[i]
+			if candidates[i] > target {
+				continue
+			}
+
+			answer = append(answer, candidates[i])
+			if candidates[i] == target {
+				tmp := make([]int, len(answer))
+				copy(tmp, answer)
+				output = append(output, tmp)
+				answer = answer[:len(answer)-1]
+				continue
+			}
+			//进入下一层循环前需要重置前一数
+			preNum = 0
+			deep(target-candidates[i], i-1)
+			preNum = answer[len(answer)-1]
+			answer = answer[:len(answer)-1]
+		}
+	}
+
+	deep(target, len(candidates)-1)
+	return output
+}
+
+```
+

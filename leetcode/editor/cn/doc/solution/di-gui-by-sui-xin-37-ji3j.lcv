@@ -1,0 +1,65 @@
+### 解题思路
+
+此处撰写解题思路
+
+### 代码
+
+* cpp
+
+```cpp
+class Solution {
+public:
+    vector<vector<int>> res;
+    int last_value=INT_MIN;
+
+    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+        sort(candidates.begin(),candidates.end());
+        vector<int> path;
+        vector<bool> used(candidates.size(),false);
+        backtrack(candidates,target,path,0,used);
+
+        return res;
+
+    }
+
+    void backtrack(vector<int>& candidates ,int target,vector<int>& path,int index,vector<bool>& used) {
+        // show(path);
+        if(target<0) {
+            return ;
+        }
+        if(target==0) {
+            res.push_back(path);
+            return;
+        }
+
+        for(int i=index;i<candidates.size();i++) {
+             if(i>0 && candidates[i]==candidates[i-1] && used[i-1]==false) { // used[i]==true 说明在同一枝, 注意剪枝的位置
+                continue;
+            }
+            path.push_back(candidates[i]);
+            used[i]=true;
+           
+
+            backtrack(candidates,target-candidates[i],path,i+1,used);
+            // used[i]=false;
+          
+            used[i]=false;
+            path.pop_back();
+
+
+        }
+
+        
+        
+    }
+
+
+    void show(vector<int>& path) {
+            for(auto value : path) {
+                cout<<value<<" ";
+            }
+            cout<<endl;
+        }
+};
+```
+

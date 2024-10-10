@@ -1,0 +1,58 @@
+### 解题思路
+
+核心思路递归，参见大佬题解。
+
+防重复的精髓部分: 如果同层前后重复，则略过不作处理。
+
+为了防止重复利用表内元素，每次下层循环开始位置要加1。
+
+* 
+
+```
+if i != begin && candidates[i] == candidates[i-1]{
+            continue
+        }
+```
+
+### 代码
+
+* golang
+
+```golang
+func combinationSum2(candidates []int, target int) [][]int {
+    sort.Ints(candidates)
+
+    if len(candidates) <= 0{
+        return [][]int{}
+    }
+
+    out := make([][]int, 0)
+
+    out = fck(candidates, target, []int{}, out, 0)
+    return out
+}
+
+func fck(candidates []int, target int, road []int, out [][]int, begin int) [][]int {
+    i := begin
+    for i = begin; i<len(candidates);i++{
+        u := make([]int, len(road))
+        copy(u, road)
+        
+        temp := target - candidates[i]
+        u = append(u, candidates[i])
+        if i != begin && candidates[i] == candidates[i-1]{
+            continue
+        }
+        if temp < 0{
+            break
+        }
+        if temp == 0{
+            out = append(out, u)
+            break
+        }
+        out = fck(candidates, temp, u, out, i+1)
+    }
+    return out
+}
+```
+

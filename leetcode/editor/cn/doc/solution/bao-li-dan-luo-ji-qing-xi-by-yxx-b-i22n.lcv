@@ -1,0 +1,31 @@
+### 解题思路
+
+此处撰写解题思路
+
+### 代码
+
+* python
+
+```python
+class Solution(object):
+    def combinationSum2(self, candidates, target):
+        """
+        :type candidates: List[int]
+        :type target: int
+        :rtype: List[List[int]]
+        """
+        res = [[]]
+        res_d = []
+        for i in range(0,len(candidates)):
+            for x in res[:]:
+                temp = x + [candidates[i]]
+                if sum(temp) <= target:
+                    d = dict()
+                    for y in temp:
+                        d[y] = d.get(y,0)+1
+                    if d not in res_d:
+                        res.append(temp)
+                        res_d.append(d)
+        return [x for x in res if sum(x) == target]
+```
+

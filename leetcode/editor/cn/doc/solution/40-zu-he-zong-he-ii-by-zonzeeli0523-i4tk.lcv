@@ -1,0 +1,43 @@
+### 解题思路
+
+Ⅱ和Ⅰ的主要差距就在于Ⅱ不能重复使用某一个位置的元素，但是如果数组中有重复元素的话，每个可以使用一次，题意很好理解。这道题相对于Ⅰ需要做的就是一个去重，但是这里的去重不是我们正常对一个数组的去重那样子去理解，而是在回溯的过程中，如果一个元素使用了，下一个元素也是这个，那么我们就跳过这个元素，这样子就可以避免产生重复解。
+
+### 代码
+
+* golang
+
+```golang
+func combinationSum2(candidates []int, target int) [][]int {
+	path := []int{}
+	res := [][]int{}
+
+	sort.Ints(candidates)
+
+	dfs(candidates, 0, target, &path, &res)
+	return res
+}
+
+func dfs(num []int, begin, target int, path *[]int, res*[][]int) {
+	if target == 0 {
+		tmp := make([]int, len(*path))
+		copy(tmp, *path)
+		*res = append(*res, tmp)
+		return
+	}
+	for i := begin; i< len(num); i++ {
+		if target - num[i] < 0 {
+			break
+		}
+		if i > begin && num[i-1] == num[i] {
+			continue
+		}
+		//fmt.Println(begin)
+		//fmt.Println(num[i])
+		*path = append(*path, num[i])
+		//fmt.Println(*path)
+		dfs(num, i+1, target-num[i], path, res)
+		*path = (*path)[:len(*path)-1]
+	}
+}
+```
+
