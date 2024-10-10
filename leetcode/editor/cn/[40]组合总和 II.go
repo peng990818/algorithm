@@ -95,6 +95,7 @@ func combinationSum2(candidates []int, target int) (ans [][]int) {
     sort.Ints(candidates)
     res := make([][]int, 0)
     path := make([]int, 0)
+    // 去重使用
     used := make([]bool, len(candidates))
     process(candidates, target, 0, &res, path, used)
     return res
@@ -112,6 +113,8 @@ func process(src []int, target int, index int, res *[][]int, path []int, used []
         if src[i] > target {
             break
         }
+        // used[i-1]为true标记上一次递归使用过
+        // used[i-1]为false标记当前层使用过
         if i > 0 && src[i] == src[i-1] && !used[i-1] {
             continue
         }
