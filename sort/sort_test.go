@@ -42,3 +42,27 @@ func TestHeapSort(t *testing.T) {
     HeapSort1(arr)
     fmt.Println(arr)
 }
+
+func TestBucketSort(t *testing.T) {
+    arr := []int{1, 13, 6, 9, 2}
+    res := BucketSort(arr, 2)
+    fmt.Println(res)
+}
+
+func TestCountingSort(t *testing.T) {
+    arr := []int{1, 13, 6, 9, 2}
+    res := CountingSort(arr)
+    fmt.Println(res)
+}
+
+func TestRadixSort(t *testing.T) {
+    arr := []int{1, 13, 6, 9, 2}
+    RadixSort(arr)
+    fmt.Println(arr)
+}
+
+func TestShellSort(t *testing.T) {
+    arr := []int{1, 13, 6, 9, 2}
+    ShellSort(arr, 2)
+    fmt.Println(arr)
+}
