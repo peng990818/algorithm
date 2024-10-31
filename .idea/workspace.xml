@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="abd5fa6c-096c-4468-8c03-f9b6612b87cf" name="Changes" comment="" />
+    <list default="true" id="abd5fa6c-096c-4468-8c03-f9b6612b87cf" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[93]复原 IP 地址.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[93]复原 IP 地址.go" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

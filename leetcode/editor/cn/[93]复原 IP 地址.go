@@ -44,7 +44,53 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+var segments []int
+var ans []string
+
 func restoreIpAddresses(s string) []string {
+    segments = make([]int, 4)
+    ans = []string{}
+    dfs(0, 0, s)
+    return ans
+}
+
+func dfs(segId, segStart int, s string) {
+    // 满足四个
+    if segId == 4 {
+        // 字符串遍历到结束
+        if segStart == len(s) {
+            ipAddr := ""
+            for i:=0;i<4;i++ {
+                ipAddr += strconv.Itoa(segments[i])
+                if i != 3 {
+                    ipAddr+="."
+                }
+            }
+            ans = append(ans, ipAddr)
+        }
+        return
+    }
+
+    if segStart == len(s) {
+        return
+    }
+
+    if s[segStart] == '0' {
+        segments[segId] = 0
+        dfs(segId+1, segStart+1, s)
+        return
+    }
+
+    addr := 0
+    for segEnd := segStart;segEnd<len(s);segEnd++ {
+        addr = addr*10 + int(s[segEnd]-'0')
+        if addr > 0 && addr <= 0xFF {
+            segments[segId] = addr
+            dfs(segId+1, segEnd+1, s)
+        } else {
+            break
+        }
+    }
 
 }
 //leetcode submit region end(Prohibit modification and deletion)
