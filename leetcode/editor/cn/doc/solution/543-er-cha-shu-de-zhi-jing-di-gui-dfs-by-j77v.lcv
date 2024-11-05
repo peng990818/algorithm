@@ -1,0 +1,47 @@
+# 个人思路
+
+典型$dfs$题目，一开始想直接定义$dfs$为经过$node$节点的最长"直径"长度，但发现状态转移时不好搞，遂还是定义$dfs$为普通的求节点深度/高度
+
+经典$dfs$求高度，在中间过程中维护【左子树高度】+【右子树高度】+2的最大值即可（2为根节点到左右子树两条边的长度）
+
+# ver1-代码
+
+- 时间 $n$
+- 空间 $n$
+
+* []
+
+```go
+func diameterOfBinaryTree(root *TreeNode) int {
+	var (
+		dfs func(node *TreeNode) int // node节点深度
+		ans int
+	)
+	dfs = func(node *TreeNode) int {
+		//边界
+		if node == nil {
+			return -1
+		}
+		//求左右子树深度
+		leftDepth := dfs(node.Left)
+		rightDepth := dfs(node.Right)
+		//维护经过node最长路径
+		ans = max(ans, leftDepth+rightDepth+2)
+
+		//最大深度
+		return max(leftDepth, rightDepth) + 1
+	}
+
+	dfs(root)
+	return ans
+}
+```
+
+# 感悟知识
+
+$dfs$经典思路，**要学会准确的定义状态、状态转移、边界情况、答案等**，最好还是在草稿纸上写写画画，写代码写起来很快，难点在于准确思路的确认
+
+适当的注释帮助理解~
+
+必要时结合$case$帮助理解边界细节等
+
