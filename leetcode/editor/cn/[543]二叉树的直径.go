@@ -42,28 +42,44 @@
  *     Right *TreeNode
  * }
  */
+// func diameterOfBinaryTree(root *TreeNode) int {
+// var (
+// dfs func(node *TreeNode) int // node节点深度
+// ans int
+// )
+// dfs = func(node *TreeNode) int {
+// //边界
+// if node == nil {
+// return -1
+// }
+// //求左右子树深度
+// leftDepth := dfs(node.Left)
+// rightDepth := dfs(node.Right)
+// //维护经过node最长路径
+// ans = max(ans, leftDepth+rightDepth+2)
+//
+// //最大深度
+// return max(leftDepth, rightDepth) + 1
+// }
+//
+// dfs(root)
+// return ans
+// }
+
+var res int
 func diameterOfBinaryTree(root *TreeNode) int {
-var (
-dfs func(node *TreeNode) int // node节点深度
-ans int
-)
-dfs = func(node *TreeNode) int {
-//边界
-if node == nil {
-return -1
-}
-//求左右子树深度
-leftDepth := dfs(node.Left)
-rightDepth := dfs(node.Right)
-//维护经过node最长路径
-ans = max(ans, leftDepth+rightDepth+2)
-
-//最大深度
-return max(leftDepth, rightDepth) + 1
+    dfs(root)
+    return res
 }
 
-dfs(root)
-return ans
+func dfs(root *TreeNode) int {
+    if root == nil {
+        return 0
+    }
+    l := dfs(root.Left)
+    r := dfs(root.Right)
+    res = max(res, l+r)
+    return max(l, r)+1
 }
 
 //leetcode submit region end(Prohibit modification and deletion)
