@@ -41,6 +41,24 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 func coinChange(coins []int, amount int) int {
-    
+    // todo 待深入
+    if len(coins) == 0 || amount < 0 {
+        return 0
+    }
+    dp := make([]int, amount+1)
+    for i:=1;i<len(dp);i++ {
+        dp[i] = amount+1
+    }
+    for i:=0;i<=amount;i++ {
+        for j := 0;j<len(coins);j++ {
+            if coins[j] <= i {
+                dp[i] = min(dp[i], dp[i-coins[j]]+1)
+            }
+        }
+    }
+    if dp[amount] > amount {
+        return -1
+    }
+    return dp[amount]
 }
 //leetcode submit region end(Prohibit modification and deletion)
