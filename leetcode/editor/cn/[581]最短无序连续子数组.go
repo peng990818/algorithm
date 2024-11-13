@@ -48,6 +48,39 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 func findUnsortedSubarray(nums []int) int {
-    
+    // if sort.IntsAreSorted(nums) {
+    //     return 0
+    // }
+    // 排序比较
+    // numsSorted := append([]int(nil), nums...)
+    // sort.Ints(numsSorted)
+    // left, right := 0, len(nums)-1
+    // for nums[left] == numsSorted[left] {
+    //     left++
+    // }
+    // for nums[right] == numsSorted[right] {
+    //     right--
+    // }
+    // return right-left+1
+
+    n := len(nums)
+    minn, maxn := math.MaxInt64, math.MinInt64
+    left, right := -1, -1
+    for i, num := range nums {
+        if maxn > num {
+            right = i
+        } else {
+            maxn = num
+        }
+        if minn < nums[n-i-1] {
+            left = n-i-1
+        } else {
+            minn = nums[n-i-1]
+        }
+    }
+    if right == -1 {
+        return 0
+    }
+    return right-left+1
 }
 //leetcode submit region end(Prohibit modification and deletion)
