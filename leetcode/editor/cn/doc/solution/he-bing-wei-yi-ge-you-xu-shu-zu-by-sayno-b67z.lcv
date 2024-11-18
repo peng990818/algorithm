@@ -1,0 +1,41 @@
+### 解题思路
+
+此处撰写解题思路
+
+### 代码
+
+* golang
+
+```golang
+func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
+    var sum []int
+    for len(nums1) > 0 && len(nums2) > 0   {
+        for _, v := range nums1 {
+            for _, vIn := range nums2 {
+                if vIn > v {
+                    sum = append(sum ,v)               
+                    nums1 = nums1[1:] 
+                    break
+                } else {
+                    sum = append(sum, vIn)                
+                    nums2 = nums2[1:]
+                    break
+                }
+            }
+            break
+        }        
+    }
+    if len(nums1) > 0 {
+        sum = append(sum, nums1...)
+    } 
+    if len(nums2) > 0 {
+        sum = append(sum, nums2...)
+    }
+    if len(sum) % 2 == 1 {
+        return float64(sum[len(sum)/2])
+    } else {
+        return (float64(sum[(len(sum)/2)-1]) + float64(sum[len(sum)/2]))/2
+    }
+}
+```
+
