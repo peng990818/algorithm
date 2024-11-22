@@ -42,10 +42,10 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
-func longestValidParentheses(s string) int {
-    if len(s) <= 1 {
-        return 0
-    }
+// func longestValidParentheses(s string) int {
+//     if len(s) <= 1 {
+//         return 0
+//     }
     // 贪心
     // left, right, maxLength := 0, 0, 0
     // for i:=0; i<len(s); i++ {
@@ -94,33 +94,56 @@ func longestValidParentheses(s string) int {
     // return maxLength
 
     // 动态规划
-    maxAns := 0
-    dp := make([]int, len(s))
-    for i := 1; i < len(s); i++ {
-        if s[i] == ')' {
-            if s[i-1] == '(' {
-                if i >= 2 {
-                    dp[i] = dp[i - 2] + 2
-                } else {
-                    dp[i] = 2
-                }
-            } else if i - dp[i - 1] > 0 && s[i - dp[i - 1] - 1] == '(' {
-                if i - dp[i - 1] >= 2 {
-                    dp[i] = dp[i - 1] + dp[i - dp[i - 1] - 2] + 2
-                } else {
-                    dp[i] = dp[i - 1] + 2
-                }
-            }
-            maxAns = max(maxAns, dp[i])
-        }
-    }
-    return maxAns
-}
+//     maxAns := 0
+//     dp := make([]int, len(s))
+//     for i := 1; i < len(s); i++ {
+//         if s[i] == ')' {
+//             if s[i-1] == '(' {
+//                 if i >= 2 {
+//                     dp[i] = dp[i - 2] + 2
+//                 } else {
+//                     dp[i] = 2
+//                 }
+//             } else if i - dp[i - 1] > 0 && s[i - dp[i - 1] - 1] == '(' {
+//                 if i - dp[i - 1] >= 2 {
+//                     dp[i] = dp[i - 1] + dp[i - dp[i - 1] - 2] + 2
+//                 } else {
+//                     dp[i] = dp[i - 1] + 2
+//                 }
+//             }
+//             maxAns = max(maxAns, dp[i])
+//         }
+//     }
+//     return maxAns
+// }
 
 func max(a, b int) int {
     if a > b {
         return a
     }
     return b
+}
+
+func longestValidParentheses(s string) int {
+    if len(s) <= 1 {
+        return 0
+    }
+    // 最后一个没有被匹配的右括号的下标
+    stack := make([]int, 0)
+    stack = append(stack, -1)
+    maxLength := 0
+    for i:=0;i<len(s);i++ {
+        if s[i] == '(' {
+            stack = append(stack, i)
+        } else {
+            stack = stack[:len(stack)-1]
+            if len(stack) == 0 {
+                stack = append(stack, i)
+            } else {
+                maxLength = max(maxLength, i-stack[len(stack)-1])
+            }
+        }
+    }
+    return maxLength
 }
 //leetcode submit region end(Prohibit modification and deletion)
