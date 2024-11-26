@@ -1,4 +1,4 @@
-package algorithm
+package sort
 
 func SelectSort(arr []int) {
     if len(arr) <= 1 {

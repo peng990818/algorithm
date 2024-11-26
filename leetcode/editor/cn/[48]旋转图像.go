@@ -35,24 +35,47 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 
+// func rotate(matrix [][]int) {
+// if len(matrix) == 0 {
+// return
+// }
+// tR, tC, dR, dC := 0, 0, len(matrix)-1, len(matrix)-1
+// for tR < dR {
+// rotateEdge(matrix, tR, tC, dR, dC)
+// tR++
+// tC++
+// dR--
+// dC--
+// }
+// }
+//
+// func rotateEdge(matrix [][]int, tR, tC, dR, dC int) {
+// for i := 0; i < dC-tC; i++ {
+// matrix[tR][tC+i], matrix[tR+i][dC], matrix[dR][dC-i], matrix[dR-i][tC] =
+// matrix[dR-i][tC], matrix[tR][tC+i], matrix[tR+i][dC], matrix[dR][dC-i]
+// }
+// }
+
+
 func rotate(matrix [][]int) {
-if len(matrix) == 0 {
-return
-}
-tR, tC, dR, dC := 0, 0, len(matrix)-1, len(matrix)-1
-for tR < dR {
-rotateEdge(matrix, tR, tC, dR, dC)
-tR++
-tC++
-dR--
-dC--
-}
+    if len(matrix) == 0 || len(matrix[0]) == 0 {
+        return
+    }
+    tr, tc, dr, dc := 0, 0, len(matrix)-1, len(matrix)-1
+    for tr < dr {
+        rotateEdge(matrix, tr, tc, dr, dc)
+        tr++
+        tc++
+        dr--
+        dc--
+    }
 }
 
-func rotateEdge(matrix [][]int, tR, tC, dR, dC int) {
-for i := 0; i < dC-tC; i++ {
-matrix[tR][tC+i], matrix[tR+i][dC], matrix[dR][dC-i], matrix[dR-i][tC] =
-matrix[dR-i][tC], matrix[tR][tC+i], matrix[tR+i][dC], matrix[dR][dC-i]
+func rotateEdge(matrix [][]int, tr, tc, dr, dc int) {
+    for i:=0; i < dc-tc;i++ {
+        matrix[tr][tc+i], matrix[tr+i][dc], matrix[dr][dc-i], matrix[dr-i][tc] =
+            matrix[dr-i][tc], matrix[tr][tc+i], matrix[tr+i][dc], matrix[dr][dc-i]
+    }
 }
-}
+
 //leetcode submit region end(Prohibit modification and deletion)

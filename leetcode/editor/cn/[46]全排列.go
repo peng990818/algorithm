@@ -37,25 +37,45 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
-func process(res *[][]int, arr []int, first int) {
-    if first == len(arr) {
-        tmp := make([]int, len(arr))
-        copy(tmp, arr)
-        *res = append(*res, tmp)
-    }
-
-    // 轮流让数组中每个数都做一次第一个数，递归让后面的数全排列
-    for i:=first;i<len(arr);i++ {
-        arr[i], arr[first] = arr[first], arr[i]
-        process(res, arr, first+1)
-        arr[i], arr[first] = arr[first], arr[i]
-    }
-}
-
+// func process(res *[][]int, arr []int, first int) {
+//     if first == len(arr) {
+//         tmp := make([]int, len(arr))
+//         copy(tmp, arr)
+//         *res = append(*res, tmp)
+//     }
+//
+//     // 轮流让数组中每个数都做一次第一个数，递归让后面的数全排列
+//     for i:=first;i<len(arr);i++ {
+//         arr[i], arr[first] = arr[first], arr[i]
+//         process(res, arr, first+1)
+//         arr[i], arr[first] = arr[first], arr[i]
+//     }
+// }
+//
+//
+// func permute(nums []int) [][]int {
+//     res := make([][]int, 0)
+//     process(&res, nums, 0)
+//     return res
+// }
 
 func permute(nums []int) [][]int {
     res := make([][]int, 0)
     process(&res, nums, 0)
     return res
 }
+
+func process(res *[][]int, nums []int, index int) {
+    if index == len(nums) {
+        tmp := make([]int, len(nums))
+        copy(tmp, nums)
+        *res = append(*res, tmp)
+    }
+    for i:=index;i<len(nums);i++ {
+        nums[i], nums[index] = nums[index], nums[i]
+        process(res, nums, index+1)
+        nums[i], nums[index] = nums[index], nums[i]
+    }
+}
+
 //leetcode submit region end(Prohibit modification and deletion)

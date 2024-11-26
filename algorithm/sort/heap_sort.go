@@ -1,4 +1,4 @@
-package algorithm
+package sort
 
 // HeapSort 堆排序 从小到大
 func HeapSort(arr []int) {

@@ -1,4 +1,4 @@
-package algorithm
+package sort
 
 // InsertSortBySwap 基于不停交换的插入排序
 func InsertSortBySwap(arr []int) {

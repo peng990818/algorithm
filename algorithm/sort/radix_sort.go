@@ -1,4 +1,4 @@
-package algorithm
+package sort
 
 // RadixSort 基数排序，按照十进制的每一位进行排序
 func RadixSort(src []int) {

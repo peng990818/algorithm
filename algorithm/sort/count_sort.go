@@ -1,4 +1,4 @@
-package algorithm
+package sort
 
 // CountSort 计数排序，统计数量进行排序
 func CountSort(arr []int) []int {

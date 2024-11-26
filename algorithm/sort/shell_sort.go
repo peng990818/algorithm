@@ -1,4 +1,4 @@
-package algorithm
+package sort
 
 // ShellSort 希尔排序
 // gap表示每隔几步
