@@ -33,34 +33,98 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+// func canJump(nums []int) bool {
+//     if len(nums) == 0 {
+//         return false
+//     }
+//     if len(nums) == 1 && nums[0] == 0 {
+//         return true
+//     }
+//     i := 0
+//     for i < len(nums) {
+//         if nums[i] == 0 {
+//             return false
+//         }
+//         // 一步到位
+//         if i+nums[i] >= len(nums)-1 {
+//             return true
+//         }
+//         // 贪心寻找最远的点
+//         j, max, index := i+1, nums[i] + nums[i+nums[i]], i+nums[i]
+//         for j < len(nums) && j < i+nums[i] {
+//             tmp := j-i+nums[j]
+//             if tmp > max {
+//                 max = tmp
+//                 index = j
+//             }
+//             j++
+//         }
+//         i = index
+//     }
+//     return true
+// }
+
+// 贪心策略：计算每一次跳的最远距离
+// func canJump(nums []int) bool {
+//     if len(nums) == 0 {
+//         return false
+//     }
+//     if len(nums) == 1 && nums[0] == 0 {
+//         return true
+//     }
+//     i := 0
+//     for i<len(nums) {
+//         // 零值特殊处理
+//         if nums[i] == 0 {
+//             return false
+//         }
+//         // 一步到位
+//         if i + nums[i] >= len(nums)-1 {
+//             return true
+//         }
+//         // 计算最远距离
+//         max := nums[i] + nums[i+nums[i]]
+//         j := i+1
+//         index := i+nums[i]
+//         for j < len(nums) && j < i+nums[i] {
+//             tmp := nums[j] + j-i
+//             if tmp > max {
+//                 max = tmp
+//                 index = j
+//             }
+//             j++
+//         }
+//         i = index
+//     }
+//     return true
+// }
+
+// 真正的贪心
 func canJump(nums []int) bool {
-    if len(nums) == 0 {
-        return false
-    }
-    if len(nums) == 1 && nums[0] == 0 {
-        return true
-    }
-    i := 0
-    for i < len(nums) {
-        if nums[i] == 0 {
+    n := len(nums)
+    most := 0
+    for i:=0;i<n;i++ {
+        if i <= most {
+            // 位置都可达
+            most = max(most, i+nums[i])
+            if most >= n-1 {
+                return true
+            }
+        } else {
             return false
         }
-        // 一步到位
-        if i+nums[i] >= len(nums)-1 {
-            return true
-        }
-        // 贪心寻找最远的点
-        j, max, index := i+1, nums[i] + nums[i+nums[i]], i+nums[i]
-        for j < len(nums) && j < i+nums[i] {
-            tmp := j-i+nums[j]
-            if tmp > max {
-                max = tmp
-                index = j
-            }
-            j++
-        }
-        i = index
     }
-    return true
+    return false
 }
+
+
+
+
+
+
+
+
+
+
+
 //leetcode submit region end(Prohibit modification and deletion)

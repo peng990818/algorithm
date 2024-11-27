@@ -32,47 +32,101 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+// func merge(intervals [][]int) [][]int {
+//     if len(intervals) <= 1 {
+//         return intervals
+//     }
+//     for i:=0;i<len(intervals)-1;i++ {
+//         for j:=0;j<len(intervals)-1-i;j++ {
+//             if intervals[j][0] > intervals[j+1][0] {
+//                 intervals[j], intervals[j+1] = intervals[j+1], intervals[j]
+//             }
+//         }
+//     }
+//     res := make([][]int, 0)
+//     tmp, tmps := intervals[0], [][]int{}
+//     for i:=1;i<len(intervals);i++ {
+//         tmps = process(tmp, intervals[i])
+//         if len(tmps) == 2 {
+//             res = append(res, tmp)
+//             // 没产生新合并
+//             tmp = tmps[1]
+//         } else {
+//             // 产生新合并
+//             tmp = tmps[0]
+//         }
+//     }
+//     res = append(res, tmp)
+//     return res
+// }
+//
+// func process(a []int, b []int) [][]int {
+//     if a[0] <= b[0] && b[0] <= a[1] {
+//         if a[1] <= b[1] {
+//             return [][]int{{a[0], b[1]}}
+//         }
+//         return [][]int{a}
+//     }
+//     if b[0] <= a[0] && a[0] <= b[1] {
+//         if b[1] <= a[1] {
+//             return [][]int{{b[0], a[1]}}
+//         }
+//         return [][]int{b}
+//     }
+//     return [][]int{a, b}
+// }
+
+//
+// func merge(intervals [][]int) [][]int {
+//     if len(intervals) <= 1 {
+//         return intervals
+//     }
+//     for i:=0;i<len(intervals)-1;i++ {
+//         for j:=0;j<len(intervals)-1-i;j++ {
+//             if intervals[j][0] > intervals[j+1][0] {
+//                 intervals[j], intervals[j+1] = intervals[j+1], intervals[j]
+//             }
+//         }
+//     }
+//     res := make([][]int, 0, len(intervals))
+//     tmp := intervals[0]
+//     for i:=1;i<len(intervals);i++ {
+//         tmps := mergeTwo(tmp, intervals[i])
+//         if len(tmps) == 2 {
+//             res = append(res, tmp)
+//             tmp = tmps[1]
+//         } else {
+//             tmp = tmps[0]
+//         }
+//     }
+//     res = append(res, tmp)
+//     return res
+// }
+//
+// func mergeTwo(arr1, arr2 []int) [][]int {
+//     if arr1[0] <= arr2[0] && arr1[1] >= arr2[0] {
+//         if arr1[1] <= arr2[1] {
+//             return [][]int{{arr1[0], arr2[1]}}
+//         }
+//         return [][]int{arr1}
+//     }
+//     if arr2[0] <= arr1[0] && arr2[1] >= arr1[0] {
+//         if arr2[1] <= arr1[1] {
+//             return [][]int{{arr2[0], arr1[1]}}
+//         }
+//         return [][]int{arr2}
+//     }
+//     return [][]int{arr1, arr2}
+// }
+
+
 func merge(intervals [][]int) [][]int {
-    if len(intervals) <= 1 {
-        return intervals
-    }
-    for i:=0;i<len(intervals)-1;i++ {
-        for j:=0;j<len(intervals)-1-i;j++ {
-            if intervals[j][0] > intervals[j+1][0] {
-                intervals[j], intervals[j+1] = intervals[j+1], intervals[j]
-            }
-        }
-    }
-    res := make([][]int, 0)
-    tmp, tmps := intervals[0], [][]int{}
-    for i:=1;i<len(intervals);i++ {
-        tmps = process(tmp, intervals[i])
-        if len(tmps) == 2 {
-            res = append(res, tmp)
-            // 没产生新合并
-            tmp = tmps[1]
-        } else {
-            // 产生新合并
-            tmp = tmps[0]
-        }
-    }
-    res = append(res, tmp)
-    return res
 }
 
-func process(a []int, b []int) [][]int {
-    if a[0] <= b[0] && b[0] <= a[1] {
-        if a[1] <= b[1] {
-            return [][]int{{a[0], b[1]}}
-        }
-        return [][]int{a}
-    }
-    if b[0] <= a[0] && a[0] <= b[1] {
-        if b[1] <= a[1] {
-            return [][]int{{b[0], a[1]}}
-        }
-        return [][]int{b}
-    }
-    return [][]int{a, b}
-}
+
+
+
+
+
+
 //leetcode submit region end(Prohibit modification and deletion)

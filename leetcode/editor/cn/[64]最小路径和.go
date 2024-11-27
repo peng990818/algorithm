@@ -34,29 +34,62 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+// func minPathSum(grid [][]int) int {
+//     if len(grid) == 0 || len(grid[0]) == 0 {
+//         return 0
+//     }
+//     for i:=0;i<len(grid);i++ {
+//         if i == 0 {
+//             for j := 1;j<len(grid[i]);j++ {
+//                 grid[i][j] += grid[i][j-1]
+//             }
+//             continue
+//         }
+//         for j := 0;j<len(grid[i]);j++ {
+//             if j == 0 {
+//                 grid[i][j] += grid[i-1][j]
+//                 continue
+//             }
+//             if grid[i-1][j] < grid[i][j-1] {
+//                 grid[i][j] += grid[i-1][j]
+//                 continue
+//             }
+//             grid[i][j] += grid[i][j-1]
+//         }
+//     }
+//     return grid[len(grid)-1][len(grid[0])-1]
+// }
+
 func minPathSum(grid [][]int) int {
     if len(grid) == 0 || len(grid[0]) == 0 {
         return 0
     }
-    for i:=0;i<len(grid);i++ {
+    m, n := len(grid), len(grid[0])
+    dp := make([][]int, m)
+    for i:=0;i<m;i++ {
+        dp[i] = make([]int, n)
         if i == 0 {
-            for j := 1;j<len(grid[i]);j++ {
-                grid[i][j] += grid[i][j-1]
+            for j:=0;j<n;j++ {
+                if j == 0 {
+                    dp[i][j] = grid[i][j]
+                    continue
+                }
+                dp[i][j] = dp[i][j-1] + grid[i][j]
             }
             continue
         }
-        for j := 0;j<len(grid[i]);j++ {
+        for j:=0;j<n;j++ {
             if j == 0 {
-                grid[i][j] += grid[i-1][j]
+                dp[i][j] = dp[i-1][j] + grid[i][j]
                 continue
             }
-            if grid[i-1][j] < grid[i][j-1] {
-                grid[i][j] += grid[i-1][j]
-                continue
+            if dp[i-1][j] > dp[i][j-1] {
+                dp[i][j] = dp[i][j-1] + grid[i][j]
+            } else {
+                dp[i][j] = dp[i-1][j] + grid[i][j]
             }
-            grid[i][j] += grid[i][j-1]
         }
     }
-    return grid[len(grid)-1][len(grid[0])-1]
+    return dp[m-1][n-1]
 }
 //leetcode submit region end(Prohibit modification and deletion)

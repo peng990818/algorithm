@@ -43,21 +43,45 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+// func maxSubArray(nums []int) int {
+//     if len(nums) == 1 {
+//         return nums[0]
+//     }
+//     max, dp := math.MinInt64, make([]int, len(nums))
+//     for i:=0;i<len(nums);i++ {
+//         if i > 0 && dp[i-1] >= 0 {
+//             dp[i] = dp[i-1] + nums[i]
+//         } else {
+//             dp[i] = nums[i]
+//         }
+//         if dp[i] > max {
+//             max = dp[i]
+//         }
+//     }
+//     return max
+// }
+
 func maxSubArray(nums []int) int {
-    if len(nums) == 1 {
-        return nums[0]
+    if len(nums) == 0 {
+        return 0
     }
-    max, dp := math.MinInt64, make([]int, len(nums))
-    for i:=0;i<len(nums);i++ {
-        if i > 0 && dp[i-1] >= 0 {
-            dp[i] = dp[i-1] + nums[i]
+    dp := make([]int, len(nums))
+    dp[0] = nums[0]
+    res := dp[0]
+    for i:=1;i<len(nums);i++ {
+        if dp[i-1] >= 0 {
+            dp[i] += nums[i] + dp[i-1]
         } else {
             dp[i] = nums[i]
         }
-        if dp[i] > max {
-            max = dp[i]
-        }
+        res = max(res, dp[i])
     }
-    return max
+    return res
 }
+
+
+
+
+
+
 //leetcode submit region end(Prohibit modification and deletion)
