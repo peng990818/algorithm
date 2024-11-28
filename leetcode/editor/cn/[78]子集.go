@@ -32,24 +32,44 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+// func subsets(nums []int) [][]int {
+//     res := make([][]int, 0)
+//     set := make([]int, 0)
+//     process(&res, set, nums, 0)
+//     return res
+// }
+//
+// func process(res *[][]int, set []int, nums []int, cur int) {
+//     tmp := make([]int, len(set))
+//     copy(tmp, set)
+//     *res = append(*res, tmp)
+//     for i:=cur;i<len(nums);i++ {
+//         // 选择这个数
+//         set = append(set, nums[cur])
+//         cur++
+//         process(res, set, nums, cur)
+//         // 不选择这个数
+//         set = set[:len(set)-1]
+//     }
+// }
+
+
 func subsets(nums []int) [][]int {
     res := make([][]int, 0)
-    set := make([]int, 0)
-    process(&res, set, nums, 0)
-    return res
-}
-
-func process(res *[][]int, set []int, nums []int, cur int) {
-    tmp := make([]int, len(set))
-    copy(tmp, set)
-    *res = append(*res, tmp)
-    for i:=cur;i<len(nums);i++ {
-        // 选择这个数
-        set = append(set, nums[cur])
-        cur++
-        process(res, set, nums, cur)
-        // 不选择这个数
-        set = set[:len(set)-1]
+    var process func (path []int, index int)
+    process = func (path []int, index int) {
+        if index == len(nums) {
+            tmp := make([]int, len(path))
+            copy(tmp, path)
+            res = append(res, tmp)
+            return
+        }
+        path = append(path, nums[index])
+        process(path, index+1)
+        path = path[:len(path)-1]
+        process(path, index+1)
     }
+    process(nil, 0)
+    return res
 }
 //leetcode submit region end(Prohibit modification and deletion)

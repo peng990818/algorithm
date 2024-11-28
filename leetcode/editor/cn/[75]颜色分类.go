@@ -46,19 +46,38 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+// func sortColors(nums []int)  {
+//     if len(nums) == 0 {
+//         return
+//     }
+//     less, more, l := -1, len(nums), 0
+//     for l < more {
+//         if nums[l] < 1 {
+//             less++
+//             nums[less], nums[l] = nums[l], nums[less]
+//             l++
+//         } else if nums[l] > 1 {
+//             more--
+//             nums[l], nums[more] = nums[more], nums[l]
+//         } else {
+//             l++
+//         }
+//     }
+// }
+
 func sortColors(nums []int)  {
     if len(nums) == 0 {
         return
     }
     less, more, l := -1, len(nums), 0
     for l < more {
-        if nums[l] < 1 {
+        if nums[l] == 0 {
             less++
             nums[less], nums[l] = nums[l], nums[less]
             l++
-        } else if nums[l] > 1 {
+        } else if nums[l] == 2 {
             more--
-            nums[l], nums[more] = nums[more], nums[l]
+            nums[more], nums[l] = nums[l], nums[more]
         } else {
             l++
         }

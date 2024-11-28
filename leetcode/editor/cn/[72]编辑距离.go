@@ -47,17 +47,54 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+// func minDistance(word1 string, word2 string) int {
+//     dp := make([][]int, len(word1)+1)
+//     for i := range dp {
+//         dp[i] = make([]int, len(word2)+1)
+//         if i == 0 {
+//             for j := range dp[i] {
+//                 dp[i][j] = j
+//             }
+//             continue
+//         }
+//         for j:=range dp[i] {
+//             if j == 0 {
+//                 dp[i][j] = i
+//                 continue
+//             }
+//             if word1[i-1] != word2[j-1] {
+//                 dp[i][j] = 1 + min(dp[i][j-1], dp[i-1][j], dp[i-1][j-1])
+//                 continue
+//             }
+//             dp[i][j] = 1 + min(dp[i][j-1], dp[i-1][j], dp[i-1][j-1]-1)
+//         }
+//     }
+//     return dp[len(word1)][len(word2)]
+// }
+//
+// func min(a, b, c int) int {
+//     min := a
+//     if min > b {
+//         min = b
+//     }
+//     if min > c {
+//         min = c
+//     }
+//     return min
+// }
+
+// 用 D[i][j] 表示 A 的前 i 个字母和 B 的前 j 个字母之间的编辑距离。
 func minDistance(word1 string, word2 string) int {
     dp := make([][]int, len(word1)+1)
-    for i := range dp {
+    for i:=0;i<len(word1)+1;i++ {
         dp[i] = make([]int, len(word2)+1)
         if i == 0 {
-            for j := range dp[i] {
+            for j:=0;j<len(dp[i]);j++ {
                 dp[i][j] = j
             }
             continue
         }
-        for j:=range dp[i] {
+        for j:=0;j<len(dp[i]);j++ {
             if j == 0 {
                 dp[i][j] = i
                 continue

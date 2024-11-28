@@ -48,15 +48,60 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
-type pair struct{ x, y int }
-var directions = []pair{{-1, 0}, {1, 0}, {0, -1}, {0, 1}} // 上下左右
+// type pair struct{ x, y int }
+// var directions = []pair{{-1, 0}, {1, 0}, {0, -1}, {0, 1}} // 上下左右
+// func exist(board [][]byte, word string) bool {
+//     vis := make([][]bool, len(board))
+//     for i := range vis {
+//         vis[i] = make([]bool, len(board[0]))
+//     }
+//     for i:=0;i<len(board);i++ {
+//         for j := 0;j<len(board[0]);j++ {
+//             if process(board, word, i, j, 0, vis) {
+//                 return true
+//             }
+//         }
+//     }
+//     return false
+// }
+//
+// func process(board [][]byte, word string, i, j int, k int, vis [][]bool) bool {
+//     if board[i][j] != word[k] {
+//         // 剪枝：当前字符不匹配
+//         return false
+//     }
+//     if k == len(word) - 1 {
+//         return true
+//     }
+//         vis[i][j] = true
+//         defer func() {
+//             vis[i][j] = false
+//         }()
+//         for _, dir := range directions {
+//             if newI, newJ := i+dir.x, j+dir.y; 0 <= newI && newI < len(board) && 0 <= newJ && newJ < len(board[0]) && !vis[newI][newJ] {
+//                 if process(board, word, newI, newJ, k+1, vis) {
+//                     return true
+//                 }
+//             }
+//         }
+//         return false
+// }
+type pair struct {
+    x, y int
+}
+
+var directions = []pair{{-1, 0}, {1, 0}, {0, -1}, {0, 1}}
+
 func exist(board [][]byte, word string) bool {
+    if len(board) == 0 || len(board[0]) == 0 {
+        return false
+    }
     vis := make([][]bool, len(board))
     for i := range vis {
         vis[i] = make([]bool, len(board[0]))
     }
     for i:=0;i<len(board);i++ {
-        for j := 0;j<len(board[0]);j++ {
+        for j:=0;j<len(board[0]);j++ {
             if process(board, word, i, j, 0, vis) {
                 return true
             }
@@ -66,24 +111,24 @@ func exist(board [][]byte, word string) bool {
 }
 
 func process(board [][]byte, word string, i, j int, k int, vis [][]bool) bool {
-    if board[i][j] != word[k] {
-        // 剪枝：当前字符不匹配
+    if word[k] != board[i][j] {
         return false
     }
-    if k == len(word) - 1 {
+    if k == len(word)-1 {
         return true
     }
-        vis[i][j] = true
-        defer func() {
-            vis[i][j] = false
-        }()
-        for _, dir := range directions {
-            if newI, newJ := i+dir.x, j+dir.y; 0 <= newI && newI < len(board) && 0 <= newJ && newJ < len(board[0]) && !vis[newI][newJ] {
-                if process(board, word, newI, newJ, k+1, vis) {
-                    return true
-                }
+    vis[i][j] = true
+    defer func() {
+        vis[i][j] = false
+    }()
+    for _, d := range directions {
+        newI, newJ := i+d.x, j+d.y
+        if newI >= 0 && newI < len(board) && newJ >= 0 && newJ < len(board[0]) && !vis[newI][newJ] {
+            if process(board, word, newI, newJ, k+1, vis) {
+                return true
             }
         }
-        return false
+    }
+    return false
 }
 //leetcode submit region end(Prohibit modification and deletion)

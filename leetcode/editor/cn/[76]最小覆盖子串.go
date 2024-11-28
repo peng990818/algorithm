@@ -94,37 +94,75 @@
 // }
 
 // 优化
+// func minWindow(s string, t string) string {
+//     ansLeft, ansRight := -1, len(s)
+//     cnt := [128]int{}
+//     less := 0
+//     for _, c := range t {
+//         if cnt[c] == 0 {
+//             less++ // 有less种字母的出现次数< t中的字母出现次数
+//         }
+//         cnt[c]++
+//     }
+//
+//     left := 0
+//     for right, c := range s {
+//         cnt[c]--
+//         if cnt[c] == 0 {
+//             // 原来窗口内 c 的出现次数比 t 的少，现在一样多
+//             less--
+//         }
+//         // 涵盖：所有字母的出现次数都是 >=
+//         for less == 0 {
+//             if right-left < ansRight-ansLeft {
+//                 ansLeft, ansRight = left, right
+//             }
+//             x := s[left]
+//             if cnt[x] == 0 {
+//                 // x 移出窗口之前，检查出现次数，
+//                 // 如果窗口内 x 的出现次数和 t 一样，
+//                 // 那么 x 移出窗口后，窗口内 x 的出现次数比 t 的少
+//                 less++
+//             }
+//             cnt[x]++
+//             left++
+//         }
+//     }
+//     if ansLeft < 0 {
+//         return ""
+//     }
+//     return s[ansLeft:ansRight+1]
+// }
+
+// 常规版本
+func isCovered(cntS, cntT []int) bool {
+    for i:='A';i<='Z';i++ {
+        if cntS[i] < cntT[i] {
+            return false
+        }
+    }
+    for i:='a';i<='z';i++ {
+        if cntS[i] < cntT[i] {
+            return false
+        }
+    }
+    return true
+}
+
 func minWindow(s string, t string) string {
     ansLeft, ansRight := -1, len(s)
-    cnt := [128]int{}
-    less := 0
+    var cntS, cntT [128]int
     for _, c := range t {
-        if cnt[c] == 0 {
-            less++ // 有less种字母的出现次数< t中的字母出现次数
-        }
-        cnt[c]++
+        cntT[c]++
     }
-
     left := 0
     for right, c := range s {
-        cnt[c]--
-        if cnt[c] == 0 {
-            // 原来窗口内 c 的出现次数比 t 的少，现在一样多
-            less--
-        }
-        // 涵盖：所有字母的出现次数都是 >=
-        for less == 0 {
-            if right-left < ansRight-ansLeft {
+        cntS[c]++
+        for isCovered(cntS[:], cntT[:]) {
+            if right - left < ansRight - ansLeft {
                 ansLeft, ansRight = left, right
             }
-            x := s[left]
-            if cnt[x] == 0 {
-                // x 移出窗口之前，检查出现次数，
-                // 如果窗口内 x 的出现次数和 t 一样，
-                // 那么 x 移出窗口后，窗口内 x 的出现次数比 t 的少
-                less++
-            }
-            cnt[x]++
+            cntS[s[left]]--
             left++
         }
     }
