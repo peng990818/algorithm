@@ -46,18 +46,34 @@
  *     Right *TreeNode
  * }
  */
-func isValidBST(root *TreeNode) bool {
-    return helper(root, math.MinInt64, math.MaxInt64)
-}
+// func isValidBST(root *TreeNode) bool {
+//     return helper(root, math.MinInt64, math.MaxInt64)
+// }
+//
+// func helper(root *TreeNode, lower, upper int) bool {
+//     if root == nil {
+//         return true
+//     }
+//     // 所有的值都应该在一个范围
+//     if root.Val <= lower || root.Val >= upper {
+//         return false
+//     }
+//     return helper(root.Left, lower, root.Val) && helper(root.Right, root.Val, upper)
+// }
 
+
+// 左树值的范围均小于root，右树值的范围均大于root
 func helper(root *TreeNode, lower, upper int) bool {
     if root == nil {
         return true
     }
-    // 所有的值都应该在一个范围
     if root.Val <= lower || root.Val >= upper {
         return false
     }
     return helper(root.Left, lower, root.Val) && helper(root.Right, root.Val, upper)
+}
+
+func isValidBST(root *TreeNode) bool {
+    return helper(root, math.MinInt64, math.MaxInt64)
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -48,18 +48,41 @@
  *     Right *TreeNode
  * }
  */
+// 递归版本
+// func inorderTraversal(root *TreeNode) []int {
+//     if root == nil {
+//         return nil
+//     }
+//     res := make([]int, 0)
+//     if root.Left != nil {
+//         res = append(res, inorderTraversal(root.Left)...)
+//     }
+//     res = append(res, root.Val)
+//     if root.Right != nil {
+//         res = append(res, inorderTraversal(root.Right)...)
+//     }
+//     return res
+// }
+
+// 非递归版本
 func inorderTraversal(root *TreeNode) []int {
     if root == nil {
         return nil
     }
+    stack := make([]*TreeNode, 0)
     res := make([]int, 0)
-    if root.Left != nil {
-        res = append(res, inorderTraversal(root.Left)...)
-    }
-    res = append(res, root.Val)
-    if root.Right != nil {
-        res = append(res, inorderTraversal(root.Right)...)
+    for len(stack) > 0 || root != nil {
+        if root != nil {
+            stack = append(stack, root)
+            root = root.Left
+        } else {
+            root = stack[len(stack)-1]
+            res = append(res, root.Val)
+            stack = stack[:len(stack)-1]
+            root = root.Right
+        }
     }
     return res
 }
+
 //leetcode submit region end(Prohibit modification and deletion)

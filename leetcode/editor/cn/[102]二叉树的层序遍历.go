@@ -44,15 +44,40 @@
  *     Right *TreeNode
  * }
  */
+// func levelOrder(root *TreeNode) [][]int {
+//     if root == nil {
+//         return nil
+//     }
+//     res := make([][]int, 0)
+//     queue := make([]*TreeNode, 0)
+//     queue = append(queue, root)
+//     for len(queue) > 0 {
+//         tmp, newQueue := []int{}, make([]*TreeNode, 0)
+//         for i:=0;i<len(queue);i++ {
+//             tmp = append(tmp, queue[i].Val)
+//             if queue[i].Left != nil {
+//                 newQueue = append(newQueue, queue[i].Left)
+//             }
+//             if queue[i].Right != nil {
+//                 newQueue = append(newQueue, queue[i].Right)
+//             }
+//         }
+//         queue = newQueue
+//         res = append(res, tmp)
+//     }
+//     return res
+// }
+
 func levelOrder(root *TreeNode) [][]int {
     if root == nil {
         return nil
     }
-    res := make([][]int, 0)
     queue := make([]*TreeNode, 0)
+    res := make([][]int, 0)
     queue = append(queue, root)
     for len(queue) > 0 {
-        tmp, newQueue := []int{}, make([]*TreeNode, 0)
+        tmp := []int{}
+        newQueue := make([]*TreeNode, 0)
         for i:=0;i<len(queue);i++ {
             tmp = append(tmp, queue[i].Val)
             if queue[i].Left != nil {
