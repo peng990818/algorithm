@@ -65,17 +65,40 @@
 //     }
 // }
 
-func preorder(root *TreeNode) []*TreeNode {
-    list := []*TreeNode{}
-    if root != nil {
-        list = append(list, root)
-        list = append(list, preorder(root.Left)...)
-        list = append(list, preorder(root.Right)...)
-    }
-    return list
-}
+// func preorder(root *TreeNode) []*TreeNode {
+//     list := []*TreeNode{}
+//     if root != nil {
+//         list = append(list, root)
+//         list = append(list, preorder(root.Left)...)
+//         list = append(list, preorder(root.Right)...)
+//     }
+//     return list
+// }
 
 // 2、前序遍历的同时，完成链表的连接
+// func flatten(root *TreeNode)  {
+//     if root == nil {
+//         return
+//     }
+//     stack := make([]*TreeNode, 0)
+//     stack = append(stack, root)
+//     pre := (*TreeNode)(nil)
+//     for len(stack) > 0 {
+//         cur := stack[len(stack)-1]
+//         stack = stack[:len(stack)-1]
+//         if pre != nil {
+//             pre.Left, pre.Right = nil, cur
+//         }
+//         if cur.Right != nil {
+//             stack = append(stack, cur.Right)
+//         }
+//         if cur.Left != nil {
+//             stack = append(stack, cur.Left)
+//         }
+//         pre = cur
+//     }
+// }
+
 func flatten(root *TreeNode)  {
     if root == nil {
         return
