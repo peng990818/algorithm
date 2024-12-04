@@ -31,12 +31,37 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+// func longestConsecutive(nums []int) int {
+//     mp := make(map[int]bool, len(nums))
+//     for _, v := range nums {
+//         mp[v] = true
+//     }
+//     max := 0
+//     for k := range mp {
+//         if !mp[k-1] {
+//             cur := k
+//             curNum := 1
+//             for mp[cur+1] {
+//                 cur++
+//                 curNum++
+//             }
+//             if max < curNum {
+//                 max = curNum
+//             }
+//         }
+//     }
+//     return max
+// }
+
 func longestConsecutive(nums []int) int {
+    if len(nums) == 0 {
+        return 0
+    }
     mp := make(map[int]bool, len(nums))
     for _, v := range nums {
         mp[v] = true
     }
-    max := 0
+    res := 0
     for k := range mp {
         if !mp[k-1] {
             cur := k
@@ -45,11 +70,9 @@ func longestConsecutive(nums []int) int {
                 cur++
                 curNum++
             }
-            if max < curNum {
-                max = curNum
-            }
+            res = max(res, curNum)
         }
     }
-    return max
+    return res
 }
 //leetcode submit region end(Prohibit modification and deletion)

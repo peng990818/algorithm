@@ -43,31 +43,53 @@
  *     Right *TreeNode
  * }
  */
+// func maxPathSum(root *TreeNode) int {
+//     maxSum := math.MinInt32
+//     var maxGain func(*TreeNode) int
+//     maxGain = func(node *TreeNode) int {
+//         if node == nil {
+//             return 0
+//         }
+//
+//         l := max(maxGain(node.Left), 0)
+//         r := max(maxGain(node.Right), 0)
+//
+//         priceNewPath := node.Val + l + r
+//
+//         maxSum = max(maxSum, priceNewPath)
+//
+//         return node.Val + max(l, r)
+//     }
+//     maxGain(root)
+//     return maxSum
+// }
+//
+// func max(x, y int) int {
+//     if x > y {
+//         return x
+//     }
+//     return y
+// }
+
 func maxPathSum(root *TreeNode) int {
+    if root == nil {
+        return 0
+    }
     maxSum := math.MinInt32
-    var maxGain func(*TreeNode) int
-    maxGain = func(node *TreeNode) int {
+    var process func (node *TreeNode) int
+    process = func (node *TreeNode) int {
         if node == nil {
             return 0
         }
+        left := max(process(node.Left), 0)
+        right := max(process(node.Right), 0)
+        path := node.Val + left + right
 
-        l := max(maxGain(node.Left), 0)
-        r := max(maxGain(node.Right), 0)
-
-        priceNewPath := node.Val + l + r
-
-        maxSum = max(maxSum, priceNewPath)
-
-        return node.Val + max(l, r)
+        maxSum = max(maxSum, path)
+        return node.Val + max(left, right)
     }
-    maxGain(root)
+    process(root)
     return maxSum
 }
 
-func max(x, y int) int {
-    if x > y {
-        return x
-    }
-    return y
-}
 //leetcode submit region end(Prohibit modification and deletion)

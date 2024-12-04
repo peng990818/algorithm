@@ -193,6 +193,26 @@
 =n，则由于两个链表没有公共节点，两个指针也不会同时到达两个链表的尾节点，因此两个指针都会遍历完两个链表，在指针 pA 移动了 m+n 次、指针 pB 移动了 n+m 次之后，两个指针会同时变成空值 null，此时返回 null。
 */
 
+// func getIntersectionNode(headA, headB *ListNode) *ListNode {
+//     if headA == nil || headB == nil {
+//         return nil
+//     }
+//     pA, pB := headA, headB
+//     for pA != pB {
+//         if pA != nil {
+//             pA = pA.Next
+//         } else {
+//             pA = headB
+//         }
+//         if pB != nil {
+//             pB = pB.Next
+//         } else {
+//             pB = headA
+//         }
+//     }
+//     return pA
+// }
+
 func getIntersectionNode(headA, headB *ListNode) *ListNode {
     if headA == nil || headB == nil {
         return nil
