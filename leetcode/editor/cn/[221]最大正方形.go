@@ -39,26 +39,53 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+// func maximalSquare(matrix [][]byte) int {
+//     dp := make([][]int, len(matrix))
+//     maxSide := 0
+//     for i:=0;i<len(matrix);i++ {
+//         dp[i] = make([]int, len(matrix[i]))
+//         for j:=0;j<len(matrix[i]);j++ {
+//             dp[i][j] = int(matrix[i][j]-'0')
+//             if dp[i][j] == 1 {
+//                 maxSide = 1
+//             }
+//         }
+//     }
+//
+//     for i:=1;i<len(matrix);i++ {
+//         for j:=1;j<len(matrix[i]);j++ {
+//             if dp[i][j] == 1 {
+//                 dp[i][j] = min(dp[i-1][j], min(dp[i-1][j-1], dp[i][j-1])) + 1
+//                 if dp[i][j] > maxSide {
+//                     maxSide = dp[i][j]
+//                 }
+//             }
+//         }
+//     }
+//     return maxSide*maxSide
+// }
+
 func maximalSquare(matrix [][]byte) int {
+    if len(matrix) == 0 || len(matrix[0]) == 0 {
+        return 0
+    }
     dp := make([][]int, len(matrix))
     maxSide := 0
     for i:=0;i<len(matrix);i++ {
-        dp[i] = make([]int, len(matrix[i]))
+        dp[i] = make([]int, len(matrix[0]))
         for j:=0;j<len(matrix[i]);j++ {
-            dp[i][j] = int(matrix[i][j]-'0')
+            dp[i][j] = int(matrix[i][j] - '0')
             if dp[i][j] == 1 {
                 maxSide = 1
             }
         }
     }
 
-    for i:=1;i<len(matrix);i++ {
-        for j:=1;j<len(matrix[i]);j++ {
+    for i:=1;i<len(dp);i++ {
+        for j:=1;j<len(dp[i]);j++ {
             if dp[i][j] == 1 {
-                dp[i][j] = min(dp[i-1][j], min(dp[i-1][j-1], dp[i][j-1])) + 1
-                if dp[i][j] > maxSide {
-                    maxSide = dp[i][j]
-                }
+                dp[i][j] = min(dp[i-1][j], min(dp[i][j-1], dp[i-1][j-1])) + 1
+                maxSide = max(maxSide, dp[i][j])
             }
         }
     }

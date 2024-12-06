@@ -46,37 +46,70 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 // 深度优先搜索
+// func dfs(grid [][]byte, r, c int) {
+//     nr, nc := len(grid), len(grid[0])
+//     grid[r][c] = '0'
+//     if (r-1 >= 0 && grid[r-1][c] == '1') {
+//         dfs(grid, r-1, c)
+//     }
+//     if (r+1 < nr && grid[r+1][c] == '1') {
+//         dfs(grid, r+1, c)
+//     }
+//     if (c-1 >= 0 && grid[r][c-1] == '1') {
+//         dfs(grid, r, c-1)
+//     }
+//     if (c+1 < nc && grid[r][c+1] == '1') {
+//         dfs(grid, r, c+1)
+//     }
+// }
+//
+// func numIslands(grid [][]byte) int {
+//     if len(grid) == 0 {
+//         return 0
+//     }
+//     res := 0
+//     nr, nc := len(grid), len(grid[0])
+//     for i:=0;i<nr;i++ {
+//         for j:=0;j<nc;j++ {
+//             if grid[i][j] == '1' {
+//                 res++
+//                 dfs(grid, i, j)
+//             }
+//         }
+//     }
+//     return res
+// }
+
 func dfs(grid [][]byte, r, c int) {
     nr, nc := len(grid), len(grid[0])
     grid[r][c] = '0'
-    if (r-1 >= 0 && grid[r-1][c] == '1') {
+    if r-1 >= 0 && grid[r-1][c] == '1' {
         dfs(grid, r-1, c)
     }
-    if (r+1 < nr && grid[r+1][c] == '1') {
+    if r+1 < nr && grid[r+1][c] == '1' {
         dfs(grid, r+1, c)
     }
-    if (c-1 >= 0 && grid[r][c-1] == '1') {
+    if c-1 >= 0 && grid[r][c-1] == '1' {
         dfs(grid, r, c-1)
     }
-    if (c+1 < nc && grid[r][c+1] == '1') {
+    if c+1 < nc && grid[r][c+1] == '1' {
         dfs(grid, r, c+1)
     }
 }
 
 func numIslands(grid [][]byte) int {
-    if len(grid) == 0 {
+    if len(grid) == 0 || len(grid[0]) == 0 {
         return 0
     }
-    res := 0
-    nr, nc := len(grid), len(grid[0])
-    for i:=0;i<nr;i++ {
-        for j:=0;j<nc;j++ {
+    cnt := 0
+    for i:=0;i<len(grid);i++ {
+        for j:=0;j<len(grid[0]);j++ {
             if grid[i][j] == '1' {
-                res++
                 dfs(grid, i, j)
+                cnt++
             }
         }
     }
-    return res
+    return cnt
 }
 //leetcode submit region end(Prohibit modification and deletion)

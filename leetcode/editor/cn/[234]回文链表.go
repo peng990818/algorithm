@@ -40,35 +40,77 @@
  *     Next *ListNode
  * }
  */
+// func reverse(head *ListNode) *ListNode {
+//     if head == nil {
+//         return nil
+//     }
+//     p1, p2, p3 := (*ListNode)(nil), head, head.Next
+//     for p3 != nil {
+//         p2.Next = p1
+//         p1 = p2
+//         p2 = p3
+//         p3 = p3.Next
+//     }
+//     p2.Next = p1
+//     return p2
+// }
+//
+// func isPalindrome(head *ListNode) bool {
+//     // 1、找到中点：快慢指针 slow为中点
+//     fast, slow := head, head
+//     for fast.Next != nil && fast.Next.Next != nil {
+//         fast = fast.Next.Next
+//         slow = slow.Next
+//     }
+//
+//     // 2、反转后半部分的链表
+//     rHead := reverse(slow.Next)
+//
+//     p1, p2 := head, rHead
+//
+//     // 3、前后遍历对比
+//     res := true
+//     for p1 != nil && p2 != nil {
+//         if p1.Val != p2.Val {
+//             res = false
+//         }
+//         p1 = p1.Next
+//         p2 = p2.Next
+//     }
+//
+//     // 翻转回去，保证原链表不变
+//     slow.Next = reverse(rHead)
+//     return res
+// }
+
 func reverse(head *ListNode) *ListNode {
     if head == nil {
         return nil
     }
-    p1, p2, p3 := (*ListNode)(nil), head, head.Next
-    for p3 != nil {
+    p1, p2 := (*ListNode)(nil), head
+    for p2.Next != nil {
+        p3 := p2.Next
         p2.Next = p1
         p1 = p2
         p2 = p3
-        p3 = p3.Next
     }
     p2.Next = p1
     return p2
 }
 
 func isPalindrome(head *ListNode) bool {
-    // 1、找到中点：快慢指针 slow为中点
+    if head == nil {
+        return false
+    }
+    // 1、中点
     fast, slow := head, head
     for fast.Next != nil && fast.Next.Next != nil {
-        fast = fast.Next.Next
         slow = slow.Next
+        fast = fast.Next.Next
     }
 
-    // 2、反转后半部分的链表
     rHead := reverse(slow.Next)
-
     p1, p2 := head, rHead
-
-    // 3、前后遍历对比
     res := true
     for p1 != nil && p2 != nil {
         if p1.Val != p2.Val {
@@ -77,8 +119,6 @@ func isPalindrome(head *ListNode) bool {
         p1 = p1.Next
         p2 = p2.Next
     }
-
-    // 翻转回去，保证原链表不变
     slow.Next = reverse(rHead)
     return res
 }

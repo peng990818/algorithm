@@ -58,18 +58,62 @@
 //     return answer
 // }
 
+// func productExceptSelf(nums []int) []int {
+//     answer := make([]int, len(nums))
+//     answer[0] = 1
+//     for i:=1;i<len(nums);i++ {
+//         answer[i] = answer[i-1]*nums[i-1]
+//     }
+//
+//     R := 1
+//     for i:=len(nums)-1;i>=0;i-- {
+//         answer[i] *= R
+//         R *= nums[i]
+//     }
+//     return answer
+// }
+
+// 申请空间
+// func productExceptSelf(nums []int) []int {
+//     if len(nums) == 0 {
+//         return nil
+//     }
+//     L := make([]int, len(nums))
+//     R := make([]int, len(nums))
+//
+//     L[0] = 1
+//     for i:=1;i<len(nums);i++ {
+//         L[i] = L[i-1] * nums[i-1]
+//     }
+//
+//     R[len(nums)-1] = 1
+//     for i:=len(nums)-2;i>=0;i-- {
+//         R[i] = R[i+1] * nums[i+1]
+//     }
+//
+//     answer := make([]int, len(nums))
+//     for i:=0;i<len(nums);i++ {
+//         answer[i] = L[i] * R[i]
+//     }
+//     return answer
+// }
+
+// 不申请空间
 func productExceptSelf(nums []int) []int {
-    answer := make([]int, len(nums))
-    answer[0] = 1
+    if len(nums) == 0 {
+        return nil
+    }
+    answers := make([]int, len(nums))
+    answers[0] = 1
     for i:=1;i<len(nums);i++ {
-        answer[i] = answer[i-1]*nums[i-1]
+        answers[i] = nums[i-1] * answers[i-1]
     }
 
     R := 1
-    for i:=len(nums)-1;i>=0;i-- {
-        answer[i] *= R
+    for i:=len(answers)-1;i>=0;i-- {
+        answers[i] *= R
         R *= nums[i]
     }
-    return answer
+    return answers
 }
 //leetcode submit region end(Prohibit modification and deletion)

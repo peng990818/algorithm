@@ -32,37 +32,75 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+// func findKthLargest(nums []int, k int) int {
+//     buildHeap(nums)
+//     for size := len(nums)-1;size > 0 && k > 1;size-- {
+//         nums[size], nums[0] = nums[0], nums[size]
+//         heapify(nums, 0, size)
+//         k--
+//     }
+//     return nums[0]
+// }
+//
+// func buildHeap(nums []int) {
+//     n := len(nums)
+//     for i:=n/2-1;i>=0;i-- {
+//         heapify(nums, i, n)
+//     }
+// }
+//
+// func heapify(nums []int, index, size int) {
+//     left := 2*index+1
+//     for left < size {
+//         largest := index
+//         if nums[largest] < nums[left] {
+//             largest = left
+//         }
+//         if left+1 < size && nums[largest] < nums[left+1] {
+//             largest = left+1
+//         }
+//         if largest == index {
+//             break
+//         }
+//         nums[largest], nums[index] = nums[index], nums[largest]
+//         index = largest
+//         left = 2*index+1
+//     }
+// }
+
 func findKthLargest(nums []int, k int) int {
+    if len(nums) == 0 || k == 0 {
+        return 0
+    }
     buildHeap(nums)
-    for size := len(nums)-1;size > 0 && k > 1;size-- {
-        nums[size], nums[0] = nums[0], nums[size]
+    for size := len(nums)-1;size>=0 && k > 1;size-- {
+        nums[0], nums[size] = nums[size], nums[0]
         heapify(nums, 0, size)
         k--
     }
     return nums[0]
 }
 
-func buildHeap(nums []int) {
-    n := len(nums)
-    for i:=n/2-1;i>=0;i-- {
-        heapify(nums, i, n)
+func buildHeap(arr []int) {
+    for i:=len(arr)/2-1;i>=0;i-- {
+        heapify(arr, i, len(arr))
     }
 }
 
-func heapify(nums []int, index, size int) {
+func heapify(arr []int, index, size int) {
     left := 2*index+1
     for left < size {
         largest := index
-        if nums[largest] < nums[left] {
+        if arr[largest] < arr[left] {
             largest = left
         }
-        if left+1 < size && nums[largest] < nums[left+1] {
-            largest = left+1
+        if left+1 < size && arr[largest] < arr[left+1] {
+            largest = left + 1
         }
         if largest == index {
             break
         }
-        nums[largest], nums[index] = nums[index], nums[largest]
+        arr[largest], arr[index] = arr[index], arr[largest]
         index = largest
         left = 2*index+1
     }
