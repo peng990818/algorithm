@@ -111,18 +111,34 @@
 // }
 
 // 动态规划
+// func rob(root *TreeNode) int {
+//     val := dfs(root)
+//     return max(val[0], val[1])
+// }
+//
+// // 第一个返回值代表选中的结果
+// // 第二个返回值代表未选中的结果
+// func dfs(node *TreeNode) []int {
+//     if node == nil {
+//         return []int{0, 0}
+//     }
+//     l, r := dfs(node.Left), dfs(node.Right)
+//     selected := node.Val + l[1] + r[1]
+//     notSelected := max(l[0], l[1]) + max(r[0], r[1])
+//     return []int{selected, notSelected}
+// }
+
 func rob(root *TreeNode) int {
     val := dfs(root)
     return max(val[0], val[1])
 }
 
-// 第一个返回值代表选中的结果
-// 第二个返回值代表未选中的结果
 func dfs(node *TreeNode) []int {
     if node == nil {
         return []int{0, 0}
     }
-    l, r := dfs(node.Left), dfs(node.Right)
+    l := dfs(node.Left)
+    r := dfs(node.Right)
     selected := node.Val + l[1] + r[1]
     notSelected := max(l[0], l[1]) + max(r[0], r[1])
     return []int{selected, notSelected}

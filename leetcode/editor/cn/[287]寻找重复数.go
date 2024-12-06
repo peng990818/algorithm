@@ -53,18 +53,58 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+// func findDuplicate(nums []int) int {
+//     // 双指针
+//     slow, fast := nums[0], nums[nums[0]]
+//     for slow != fast {
+//         slow = nums[slow]
+//         fast = nums[nums[fast]]
+//     }
+//     help := 0
+//     for help != slow {
+//         help = nums[help]
+//         slow = nums[slow]
+//     }
+//     return slow
+// }
+
+// 二分法
+// func findDuplicate(nums []int) int {
+//     l, r := 1, len(nums)
+//     for l < r {
+//         mid := (l+r) / 2
+//         cnt := 0
+//         for _, v := range nums {
+//             if v >= l && v <= mid {
+//                 cnt++
+//             }
+//         }
+//         if cnt > mid-l+1 {
+//             r = mid
+//         } else {
+//             l = mid+1
+//         }
+//     }
+//     return l
+// }
+
+// 快慢指针
 func findDuplicate(nums []int) int {
-    // 双指针
-    slow, fast := nums[0], nums[nums[0]]
-    for slow != fast {
+    slow, fast := 0, 0
+    for {
+        fast = nums[fast]
+        fast = nums[fast]
         slow = nums[slow]
-        fast = nums[nums[fast]]
+        if slow == fast {
+            break
+        }
     }
-    help := 0
-    for help != slow {
-        help = nums[help]
+
+    fast = 0
+    for fast != slow {
+        fast = nums[fast]
         slow = nums[slow]
     }
-    return slow
+    return fast
 }
 //leetcode submit region end(Prohibit modification and deletion)

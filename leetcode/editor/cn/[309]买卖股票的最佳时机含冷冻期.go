@@ -55,26 +55,47 @@
 //     return max(dp[n-1][1], dp[n-1][2])
 // }
 
+// func maxProfit(prices []int) int {
+// if len(prices) == 0 {
+// return 0
+// }
+// n := len(prices)
+// f0, f1, f2 := -prices[0], 0, 0
+// for i := 1; i < n; i++ {
+// newf0 := max(f0, f2 - prices[i])
+// newf1 := f0 + prices[i]
+// newf2 := max(f1, f2)
+// f0, f1, f2 = newf0, newf1, newf2
+// }
+// return max(f1, f2)
+// }
+//
+// func max(x, y int) int {
+// if x > y {
+// return x
+// }
+// return y
+// }
+
 func maxProfit(prices []int) int {
-if len(prices) == 0 {
-return 0
+    if len(prices) == 0 {
+        return 0
+    }
+    dp := make([][3]int, len(prices))
+    // 0状态 表示持有一支股票的累计最大收益
+    // 1状态 表示操作了卖出，不持有股票，处于冷冻期中的累计最大收益
+    // 2状态 表示不持有股票，但不处于冷冻期的累计最大收益
+    dp[0][0], dp[0][1], dp[0][2] = -prices[0], 0, 0
+    n := len(prices)
+    for i:=1;i<len(prices);i++ {
+        // 0状态的累计最大收益取决于是否继续买入
+        // 不买入则等于前一天的累计收益，买入则是不处于冷冻期情况下的收益减去买入价格
+        dp[i][0] = max(dp[i-1][0], dp[i-1][2]-prices[i])
+        // 1状态的累计最大收益
+        dp[i][1] = dp[i-1][0] + prices[i]
+        // 2状态表示当天没做任何操作
+        dp[i][2] = max(dp[i-1][1], dp[i-1][2])
+    }
+    return max(dp[n-1][1], dp[n-1][2])
 }
-n := len(prices)
-f0, f1, f2 := -prices[0], 0, 0
-for i := 1; i < n; i++ {
-newf0 := max(f0, f2 - prices[i])
-newf1 := f0 + prices[i]
-newf2 := max(f1, f2)
-f0, f1, f2 = newf0, newf1, newf2
-}
-return max(f1, f2)
-}
-
-func max(x, y int) int {
-if x > y {
-return x
-}
-return y
-}
-
 //leetcode submit region end(Prohibit modification and deletion)

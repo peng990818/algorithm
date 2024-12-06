@@ -68,32 +68,50 @@
 // }
 
 // 2、贪心+二分
+// func lengthOfLIS(nums []int) int {
+//     if len(nums) == 0 {
+//         return 0
+//     }
+//     d := make([]int, 1)
+//     d[0] = nums[0]
+//     for i:=1;i<len(nums);i++ {
+//         if nums[i] > d[len(d)-1] {
+//             d = append(d, nums[i])
+//         } else {
+//             // 二分
+//             l, r := 0, len(d)-1
+//             pos := r
+//             for l <= r {
+//                 mid := (l+r) >> 1
+//                 if d[mid] < nums[i] {
+//                     l = mid + 1
+//                 } else {
+//                     pos = mid
+//                     r = mid - 1
+//                 }
+//             }
+//             d[pos] = nums[i]
+//         }
+//     }
+//     return len(d)
+// }
+
 func lengthOfLIS(nums []int) int {
     if len(nums) == 0 {
         return 0
     }
-    d := make([]int, 1)
-    d[0] = nums[0]
-    for i:=1;i<len(nums);i++ {
-        if nums[i] > d[len(d)-1] {
-            d = append(d, nums[i])
-        } else {
-            // 二分
-            l, r := 0, len(d)-1
-            pos := r
-            for l <= r {
-                mid := (l+r) >> 1
-                if d[mid] < nums[i] {
-                    l = mid + 1
-                } else {
-                    pos = mid
-                    r = mid - 1
-                }
+    dp := make([]int, len(nums))
+    maxNum := 0
+    for i:=0;i<len(nums);i++ {
+        dp[i] = 1
+        for j:=0;j<i;j++ {
+            if nums[j] < nums[i] {
+                dp[i] = max(dp[i], dp[j]+1)
             }
-            d[pos] = nums[i]
         }
+        maxNum = max(maxNum, dp[i])
     }
-    return len(d)
+    return maxNum
 }
 
 //leetcode submit region end(Prohibit modification and deletion)
