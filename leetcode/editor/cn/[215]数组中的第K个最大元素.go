@@ -68,12 +68,71 @@
 //     }
 // }
 
+// func findKthLargest(nums []int, k int) int {
+//     if len(nums) == 0 || k == 0 {
+//         return 0
+//     }
+//     buildHeap(nums)
+//     for size := len(nums)-1;size>=0 && k > 1;size-- {
+//         nums[0], nums[size] = nums[size], nums[0]
+//         heapify(nums, 0, size)
+//         k--
+//     }
+//     return nums[0]
+// }
+//
+// func buildHeap(arr []int) {
+//     for i:=len(arr)/2-1;i>=0;i-- {
+//         heapify(arr, i, len(arr))
+//     }
+// }
+//
+// func heapify(arr []int, index, size int) {
+//     left := 2*index+1
+//     for left < size {
+//         largest := index
+//         if arr[largest] < arr[left] {
+//             largest = left
+//         }
+//         if left+1 < size && arr[largest] < arr[left+1] {
+//             largest = left + 1
+//         }
+//         if largest == index {
+//             break
+//         }
+//         arr[largest], arr[index] = arr[index], arr[largest]
+//         index = largest
+//         left = 2*index+1
+//     }
+// }
+
+// 选择排序
+// func findKthLargest(nums []int, k int) int {
+//     if len(nums) == 0 || k <= 0 || k > len(nums) {
+//         return 0
+//     }
+//     for i:=0;i<k;i++ {
+//         tmp := i
+//         for j := i+1;j<len(nums);j++ {
+//             if nums[j] > nums[tmp] {
+//                 tmp = j
+//             }
+//         }
+//         if tmp == i {
+//             continue
+//         }
+//         nums[tmp], nums[i] = nums[i], nums[tmp]
+//     }
+//     return nums[k-1]
+// }
+
+// 堆
 func findKthLargest(nums []int, k int) int {
-    if len(nums) == 0 || k == 0 {
+    if len(nums) == 0 {
         return 0
     }
     buildHeap(nums)
-    for size := len(nums)-1;size>=0 && k > 1;size-- {
+    for size := len(nums)-1;size >= 0 && k > 1;size-- {
         nums[0], nums[size] = nums[size], nums[0]
         heapify(nums, 0, size)
         k--
@@ -88,14 +147,14 @@ func buildHeap(arr []int) {
 }
 
 func heapify(arr []int, index, size int) {
-    left := 2*index+1
+    left := 2*index + 1
     for left < size {
         largest := index
         if arr[largest] < arr[left] {
             largest = left
         }
-        if left+1 < size && arr[largest] < arr[left+1] {
-            largest = left + 1
+        if left + 1 < size && arr[largest] < arr[left+1] {
+            largest = left+1
         }
         if largest == index {
             break

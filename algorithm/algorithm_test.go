@@ -104,3 +104,39 @@ func TestReversePair(t *testing.T) {
     arr := []int{1, 3, 4, 2, 5}
     fmt.Println(question.ReversePair(arr))
 }
+
+func sortArray(nums []int) []int {
+    quickSort(nums, 0, len(nums)-1)
+    return nums
+}
+
+func quickSort(nums []int, l, r int) {
+    if l < r {
+        p := partition(nums, l, r)
+        quickSort(nums, l, p[0]-1)
+        quickSort(nums, p[1]+1, r)
+    }
+}
+
+func partition(nums []int, l, r int) []int {
+    less, more := l-1, r
+    for l < more {
+        if nums[l] < nums[r] {
+            less++
+            nums[l], nums[less] = nums[less], nums[l]
+            l++
+        } else if nums[l] > nums[r] {
+            more--
+            nums[l], nums[more] = nums[more], nums[l]
+        } else {
+            l++
+        }
+    }
+    nums[more], nums[r] = nums[r], nums[more]
+    return []int{less + 1, more}
+}
+
+func TestName(t *testing.T) {
+    arr := sortArray([]int{110, 100, 0})
+    fmt.Println(arr)
+}

@@ -57,12 +57,33 @@
 // }
 
 
+// func rotate(matrix [][]int) {
+//     if len(matrix) == 0 || len(matrix[0]) == 0 {
+//         return
+//     }
+//     tr, tc, dr, dc := 0, 0, len(matrix)-1, len(matrix)-1
+//     for tr < dr {
+//         rotateEdge(matrix, tr, tc, dr, dc)
+//         tr++
+//         tc++
+//         dr--
+//         dc--
+//     }
+// }
+//
+// func rotateEdge(matrix [][]int, tr, tc, dr, dc int) {
+//     for i:=0; i < dc-tc;i++ {
+//         matrix[tr][tc+i], matrix[tr+i][dc], matrix[dr][dc-i], matrix[dr-i][tc] =
+//             matrix[dr-i][tc], matrix[tr][tc+i], matrix[tr+i][dc], matrix[dr][dc-i]
+//     }
+// }
+
 func rotate(matrix [][]int) {
     if len(matrix) == 0 || len(matrix[0]) == 0 {
         return
     }
-    tr, tc, dr, dc := 0, 0, len(matrix)-1, len(matrix)-1
-    for tr < dr {
+    tr, tc, dr, dc := 0, 0, len(matrix)-1, len(matrix[0])-1
+    for tc < dc {
         rotateEdge(matrix, tr, tc, dr, dc)
         tr++
         tc++
@@ -72,7 +93,7 @@ func rotate(matrix [][]int) {
 }
 
 func rotateEdge(matrix [][]int, tr, tc, dr, dc int) {
-    for i:=0; i < dc-tc;i++ {
+    for i:=0;i<dc-tc;i++ {
         matrix[tr][tc+i], matrix[tr+i][dc], matrix[dr][dc-i], matrix[dr-i][tc] =
             matrix[dr-i][tc], matrix[tr][tc+i], matrix[tr+i][dc], matrix[dr][dc-i]
     }

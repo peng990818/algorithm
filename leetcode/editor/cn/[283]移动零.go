@@ -35,7 +35,20 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
-func moveZeroes(nums []int)  {
+// func moveZeroes(nums []int)  {
+//     if len(nums) == 0 {
+//         return
+//     }
+//     flag := -1
+//     for i:=0;i<len(nums);i++ {
+//         if nums[i] != 0 {
+//             flag++
+//             nums[i], nums[flag] = nums[flag], nums[i]
+//         }
+//     }
+// }
+
+func moveZeroes(nums []int) {
     if len(nums) == 0 {
         return
     }

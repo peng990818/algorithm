@@ -1,0 +1,29 @@
+* 
+
+```
+func findMin(nums []int) int {
+	if nums[0] < nums[len(nums) - 1] {
+		return nums[0]
+	}
+	left, right := 0, len(nums) - 1
+	for left < right {
+		position := left + (right - left) / 2
+		if nums[right] > nums[position] {
+			right = position
+		}else {
+			left = position + 1
+		}
+	}
+	return nums[left]
+}
+```
+
+解题思路：
+二分：
+如果nums[right]>nums[position]那么position右边的所有节点都可以被排除,
+如果nums[right]<nums[position]那么最小值在position右边，左边的包括position自己都可以被排除。
+优化：
+对于这样的数组，当开头位置的数值小于结尾位置的数值，开头位置的数值就一定是最小的,
+因此当nums[left]<nums[right]的时候,可以直接返回nums[left],
+当然只需要在最开始的时候判断left=0, right=len(nums)-1的情况即可,
+因为在最开始的时候不成立，后续循环中的left,right永远都不会成立了。

@@ -39,26 +39,55 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+// func searchRange(nums []int, target int) []int {
+//     if len(nums) == 0 {
+//         return []int{-1, -1}
+//     }
+//     // 找到数组中第一个等于target的位置，作为左边界
+//     left := search(nums, target, true)
+//     // 找到数组中第一个大于target的位置，作为右边界
+//     right := search(nums, target, false) - 1;
+//     if left <= right && right < len(nums) && nums[left] == target && nums[right] == target {
+//         return []int{left, right}
+//     }
+//     return []int{-1, -1}
+// }
+//
+// func search(nums []int, target int, lower bool) int {
+//     l, r := 0, len(nums)-1
+//     res := len(nums)
+//     for l <= r {
+//         mid := l + ((r-l)>>1)
+//         if (nums[mid] > target || (lower && nums[mid] >= target)) {
+//             r = mid-1
+//             res = mid
+//         } else {
+//             l = mid+1
+//         }
+//     }
+//     return res
+// }
+
 func searchRange(nums []int, target int) []int {
     if len(nums) == 0 {
         return []int{-1, -1}
     }
-    // 找到数组中第一个等于target的位置，作为左边界
-    left := search(nums, target, true)
-    // 找到数组中第一个大于target的位置，作为右边界
-    right := search(nums, target, false) - 1;
+    // 找到第一个等于target的索引，视为左边界
+    left := binarySearch(nums, target, true)
+    // 找到第一个大于target的索引，再减去1，视为右边界
+    right := binarySearch(nums, target, false) - 1
     if left <= right && right < len(nums) && nums[left] == target && nums[right] == target {
         return []int{left, right}
     }
     return []int{-1, -1}
 }
 
-func search(nums []int, target int, lower bool) int {
+func binarySearch(nums []int, target int, flag bool) int {
     l, r := 0, len(nums)-1
     res := len(nums)
-    for l <= r {
-        mid := l + ((r-l)>>1)
-        if (nums[mid] > target || (lower && nums[mid] >= target)) {
+    for l<=r {
+        mid := l + (r-l)/2
+        if nums[mid] > target || (flag && nums[mid] >= target) {
             r = mid-1
             res = mid
         } else {

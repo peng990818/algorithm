@@ -28,61 +28,119 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+// func generateMatrix(n int) [][]int {
+//     if n == 0 {
+//         return nil
+//     }
+//     res := make([][]int, n)
+//     for i := range res {
+//         res[i] = make([]int, n)
+//     }
+//
+//     tR, tC, dR, dC := 0, 0, n-1, n-1
+//     start := 1
+//     for tR <= dR && tC <= dC {
+//         start = process(res, tR, tC, dR, dC, start)
+//         tR++
+//         dR--
+//         tC++
+//         dC--
+//     }
+//     return res
+// }
+//
+// func process(matrix [][]int, tR, tC, dR, dC int, start int) int {
+//     if tR == dR {
+//         for i:=tC;i<=dC;i++ {
+//             matrix[tR][i] = start
+//             start++
+//         }
+//     } else if tC == dC {
+//         for i:=tR;i<=dR;i++ {
+//             matrix[i][tC] = start
+//             start++
+//         }
+//     } else {
+//         i, j := tR, tC
+//         for j < dC {
+//             matrix[tR][j] = start
+//             start++
+//             j++
+//         }
+//         for i < dR {
+//             matrix[i][dC] = start
+//             start++
+//             i++
+//         }
+//         for j > tC {
+//             matrix[dR][j] = start
+//             start++
+//             j--
+//         }
+//         for i > tR {
+//             matrix[i][tC] = start
+//             start++
+//             i--
+//         }
+//     }
+//     return start
+// }
+
 func generateMatrix(n int) [][]int {
-    if n == 0 {
+    if n <= 0 {
         return nil
     }
-    res := make([][]int, n)
-    for i := range res {
-        res[i] = make([]int, n)
+    matrix := make([][]int, n)
+    for i:=0;i<n;i++ {
+        matrix[i] = make([]int, n)
     }
-
-    tR, tC, dR, dC := 0, 0, n-1, n-1
+    tr, tc, dr, dc := 0, 0, n-1, n-1
     start := 1
-    for tR <= dR && tC <= dC {
-        start = process(res, tR, tC, dR, dC, start)
-        tR++
-        dR--
-        tC++
-        dC--
+    for tr <= dr && tc <= dc {
+        start = generateEdge(matrix, tr, tc, dr, dc, start)
+        tr++
+        tc++
+        dr--
+        dc--
     }
-    return res
+    return matrix
 }
 
-func process(matrix [][]int, tR, tC, dR, dC int, start int) int {
-    if tR == dR {
-        for i:=tC;i<=dC;i++ {
-            matrix[tR][i] = start
+func generateEdge(matrix [][]int, tr, tc, dr, dc, start int) int {
+    if tr == dr {
+        for i:=tc;i<=dc;i++ {
+            matrix[tr][i] = start
             start++
         }
-    } else if tC == dC {
-        for i:=tR;i<=dR;i++ {
-            matrix[i][tC] = start
+    } else if tc == dc {
+        for i:=tr;i<=dr;i++ {
+            matrix[i][tc] = start
             start++
         }
     } else {
-        i, j := tR, tC
-        for j < dC {
-            matrix[tR][j] = start
-            start++
-            j++
-        }
-        for i < dR {
-            matrix[i][dC] = start
-            start++
-            i++
-        }
-        for j > tC {
-            matrix[dR][j] = start
-            start++
-            j--
-        }
-        for i > tR {
-            matrix[i][tC] = start
-            start++
-            i--
-        }
+i, j := tr, tc
+for j < dc {
+matrix[tr][j] = start
+start++
+j++
+}
+for i < dr {
+matrix[i][dc] = start
+start++
+i++
+}
+for j > tc {
+matrix[dr][j] = start
+start++
+j--
+}
+for i > tr {
+matrix[i][tc] = start
+start++
+i--
+}
     }
     return start
+
 }
 //leetcode submit region end(Prohibit modification and deletion)

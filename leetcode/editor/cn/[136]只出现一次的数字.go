@@ -43,6 +43,17 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+// func singleNumber(nums []int) int {
+//     if len(nums) == 0 {
+//         return 0
+//     }
+//     res := nums[0]
+//     for i:=1;i<len(nums);i++ {
+//         res ^= nums[i]
+//     }
+//     return res
+// }
+
 func singleNumber(nums []int) int {
     if len(nums) == 0 {
         return 0

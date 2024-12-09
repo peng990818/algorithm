@@ -31,50 +31,98 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+// func spiralOrder(matrix [][]int) []int {
+//     if len(matrix) == 0 || len(matrix[0]) == 0 {
+//         return nil
+//     }
+//     res := make([]int, 0)
+//     tR, tC, dR, dC := 0, 0, len(matrix)-1, len(matrix[0])-1
+//     for tR <= dR && tC <= dC {
+//         res = append(res, spiralEdge(matrix, tR, tC, dR, dC)...)
+//         tR++
+//         tC++
+//         dR--
+//         dC--
+//     }
+//     return res
+// }
+//
+// func spiralEdge(matrix [][]int, tR, tC, dR, dC int) []int {
+//     res := make([]int, 0)
+//     if tR == dR {
+//         // 仅有一行
+//         for i:=tC;i<=dC;i++ {
+//             res = append(res, matrix[tR][i])
+//         }
+//     } else if tC == dC {
+//         // 仅有一列
+//         for i:=tR;i<=dR;i++ {
+//             res = append(res, matrix[i][tC])
+//         }
+//     } else {
+//         i, j := tR, tC
+//         for j < dC {
+//             res = append(res, matrix[tR][j])
+//             j++
+//         }
+//         for i < dR {
+//             res = append(res, matrix[i][dC])
+//             i++
+//         }
+//         for j > tC {
+//             res = append(res, matrix[dR][j])
+//             j--
+//         }
+//         for i > tR {
+//             res = append(res, matrix[i][tC])
+//             i--
+//         }
+//     }
+//     return res
+// }
+
 func spiralOrder(matrix [][]int) []int {
     if len(matrix) == 0 || len(matrix[0]) == 0 {
         return nil
     }
-    res := make([]int, 0)
-    tR, tC, dR, dC := 0, 0, len(matrix)-1, len(matrix[0])-1
-    for tR <= dR && tC <= dC {
-        res = append(res, spiralEdge(matrix, tR, tC, dR, dC)...)
-        tR++
-        tC++
-        dR--
-        dC--
+    tr, tc, dr, dc := 0, 0, len(matrix)-1, len(matrix[0])-1
+    res := make([]int, 0, len(matrix)*len(matrix[0]))
+    for tr <= dr && tc <= dc {
+        res = append(res, spiralEdge(matrix, tr, tc, dr, dc)...)
+        tr++
+        tc++
+        dr--
+        dc--
     }
     return res
 }
 
-func spiralEdge(matrix [][]int, tR, tC, dR, dC int) []int {
+func spiralEdge(matrix [][]int, tr, tc, dr, dc int) []int {
     res := make([]int, 0)
-    if tR == dR {
-        // 仅有一行
-        for i:=tC;i<=dC;i++ {
-            res = append(res, matrix[tR][i])
+    if tr == dr {
+        for i:=tc;i<=dc;i++ {
+            res = append(res, matrix[tr][i])
         }
-    } else if tC == dC {
-        // 仅有一列
-        for i:=tR;i<=dR;i++ {
-            res = append(res, matrix[i][tC])
+    } else if tc == dc {
+        for i:=tr;i<=dr;i++ {
+            res = append(res, matrix[i][tc])
         }
     } else {
-        i, j := tR, tC
-        for j < dC {
-            res = append(res, matrix[tR][j])
+        i, j := tr, tc
+        for j<dc {
+            res = append(res, matrix[tr][j])
             j++
         }
-        for i < dR {
-            res = append(res, matrix[i][dC])
+        for i<dr {
+            res = append(res, matrix[i][dc])
             i++
         }
-        for j > tC {
-            res = append(res, matrix[dR][j])
+        for j > tc {
+            res = append(res, matrix[dr][j])
             j--
         }
-        for i > tR {
-            res = append(res, matrix[i][tC])
+        for i > tr {
+            res = append(res, matrix[i][tc])
             i--
         }
     }

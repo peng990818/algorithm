@@ -121,6 +121,45 @@
 
 
 func merge(intervals [][]int) [][]int {
+    if len(intervals) <= 1 {
+        return intervals
+    }
+    sort.Slice(intervals, func(i, j int) bool {
+        if intervals[i][0] <  intervals[j][0] {
+            return true
+        }
+        return false
+    })
+
+    tmp := intervals[0]
+    res := make([][]int, 0, len(intervals))
+    for i:=1;i<len(intervals);i++ {
+        tmps := mergeTwo(tmp, intervals[i])
+        if len(tmps) == 2 {
+            res = append(res, tmps[0])
+            tmp = tmps[1]
+        } else {
+            tmp = tmps[0]
+        }
+    }
+    res = append(res, tmp)
+    return res
+}
+
+func mergeTwo(arr1, arr2 []int) [][]int {
+    if arr1[0] <= arr2[0] && arr1[1] >= arr2[0] {
+        if arr1[1] <= arr2[1] {
+            return [][]int{[]int{arr1[0], arr2[1]}}
+        }
+        return [][]int{arr1}
+    }
+    if arr2[0] <= arr1[0] && arr2[1] >= arr1[0] {
+        if arr2[1] <= arr1[1] {
+            return [][]int{[]int{arr2[0], arr1[1]}}
+        }
+        return [][]int{arr2}
+    }
+    return [][]int{arr1, arr2}
 }
 
 
