@@ -89,9 +89,50 @@
 // }
 
 // 快慢指针
+// func findDuplicate(nums []int) int {
+//     slow, fast := 0, 0
+//     for {
+//         fast = nums[fast]
+//         fast = nums[fast]
+//         slow = nums[slow]
+//         if slow == fast {
+//             break
+//         }
+//     }
+//
+//     fast = 0
+//     for fast != slow {
+//         fast = nums[fast]
+//         slow = nums[slow]
+//     }
+//     return fast
+// }
+
+// 二分法
+// func findDuplicate(nums []int) int {
+//     min, max := 1, len(nums)
+//     for min < max {
+//         mid := (min+max) / 2
+//         cnt := 0
+//         for _, v := range nums {
+//             if v >= min && v <= mid {
+//                 cnt++
+//             }
+//         }
+//         if cnt > mid - min + 1 {
+//             max = mid
+//         } else {
+//             min = mid+1
+//         }
+//     }
+//     return min
+// }
+
+// 双指针法
 func findDuplicate(nums []int) int {
     slow, fast := 0, 0
     for {
+        // fast 前进两次， slow 前进一次， 相等证明存在环
         fast = nums[fast]
         fast = nums[fast]
         slow = nums[slow]
@@ -100,11 +141,12 @@ func findDuplicate(nums []int) int {
         }
     }
 
-    fast = 0
-    for fast != slow {
-        fast = nums[fast]
+    // 从开始和相交处开始遍历，相等时即为环的入口，也就是重复元素
+    p := 0
+    for p != slow {
+        p = nums[p]
         slow = nums[slow]
     }
-    return fast
+    return p
 }
 //leetcode submit region end(Prohibit modification and deletion)

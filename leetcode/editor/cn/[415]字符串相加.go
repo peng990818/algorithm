@@ -41,68 +41,100 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+// func addStrings(num1 string, num2 string) string {
+//     lens := len(num1)
+//     if len(num2) > lens {
+//         lens = len(num2)
+//     }
+//     res := make([]byte, lens+1)
+//     i, j, k, b := len(num1) - 1, len(num2) - 1, lens, false
+//     for i >= 0 && j >= 0 {
+//         num := num1[i] - '0' + num2[j] - '0'
+//         // 进位
+//         if b {
+//             num++
+//             b = false
+//         }
+//         if num >= 10 {
+//             num = num - 10 + '0'
+//             b = true
+//         } else {
+//             num += '0'
+//         }
+//         res[k] = num
+//         k--
+//         i--
+//         j--
+//     }
+//     for i>=0 {
+//         tmp := num1[i] - '0'
+//         if b {
+//             tmp++
+//             b = false
+//         }
+//         if tmp >= 10 {
+//             tmp = tmp - 10 + '0'
+//             b = true
+//         } else {
+//             tmp+='0'
+//         }
+//         res[k] = tmp
+//         k--
+//         i--
+//     }
+//     for j >= 0 {
+//         tmp := num2[j] - '0'
+//         if b {
+//             tmp++
+//             b = false
+//         }
+//         if tmp >= 10 {
+//             tmp = tmp - 10 + '0'
+//             b = true
+//         } else {
+//             tmp+='0'
+//         }
+//         res[k] = tmp
+//         k--
+//         j--
+//     }
+//     if b {
+//         res[k] = '1'
+//     } else {
+//         res = res[1:]
+//     }
+//     return string(res)
+// }
+
 func addStrings(num1 string, num2 string) string {
-    lens := len(num1)
-    if len(num2) > lens {
-        lens = len(num2)
+    index1 := len(num1)-1
+    index2 := len(num2)-1
+    flag := 0
+    sum := make([]byte, 0)
+    for index1 >= 0 || index2 >= 0 || flag > 0 {
+        n1, n2 := 0, 0
+        if index1 >= 0 {
+            n1 = int(num1[index1]-'0')
+        }
+        if index2 >= 0 {
+            n2 = int(num2[index2]-'0')
+        }
+        num := n1+n2+flag
+        flag = num / 10
+        sum = append(sum, byte(num%10+'0'))
+        index1--
+        index2--
     }
-    res := make([]byte, lens+1)
-    i, j, k, b := len(num1) - 1, len(num2) - 1, lens, false
-    for i >= 0 && j >= 0 {
-        num := num1[i] - '0' + num2[j] - '0'
-        // 进位
-        if b {
-            num++
-            b = false
-        }
-        if num >= 10 {
-            num = num - 10 + '0'
-            b = true
-        } else {
-            num += '0'
-        }
-        res[k] = num
-        k--
-        i--
+    reverse(sum)
+    return string(sum)
+}
+
+func reverse(bytes []byte) {
+    i, j := 0, len(bytes)-1
+    for i < j {
+        bytes[i], bytes[j] = bytes[j], bytes[i]
+        i++
         j--
     }
-    for i>=0 {
-        tmp := num1[i] - '0'
-        if b {
-            tmp++
-            b = false
-        }
-        if tmp >= 10 {
-            tmp = tmp - 10 + '0'
-            b = true
-        } else {
-            tmp+='0'
-        }
-        res[k] = tmp
-        k--
-        i--
-    }
-    for j >= 0 {
-        tmp := num2[j] - '0'
-        if b {
-            tmp++
-            b = false
-        }
-        if tmp >= 10 {
-            tmp = tmp - 10 + '0'
-            b = true
-        } else {
-            tmp+='0'
-        }
-        res[k] = tmp
-        k--
-        j--
-    }
-    if b {
-        res[k] = '1'
-    } else {
-        res = res[1:]
-    }
-    return string(res)
 }
 //leetcode submit region end(Prohibit modification and deletion)

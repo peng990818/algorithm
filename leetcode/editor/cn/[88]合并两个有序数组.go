@@ -55,39 +55,66 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
-func merge(nums1 []int, m int, nums2 []int, n int)  {
-    if m == 0 {
-        copy(nums1, nums2)
-        return
-    }
-    if n == 0 {
-        return
-    }
+// func merge(nums1 []int, m int, nums2 []int, n int)  {
+//     if m == 0 {
+//         copy(nums1, nums2)
+//         return
+//     }
+//     if n == 0 {
+//         return
+//     }
+//
+//     help := make([]int, m+n)
+//     i, j, k := 0, 0, 0
+//     for i<m && j<n {
+//         if nums1[i] < nums2[j] {
+//             help[k] = nums1[i]
+//             k++
+//             i++
+//         } else {
+//             help[k] = nums2[j]
+//             k++
+//             j++
+//         }
+//     }
+//     for i<m {
+//         help[k] = nums1[i]
+//         i++
+//         k++
+//     }
+//     for j<n {
+//         help[k] = nums2[j]
+//         j++
+//         k++
+//     }
+//     copy(nums1, help)
+//     return
+// }
 
-    help := make([]int, m+n)
-    i, j, k := 0, 0, 0
-    for i<m && j<n {
-        if nums1[i] < nums2[j] {
-            help[k] = nums1[i]
-            k++
-            i++
+// 从尾部开始搞
+func merge(nums1 []int, m int, nums2 []int, n int)  {
+    index1 := m-1
+    index2 := n-1
+    index := m+n-1
+    for index1 >= 0 && index2 >= 0 {
+        if nums1[index1] < nums2[index2] {
+            nums1[index] = nums2[index2]
+            index2--
         } else {
-            help[k] = nums2[j]
-            k++
-            j++
+            nums1[index] = nums1[index1]
+            index1--
         }
+        index--
     }
-    for i<m {
-        help[k] = nums1[i]
-        i++
-        k++
+    for index1 >= 0 {
+        nums1[index] = nums1[index1]
+        index1--
+        index--
     }
-    for j<n {
-        help[k] = nums2[j]
-        j++
-        k++
+    for index2 >= 0 {
+        nums1[index] = nums2[index2]
+        index2--
+        index--
     }
-    copy(nums1, help)
-    return
 }
 //leetcode submit region end(Prohibit modification and deletion)

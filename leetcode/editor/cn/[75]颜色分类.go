@@ -84,11 +84,30 @@
 //     }
 // }
 
+// func sortColors(nums []int) {
+//     if len(nums) == 0 {
+//         return
+//     }
+//     l, less, more := 0, -1, len(nums)
+//     for l < more {
+//         if nums[l] < 1 {
+//             less++
+//             nums[l], nums[less] = nums[less], nums[l]
+//             l++
+//         } else if nums[l] > 1 {
+//             more--
+//             nums[l], nums[more] = nums[more], nums[l]
+//         } else {
+//             l++
+//         }
+//     }
+// }
+
 func sortColors(nums []int) {
     if len(nums) == 0 {
         return
     }
-    l, less, more := 0, -1, len(nums)
+    less, more, l := -1, len(nums), 0
     for l < more {
         if nums[l] < 1 {
             less++

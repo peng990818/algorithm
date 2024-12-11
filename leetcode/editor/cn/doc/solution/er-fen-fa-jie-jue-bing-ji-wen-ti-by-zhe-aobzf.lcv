@@ -1,0 +1,53 @@
+### 解题思路
+
+遍历num2的每一个元素,使num1进行排序,然后使用二分法在num1中寻找是否有并集值,
+如果有:
+判断是否有重复,没有重复才保存起来,重置二分指针,并进入下一次循环
+如果没有:
+重置二分指针,直接进入下一次循环
+
+### 代码
+
+* java
+
+```java
+class Solution {
+    public int[] intersection(int[] nums1, int[] nums2) {
+     //将num1数组进行排序,用以后续的二分查找
+        Arrays.sort(nums1);
+        //使用集合方便保存结果,并使用有参构造避免扩容
+        ArrayList<Integer> resList = new ArrayList<>(Math.min(nums1.length, nums2.length));
+
+        int p2 = 0;  //num2数组的指针
+        
+        int left = 0;  //num1数组的左边界
+        int right = nums1.length; //num1数组的右边界
+        while (p2<nums2.length){  //遍历整个num2数组
+            int mid = (left + right)/2;
+            if (nums1[mid] == nums2[p2]){  //查找两个数组是否存在相同值,即并集
+                if (!resList.contains(nums2[p2])){  //避免并集重复
+                    resList.add(nums2[p2]);  //自动装箱,加入集合
+                }
+                //这就代表这已经找到了一个并集值了,即此次循环结束
+                //那么就使p2++,重置左右指针,重新二分该num1,继续找下一个并集值
+                p2++;
+                left = 0;
+                right = nums1.length;
+            }else if (nums1[mid] > nums2[p2]){
+                right = mid;
+            }else {
+                left = mid + 1;
+            }
+            if (left >= right){
+                //如果left == right 那么代表此次循环未找到并集,则重置左右指针进入下一次循环
+                p2++;
+                left = 0;
+                right = nums1.length;
+            }
+        }
+        //使用了流的方法让这个集合转换成一个int数组
+        return resList.stream().mapToInt(Integer::valueOf).toArray();
+    }
+}
+```
+

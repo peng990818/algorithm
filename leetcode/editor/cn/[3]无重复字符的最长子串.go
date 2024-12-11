@@ -68,22 +68,38 @@
 //     return max
 // }
 
+// func lengthOfLongestSubstring(s string) int {
+//     // 哈希集合，记录每个字符是否出现过
+//     m := map[byte]int{}
+//     n := len(s)
+//     rk, ans := -1, 0
+//     for i:=0;i<n;i++ {
+//         if i != 0 {
+//             delete(m, s[i-1])
+//         }
+//         for rk+1<n && m[s[rk+1]] == 0 {
+//             m[s[rk+1]]++
+//             rk++
+//         }
+//         ans = max(ans, rk-i+1)
+//     }
+//     return ans
+// }
+
 func lengthOfLongestSubstring(s string) int {
-    // 哈希集合，记录每个字符是否出现过
-    m := map[byte]int{}
-    n := len(s)
-    rk, ans := -1, 0
-    for i:=0;i<n;i++ {
-        if i != 0 {
-            delete(m, s[i-1])
+    mp := make(map[byte]int)
+    left, right := 0, 0
+    res := 0
+    for right < len(s) {
+        mp[s[right]]++
+        for mp[s[right]] > 1 {
+            mp[s[left]]-=1
+            left++
         }
-        for rk+1<n && m[s[rk+1]] == 0 {
-            m[s[rk+1]]++
-            rk++
-        }
-        ans = max(ans, rk-i+1)
+        res = max(res, right-left+1)
+        right++
     }
-    return ans
+    return res
 }
 
 

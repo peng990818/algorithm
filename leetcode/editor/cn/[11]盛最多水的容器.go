@@ -38,24 +38,44 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+// func maxArea(height []int) int {
+//     max := 0
+//     i, j := 0, len(height)-1
+//     for i<j {
+//         h := height[i]
+//         w := j-i
+//         if height[i] > height[j] {
+//             h = height[j]
+//             j--
+//         } else {
+//             i++
+//         }
+//         area := h * w
+//         if area > max {
+//             max = area
+//         }
+//
+//     }
+//     return max
+// }
+
 func maxArea(height []int) int {
-    max := 0
-    i, j := 0, len(height)-1
+    if len(height) <= 1 {
+        return 0
+    }
+    i, j := 0, len(height) - 1
+    maxArea := 0
     for i<j {
-        h := height[i]
-        w := j-i
-        if height[i] > height[j] {
+        h, w := 0, j-i
+        if height[i] < height[j] {
+            h = height[i]
+            i++
+        } else {
             h = height[j]
             j--
-        } else {
-            i++
         }
-        area := h * w
-        if area > max {
-            max = area
-        }
-
+        maxArea = max(maxArea, h*w)
     }
-    return max
+    return maxArea
 }
 //leetcode submit region end(Prohibit modification and deletion)

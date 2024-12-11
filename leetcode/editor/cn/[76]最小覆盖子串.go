@@ -171,4 +171,42 @@ func minWindow(s string, t string) string {
     }
     return s[ansLeft:ansRight+1]
 }
+
+// func minWindow(s string, t string) string {
+//     mpt := make(map[byte]int, len(t))
+//     for i:=0;i<len(t);i++ {
+//         mpt[t[i]]++
+//     }
+//     win := make(map[byte]int)
+//     left := 0
+//     resLeft, resRight := -1, len(s)
+//     for right:=0;right < len(s);right++ {
+//         win[s[right]]++
+//         for isCovered(mpt, win) {
+//             if right-left < resRight - resLeft {
+//                 resLeft, resRight = left, right
+//             }
+//             win[s[left]]--
+//             left++
+//         }
+//     }
+//     if resLeft < 0 {
+//         return ""
+//     }
+//     return s[resLeft: resRight+1]
+// }
+//
+// // 是否包含
+// func isCovered(mpt, win map[byte]int) bool {
+//     for k, v := range mpt {
+//         if val, ok := win[k]; ok {
+//             if val < v {
+//                 return false
+//             }
+//         } else {
+//             return false
+//         }
+//     }
+//     return true
+// }
 //leetcode submit region end(Prohibit modification and deletion)

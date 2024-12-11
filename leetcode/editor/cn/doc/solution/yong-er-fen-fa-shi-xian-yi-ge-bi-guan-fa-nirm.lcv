@@ -1,0 +1,12 @@
+现在有两个数组
+arr1 = [num1,num2,num3...] 长度为length1
+arr2 = [num1,num2,num3,num4...] 长度为length2
+我们默认length2 > length1。
+我们将arr1排序，复杂度为O(length1 log(length1))
+然后我们遍历arr2,将每个数在arr1二分查找
+复杂度是O(length2 log(length1))。
+总复杂度是(length1+length2)*(log(length1))也就是说复杂度取决于最短的那个数组。我们总是将最短的数组进行排序，可以得到最快的时间。
+比较一下官方题解
+l1*log(l1)+l2*log(l2)，我们假设l2都是最长的。那么二分法的时间
+
+(length1+length2)*(log(length1)) = l2*log(l1) < l2*log(l2)，要比官方算法快几倍

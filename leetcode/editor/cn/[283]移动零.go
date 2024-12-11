@@ -48,15 +48,28 @@
 //     }
 // }
 
-func moveZeroes(nums []int) {
+// func moveZeroes(nums []int) {
+//     if len(nums) == 0 {
+//         return
+//     }
+//     flag := -1
+//     for i:=0;i<len(nums);i++ {
+//         if nums[i] != 0 {
+//             flag++
+//             nums[i], nums[flag] = nums[flag], nums[i]
+//         }
+//     }
+// }
+
+func moveZeroes(nums []int)  {
     if len(nums) == 0 {
         return
     }
-    flag := -1
-    for i:=0;i<len(nums);i++ {
-        if nums[i] != 0 {
-            flag++
-            nums[i], nums[flag] = nums[flag], nums[i]
+    slow := -1
+    for fast:=0;fast<len(nums);fast++ {
+        if nums[fast] != 0 {
+            slow++
+            nums[fast], nums[slow] = nums[slow], nums[fast]
         }
     }
 }

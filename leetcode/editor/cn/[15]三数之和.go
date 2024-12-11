@@ -49,21 +49,54 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+// func threeSum(nums []int) [][]int {
+//     if len(nums) <= 2 {
+//         return nil
+//     }
+//     res := make([][]int, 0)
+//     sort.Ints(nums)
+//     n := len(nums)
+//     for i:=0;i<n;i++ {
+//         if i != 0 && nums[i-1] == nums[i] {
+//             continue
+//         }
+//         sum := 0-nums[i]
+//         l, r := i+1, len(nums)-1
+//         for l<r {
+//             if l > i+1 && nums[l] == nums[l-1] {
+//                 l++
+//                 continue
+//             }
+//             tmp := nums[l] + nums[r]
+//             if tmp < sum {
+//                 l++
+//             } else if tmp > sum {
+//                 r--
+//             } else {
+//                 res = append(res, []int{nums[i], nums[l], nums[r]})
+//                 l++
+//             }
+//         }
+//     }
+//     return res
+// }
+
 func threeSum(nums []int) [][]int {
     if len(nums) <= 2 {
         return nil
     }
-    res := make([][]int, 0)
     sort.Ints(nums)
-    n := len(nums)
-    for i:=0;i<n;i++ {
+    res := make([][]int, 0)
+    for i:=0;i<len(nums)-2;i++ {
+        // 去重
         if i != 0 && nums[i-1] == nums[i] {
             continue
         }
-        sum := 0-nums[i]
+        sum := -nums[i]
         l, r := i+1, len(nums)-1
-        for l<r {
-            if l > i+1 && nums[l] == nums[l-1] {
+        for l < r {
+            // 去重
+            if l > i+1 && nums[l-1] == nums[l] {
                 l++
                 continue
             }

@@ -1,0 +1,167 @@
+# 解法一：先比较长度
+
+* []
+
+```Python
+class Solution:
+    def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        # 把长度小的数组转换为 hash set，记为 fewerNums, 另一方记为 moreNums
+        if len(nums1) < len(nums2):
+            fewerNums = set(nums1)
+            moreNums = nums2
+        else:
+            fewerNums = set(nums2)
+            moreNums = nums1
+
+        # 从 moreNums 中向 ans 中添加仅在 fewerNums 中存在的数字
+        # 为避免元素重复，所以把 ans 也先声明为 hashset 
+        ans = set()
+        for v in moreNums:
+            if v in fewerNums:
+                ans.add(v)
+
+        # 转换为列表再返回
+        return list(ans)
+```
+
+* []
+
+```C++
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        // 把长度小的数组转换为 hash set，记为 fewerNums, 另一方记为 moreNums
+        unordered_set<int> fewerNums;
+        const vector<int>* moreNums; // 不即时赋值，故以指针形式
+        if (nums1.size() < nums2.size()) {
+            fewerNums = unordered_set<int>(nums1.begin(), nums1.end());
+            moreNums = &nums2;
+        } else {
+            fewerNums = unordered_set<int>(nums2.begin(), nums2.end());
+            moreNums = &nums1;
+        }
+
+        // 从 moreNums 中向 ans 中添加仅在 fewerNums 中存在的数字
+        // 为避免元素重复，所以把 ans 也先声明为 hashset 
+        unordered_set<int> ans;
+        for (int v : *moreNums) {
+            if (fewerNums.count(v)) {
+                ans.insert(v);
+            }
+        }
+        
+        // 转换为数组再返回
+        return vector<int>(ans.begin(), ans.end());
+    }
+};
+
+```
+
+* []
+
+```Java
+class Solution {
+    public int[] intersection(int[] nums1, int[] nums2) {
+        // 把长度小的数组转换为 hash set，记为 fewerNums, 另一方记为 moreNums
+        Set<Integer> fewerNums;
+        int[] moreNums;
+        if (nums1.length < nums2.length) {
+            fewerNums = new HashSet<>();
+            for (int num : nums1) {
+                fewerNums.add(num);
+            }
+            moreNums = nums2;
+        } else {
+            fewerNums = new HashSet<>();
+            for (int num : nums2) {
+                fewerNums.add(num);
+            }
+            moreNums = nums1;
+        }
+
+        // 从 moreNums 中向 ans 中添加仅在 fewerNums 中存在的数字
+        // 为避免元素重复，所以把 ans 也先声明为 hashset 
+        Set<Integer> ans = new HashSet<>();
+        for (int v : moreNums) {
+            if (fewerNums.contains(v)) {
+                ans.add(v);
+            }
+        }
+
+        // 转换为数组再返回
+        int[] result = new int[ans.size()];
+        int i = 0;
+        for (int num : ans) {
+            result[i++] = num;
+        }
+
+        return result;
+    }
+}
+```
+
+* []
+
+```Kotlin
+class Solution {
+    fun intersection(nums1: IntArray, nums2: IntArray): IntArray {
+        // 把长度小的数组转换为 hash set，记为 fewerNums, 另一方记为 moreNums
+        val (fewerNums, moreNums) = 
+            if(nums1.size < nums2.size) 
+                nums1.toSet() to nums2 
+            else
+                nums2.toSet() to nums1
+
+        // 从 moreNums 中向 ans 中添加仅在 fewerNums 中存在的数字
+        // 为避免元素重复，所以把 ans 也先声明为 hashset 
+        val ans = mutableSetOf<Int>()
+        for(v in moreNums){
+            if(v in fewerNums)
+                ans += v
+        }
+        
+        // 转换为数组再返回
+        return ans.toIntArray()
+    }
+}
+```
+
+记 nums1 的长度为 $m$，nums2 的长度为 $n$，可得复杂度:
+- 时间复杂度: $\Theta(m+n)$
+- 空间复杂度: $\Theta(min(m, n))$
+
+# 解法二：语法糖
+
+这对语言的标准库有些要求。
+
+* []
+
+```Python
+class Solution:
+    def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        return list(set(nums1) & set(nums2))
+```
+
+* []
+
+```Kotlin
+class Solution {
+    fun intersection(nums1: IntArray, nums2: IntArray): IntArray {
+        return nums1.intersect(nums2.toList()).toIntArray()
+    }
+}
+```
+
+复杂度:
+- 时间：$\Theta(m+n)$
+- 空间：$\Theta(m+n)$
+
+# 推广
+
+以下皆为个人所著，兼顾了职场面试和本硕阶段的学术考试。
+- [不同层次的面试算法学习规划](https://leetcode.cn/circle/discuss/xV68NV/)
+- [附个人题解的双指针题单](https://leetcode.cn/circle/discuss/BI95fj/)
+- [图论入门](https://leetcode.cn/leetbook/detail/introduction-to-graph/)
+- [图论进阶](https://leetcode.cn/leetbook/detail/advanced-graph-theory/)
+
+点赞关注不迷路。祝君早日上岸，飞黄腾达！

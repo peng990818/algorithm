@@ -46,51 +46,51 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 // 我的方法
 // 直接在原字符串改动
-var delta byte = 'a' - 'A'
-func isPalindrome(s string) bool {
-    if len(s) <= 1 {
-        return true
-    }
-    i, j := 0, len(s)-1
-    for i < len(s) && j >= 0 {
-        if !isOwn(s[i]) {
-            i++
-            continue
-        }
-        if !isOwn(s[j]) {
-            j--
-            continue
-        }
-        if !equal(s[i], s[j]) {
-            return false
-        }
-        i++
-        j--
-    }
-    return true
-}
-
-func isOwn(x byte) bool {
-    return (x >= '0' && x <= '9') || (x >= 'a' && x <= 'z') || (x >= 'A' && x <= 'Z')
-}
-
-func equal(a, b byte) bool {
-    if a == b {
-        return true
-    }
-    // a是数字或者b是数字
-    if (a >= '0' && a <= '9') || (b >= '0' && b <= '9') {
-        return false
-    }
-    // 大写字母和小写字母判等
-    if a > b && a-b == delta  {
-        return true
-    }
-    if b > a && b-a == delta  {
-        return true
-    }
-    return false
-}
+// var delta byte = 'a' - 'A'
+// func isPalindrome(s string) bool {
+//     if len(s) <= 1 {
+//         return true
+//     }
+//     i, j := 0, len(s)-1
+//     for i < len(s) && j >= 0 {
+//         if !isOwn(s[i]) {
+//             i++
+//             continue
+//         }
+//         if !isOwn(s[j]) {
+//             j--
+//             continue
+//         }
+//         if !equal(s[i], s[j]) {
+//             return false
+//         }
+//         i++
+//         j--
+//     }
+//     return true
+// }
+//
+// func isOwn(x byte) bool {
+//     return (x >= '0' && x <= '9') || (x >= 'a' && x <= 'z') || (x >= 'A' && x <= 'Z')
+// }
+//
+// func equal(a, b byte) bool {
+//     if a == b {
+//         return true
+//     }
+//     // a是数字或者b是数字
+//     if (a >= '0' && a <= '9') || (b >= '0' && b <= '9') {
+//         return false
+//     }
+//     // 大写字母和小写字母判等
+//     if a > b && a-b == delta  {
+//         return true
+//     }
+//     if b > a && b-a == delta  {
+//         return true
+//     }
+//     return false
+// }
 
 // 官方 需要申请空间，使用底层库,时间上要更快一点
 // func isPalindrome(s string) bool {
@@ -114,5 +114,49 @@ func equal(a, b byte) bool {
 // func isalnum(ch byte) bool {
 // return (ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z') || (ch >= '0' && ch <= '9')
 // }
+
+var delta byte = 'a' - 'A'
+func isPalindrome(s string) bool {
+    if len(s) <= 1 {
+        return true
+    }
+    i, j := 0, len(s) - 1
+    for i<=j {
+        if !isOwn(s[i]) {
+            i++
+            continue
+        }
+        if !isOwn(s[j]) {
+            j--
+            continue
+        }
+        if !equal(s[i], s[j]) {
+            return false
+        }
+        i++
+        j--
+    }
+    return true
+}
+
+func isOwn(s byte) bool {
+    return (s >= '0' && s <= '9') || (s >= 'a' && s <= 'z') || (s >= 'A' && s <= 'Z')
+}
+
+func equal(a, b byte) bool {
+    if a == b {
+        return true
+    }
+    if (a >= '0' && a <= '9') || (b >= '0' && b <= '9') {
+        return false
+    }
+    if a > b && a-b == delta {
+        return true
+    }
+    if b > a && b-a == delta {
+        return true
+    }
+    return false
+}
 
 //leetcode submit region end(Prohibit modification and deletion)

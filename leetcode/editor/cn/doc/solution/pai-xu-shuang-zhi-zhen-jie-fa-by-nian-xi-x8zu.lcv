@@ -1,0 +1,46 @@
+### 解题思路
+
+注意下面这行，要有先后顺序！！！
+
+* 
+
+```
+if(res.size() == 0 || nums1[i1] != res.back() )
+```
+
+### 代码
+
+* cpp
+
+```cpp
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+//传入两个数组，返回二者的交集（以数组的形式）
+    //直接调用API 先对两个数组排序
+    sort(nums1.begin() ,nums1.end());
+    sort(nums2.begin() ,nums2.end());
+    vector<int> res;
+    //定义双指针  分别指向两个排好序数组
+    int i1=0,i2=0;
+
+    //开始遍历，直到一个数组遍历完
+    while(i1<nums1.size() && i2<nums2.size()){  
+        if(nums1[i1] == nums2[i2]){
+            //如果两个值相同，说明就是交集元素，尾插进res种  前提是要保证：res中元素的唯一性
+            if(res.size() == 0 || nums1[i1] != res.back() ){   //另外别忘了第一次插入的情况
+                res.push_back(nums1[i1]);
+            }
+            //然后比较一下个
+            i1++;
+            i2++;
+
+        }
+        else if(nums1[i1] < nums2[i2]) {i1++; }
+        else if(nums1[i1] > nums2[i2]) {i2++; }
+    }
+    return res;
+    }
+};
+```
+
