@@ -135,7 +135,44 @@
 // }
 
 // 常规版本
-func isCovered(cntS, cntT []int) bool {
+// func isCovered(cntS, cntT []int) bool {
+//     for i:='A';i<='Z';i++ {
+//         if cntS[i] < cntT[i] {
+//             return false
+//         }
+//     }
+//     for i:='a';i<='z';i++ {
+//         if cntS[i] < cntT[i] {
+//             return false
+//         }
+//     }
+//     return true
+// }
+//
+// func minWindow(s string, t string) string {
+//     ansLeft, ansRight := -1, len(s)
+//     var cntS, cntT [128]int
+//     for _, c := range t {
+//         cntT[c]++
+//     }
+//     left := 0
+//     for right, c := range s {
+//         cntS[c]++
+//         for isCovered(cntS[:], cntT[:]) {
+//             if right - left < ansRight - ansLeft {
+//                 ansLeft, ansRight = left, right
+//             }
+//             cntS[s[left]]--
+//             left++
+//         }
+//     }
+//     if ansLeft < 0 {
+//         return ""
+//     }
+//     return s[ansLeft:ansRight+1]
+// }
+
+func isCovered(cntT, cntS []int) bool {
     for i:='A';i<='Z';i++ {
         if cntS[i] < cntT[i] {
             return false
@@ -151,15 +188,16 @@ func isCovered(cntS, cntT []int) bool {
 
 func minWindow(s string, t string) string {
     ansLeft, ansRight := -1, len(s)
-    var cntS, cntT [128]int
+    var cntT, cntS [128]int
     for _, c := range t {
         cntT[c]++
     }
+
     left := 0
     for right, c := range s {
         cntS[c]++
-        for isCovered(cntS[:], cntT[:]) {
-            if right - left < ansRight - ansLeft {
+        for isCovered(cntT[:], cntS[:]) {
+            if right-left < ansRight-ansLeft {
                 ansLeft, ansRight = left, right
             }
             cntS[s[left]]--

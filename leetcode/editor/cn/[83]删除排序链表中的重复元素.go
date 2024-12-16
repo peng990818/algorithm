@@ -38,12 +38,29 @@
  *     Next *ListNode
  * }
  */
+// func deleteDuplicates(head *ListNode) *ListNode {
+//     if head == nil {
+//         return nil
+//     }
+//     dummy := &ListNode{}
+//     dummy.Next = head
+//     p1, p2 := head, head.Next
+//     for p2 != nil {
+//         if p1.Val == p2.Val {
+//             p2 = p2.Next
+//             p1.Next = p2
+//         } else {
+//             p1 = p1.Next
+//             p2 = p2.Next
+//         }
+//     }
+//     return dummy.Next
+// }
+
 func deleteDuplicates(head *ListNode) *ListNode {
     if head == nil {
         return nil
     }
-    dummy := &ListNode{}
-    dummy.Next = head
     p1, p2 := head, head.Next
     for p2 != nil {
         if p1.Val == p2.Val {
@@ -54,6 +71,6 @@ func deleteDuplicates(head *ListNode) *ListNode {
             p2 = p2.Next
         }
     }
-    return dummy.Next
+    return head
 }
 //leetcode submit region end(Prohibit modification and deletion)

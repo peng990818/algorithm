@@ -86,6 +86,25 @@
 //     return ans
 // }
 
+// func lengthOfLongestSubstring(s string) int {
+//     mp := make(map[byte]int)
+//     left, right := 0, 0
+//     res := 0
+//     for right < len(s) {
+//         mp[s[right]]++
+//         for mp[s[right]] > 1 {
+//             mp[s[left]]-=1
+//             left++
+//         }
+//         res = max(res, right-left+1)
+//         right++
+//     }
+//     return res
+// }
+
+
+
+
 func lengthOfLongestSubstring(s string) int {
     mp := make(map[byte]int)
     left, right := 0, 0
@@ -101,6 +120,4 @@ func lengthOfLongestSubstring(s string) int {
     }
     return res
 }
-
-
 //leetcode submit region end(Prohibit modification and deletion)

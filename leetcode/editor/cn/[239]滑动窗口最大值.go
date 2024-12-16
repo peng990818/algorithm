@@ -93,7 +93,79 @@
 // return ans
 // }
 
+type myStruct struct {
+    index int
+    val int
+}
 
+func maxSlidingWindow(nums []int, k int) []int {
+    if len(nums) < k {
+        return nil
+    }
+    h := make([]myStruct, k)
+    for i:=0;i<k;i++ {
+        h[i].index = i
+        h[i].val = nums[i]
+    }
+    buildHeap(h)
+    res := make([]int, 0, len(nums)-k+1)
+    res = append(res, h[0].val)
+    for i:=k;i<len(nums);i++ {
+        push(&h, i, nums[i])
+        for h[0].index <= i-k {
+            pop(&h)
+        }
+        res = append(res, h[0].val)
+    }
+    return res
+}
+
+func push(arr *[]myStruct, index, val int) {
+    *arr = append(*arr, myStruct{index: index, val: val})
+    heapifyUp(*arr, len(*arr)-1)
+}
+
+func heapifyUp(arr []myStruct, index int) {
+    p := (index-1)/2
+    for index > 0 && arr[index].val > arr[p].val {
+        arr[index], arr[p] = arr[p], arr[index]
+        index = p
+        p = (index-1)/2
+    }
+}
+
+func pop(arr *[]myStruct) myStruct {
+    top := (*arr)[0]
+    (*arr)[0], (*arr)[len(*arr)-1] = (*arr)[len(*arr)-1], (*arr)[0]
+    *arr = (*arr)[:len(*arr)-1]
+    heapify(*arr, 0, len(*arr))
+    return top
+}
+
+func buildHeap(arr []myStruct) {
+    for i:=len(arr)/2-1;i>=0;i-- {
+        heapify(arr, i, len(arr))
+    }
+}
+
+func heapify(arr []myStruct, index, size int) {
+    left := 2*index + 1
+    for left < size {
+        largest := index
+        if arr[largest].val < arr[left].val {
+            largest = left
+        }
+        if left+1<size && arr[largest].val < arr[left+1].val {
+            largest = left+1
+        }
+        if largest == index {
+            break
+        }
+        arr[largest], arr[index] = arr[index], arr[largest]
+        index = largest
+        left = 2*index+1
+    }
+}
 
 
 

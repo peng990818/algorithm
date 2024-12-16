@@ -44,46 +44,89 @@
  * }
  */
 // 反转链表
-func reverse(head *ListNode) {
-    var pre *ListNode
-    cur := head
-    for cur != nil {
-        next := cur.Next
-        cur.Next = pre
-        pre = cur
-        cur = next
+// func reverse(head *ListNode) {
+//     var pre *ListNode
+//     cur := head
+//     for cur != nil {
+//         next := cur.Next
+//         cur.Next = pre
+//         pre = cur
+//         cur = next
+//     }
+// }
+//
+// func reverseBetween(head *ListNode, left int, right int) *ListNode {
+//     if head == nil || left == right {
+//         return head
+//     }
+//     dummy := &ListNode{}
+//     dummy.Next = head
+//     // 1、找到左边前一个节点
+//     pre := dummy
+//     for i := 0; i < left-1;i++ {
+//         pre = pre.Next
+//     }
+//
+//     // 2、找到结束节点
+//     rightNode := pre
+//     for i:=0;i<right-left+1;i++ {
+//         rightNode = rightNode.Next
+//     }
+//
+//     // 3、制作新的链表
+//     leftNode := pre.Next
+//     curr := rightNode.Next
+//
+//     pre.Next = nil
+//     rightNode.Next = nil
+//
+//     reverse(leftNode)
+//
+//     pre.Next = rightNode
+//     leftNode.Next = curr
+//     return dummy.Next
+// }
+
+func reverse(head *ListNode) *ListNode {
+    if head == nil || head.Next == nil {
+        return head
     }
+    p1, p2 := head, head.Next
+    for p2.Next != nil {
+        p3 := p2.Next
+        p2.Next = p1
+        p1 = p2
+        p2 = p3
+    }
+    p2.Next = p1
+    return p2
 }
 
 func reverseBetween(head *ListNode, left int, right int) *ListNode {
-    if head == nil || left == right {
-        return head
+    if head == nil {
+        return nil
     }
     dummy := &ListNode{}
     dummy.Next = head
-    // 1、找到左边前一个节点
     pre := dummy
-    for i := 0; i < left-1;i++ {
+    for i:=0;i<left-1;i++ {
         pre = pre.Next
     }
 
-    // 2、找到结束节点
-    rightNode := pre
+    rn := pre
     for i:=0;i<right-left+1;i++ {
-        rightNode = rightNode.Next
+        rn = rn.Next
     }
 
-    // 3、制作新的链表
-    leftNode := pre.Next
-    curr := rightNode.Next
+    ln := pre.Next
+    tmp := rn.Next
 
     pre.Next = nil
-    rightNode.Next = nil
+    rn.Next = nil
 
-    reverse(leftNode)
-
-    pre.Next = rightNode
-    leftNode.Next = curr
+    reverse(ln)
+    pre.Next = rn
+    ln.Next = tmp
     return dummy.Next
 }
 //leetcode submit region end(Prohibit modification and deletion)

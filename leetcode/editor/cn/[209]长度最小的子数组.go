@@ -50,18 +50,37 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 // 滑动窗口
-func minSubArrayLen(target int, nums []int) int {
-    if len(nums) == 0 {
-        return 0
-    }
+// func minSubArrayLen(target int, nums []int) int {
+//     if len(nums) == 0 {
+//         return 0
+//     }
+//
+//     start, end := 0, 0
+//     res := math.MaxInt32
+//     sum := 0
+//     for end < len(nums)  {
+//         sum += nums[end]
+//         for sum >= target {
+//             res = min(res, end-start+1)
+//             sum-=nums[start]
+//             start++
+//         }
+//         end++
+//     }
+//     if res == math.MaxInt32 {
+//         return 0
+//     }
+//     return res
+// }
 
+func minSubArrayLen(target int, nums []int) int {
     start, end := 0, 0
     res := math.MaxInt32
     sum := 0
-    for end < len(nums)  {
-        sum += nums[end]
+    for end < len(nums) {
+        sum+=nums[end]
         for sum >= target {
-            res = min(res, end-start+1)
+            res = min (res, end-start+1)
             sum-=nums[start]
             start++
         }

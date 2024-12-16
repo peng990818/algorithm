@@ -1,0 +1,25 @@
+每一步的解体请看代码，整体效果不如直接使用迭代法
+
+* python
+
+```python
+class Solution:
+    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        # 使用最大堆的方法进行处理，最大堆中存放的是元素和元素在nums中的索引
+        # 首先把前nums中前k个元素加入最大堆
+        maxheap = [(-1 * nums[i], i) for i in range(k)]
+        heapq.heapify(maxheap)
+        # 此时最大堆中的堆顶元素就是当前窗口内的最大值
+        ans = [-1 * maxheap[0][0]]
+        for i in range(k, len(nums)):
+            # 现将新的元素，按照堆的元素格式加入堆中
+            heapq.heappush(maxheap, (-1 * nums[i], i))
+            # 将堆中堆顶元素去不在当前窗口内的元素全部pop掉
+            while maxheap[0][1] <= i - k:
+                heapq.heappop(maxheap)
+            # 将当前堆顶元素加入到结果中
+            ans.append(-1 * maxheap[0][0])
+        return ans
+
+```
+
