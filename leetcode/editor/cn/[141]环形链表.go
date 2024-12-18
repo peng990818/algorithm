@@ -82,24 +82,43 @@
 //     return false
 // }
 
+// func hasCycle(head *ListNode) bool {
+//     if head == nil {
+//         return false
+//     }
+//     n1 := head
+//     if head.Next == nil {
+//         return false
+//     }
+//     n2 := head.Next.Next
+//     for n1 != nil && n2 != nil {
+//         if n1 == n2 {
+//             return true
+//         }
+//         n1 = n1.Next
+//         if n2.Next != nil {
+//             n2 = n2.Next.Next
+//         } else {
+//             break
+//         }
+//     }
+//     return false
+// }
+
 func hasCycle(head *ListNode) bool {
-    if head == nil {
+    if head == nil || head.Next == nil {
         return false
     }
-    n1 := head
-    if head.Next == nil {
-        return false
-    }
-    n2 := head.Next.Next
-    for n1 != nil && n2 != nil {
-        if n1 == n2 {
+    slow, fast := head, head.Next.Next
+    for slow != nil && fast != nil {
+        if slow == fast {
             return true
         }
-        n1 = n1.Next
-        if n2.Next != nil {
-            n2 = n2.Next.Next
+        slow = slow.Next
+        if fast.Next != nil {
+            fast = fast.Next.Next
         } else {
-            break
+            return false
         }
     }
     return false

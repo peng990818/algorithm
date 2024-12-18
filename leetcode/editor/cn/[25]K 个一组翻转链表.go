@@ -50,19 +50,16 @@
  * }
  */
 
-func reverse(head *ListNode) {
-    if head == nil {
-        return
+func reverse(head, tail *ListNode) (*ListNode, *ListNode) {
+    prev := tail.Next
+    p := head
+    for prev != tail {
+        nex := p.Next
+        p.Next = prev
+        prev = p
+        p = nex
     }
-    p1, p2 := (*ListNode)(nil), head
-    for p2.Next != nil {
-        p3 := p2.Next
-        p2.Next = p1
-        p1 = p2
-        p2 = p3
-    }
-    p2.Next = p1
-    return p2
+    return tail, head
 }
 
 func reverseKGroup(head *ListNode, k int) *ListNode {
@@ -72,19 +69,25 @@ func reverseKGroup(head *ListNode, k int) *ListNode {
     dummy := &ListNode{}
     dummy.Next = head
 
-    cur := dummy
+    pre := dummy
 
-    for {
-        tmp := cur
+    for head != nil {
+        tail := pre
         for i:=0;i<k;i++ {
-            if tmp == nil {
-                break
+            tail = tail.Next
+            if tail == nil {
+                return dummy.Next
             }
-            tmp = tmp.Next
         }
-        cur = tmp.Next
-        tmp.Next = nil
-
+        nex := tail.Next
+        head, tail = reverse(head, tail)
+        pre.Next = head
+        tail.Next = nex
+        pre = tail
+        head = tail.Next
     }
+    return dummy.Next
+
+
 }
 //leetcode submit region end(Prohibit modification and deletion)

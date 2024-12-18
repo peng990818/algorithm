@@ -98,16 +98,65 @@
 //    return sort(head, nil)
 // }
 
+// func sortList(head *ListNode) *ListNode {
+//     if head == nil {
+//         return nil
+//     }
+//     return sort(head, nil)
+// }
+//
+// func sort(head, tail *ListNode) *ListNode {
+//     if head == nil {
+//         return nil
+//     }
+//     if head.Next == tail {
+//         head.Next = nil
+//         return head
+//     }
+//     slow, fast := head, head
+//     for fast != tail {
+//         slow = slow.Next
+//         fast = fast.Next
+//         if fast != tail {
+//             fast = fast.Next
+//         }
+//     }
+//     return merge(sort(head, slow), sort(slow, tail))
+// }
+//
+// func merge(head1, head2 *ListNode) *ListNode {
+//     head := &ListNode{}
+//     p := head
+//     for head1 != nil && head2 != nil {
+//         if head1.Val < head2.Val {
+//             p.Next = head1
+//             head1 = head1.Next
+//         } else {
+//             p.Next = head2
+//             head2 = head2.Next
+//         }
+//         p = p.Next
+//     }
+//     if head1 != nil {
+//         p.Next = head1
+//     }
+//     if head2 != nil {
+//         p.Next = head2
+//     }
+//     return head.Next
+// }
+
+// 分治
 func sortList(head *ListNode) *ListNode {
-    if head == nil {
-        return nil
+    if head == nil || head.Next == nil {
+        return head
     }
     return sort(head, nil)
 }
 
 func sort(head, tail *ListNode) *ListNode {
-    if head == nil {
-        return nil
+    if head == nil  {
+        return head
     }
     if head.Next == tail {
         head.Next = nil
@@ -125,8 +174,8 @@ func sort(head, tail *ListNode) *ListNode {
 }
 
 func merge(head1, head2 *ListNode) *ListNode {
-    head := &ListNode{}
-    p := head
+    dummy := &ListNode{}
+    p := dummy
     for head1 != nil && head2 != nil {
         if head1.Val < head2.Val {
             p.Next = head1
@@ -143,6 +192,6 @@ func merge(head1, head2 *ListNode) *ListNode {
     if head2 != nil {
         p.Next = head2
     }
-    return head.Next
+    return dummy.Next
 }
 //leetcode submit region end(Prohibit modification and deletion)

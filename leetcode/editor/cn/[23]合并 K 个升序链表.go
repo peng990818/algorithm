@@ -94,6 +94,21 @@ func merge(list1, list2 *ListNode) *ListNode {
 //     return tmp
 // }
 
+// func mergeKLists(lists []*ListNode) *ListNode {
+//     return process(lists, 0, len(lists)-1)
+// }
+//
+// func process(lists []*ListNode, l, r int) *ListNode {
+//     if l == r {
+//         return lists[l]
+//     }
+//     if l > r {
+//         return nil
+//     }
+//     mid := (l+r) >> 1
+//     return merge(process(lists, l, mid), process(lists, mid+1, r))
+// }
+
 func mergeKLists(lists []*ListNode) *ListNode {
     return process(lists, 0, len(lists)-1)
 }
@@ -105,7 +120,7 @@ func process(lists []*ListNode, l, r int) *ListNode {
     if l > r {
         return nil
     }
-    mid := (l+r) >> 1
+    mid := l + (r-l)/2
     return merge(process(lists, l, mid), process(lists, mid+1, r))
 }
 //leetcode submit region end(Prohibit modification and deletion)

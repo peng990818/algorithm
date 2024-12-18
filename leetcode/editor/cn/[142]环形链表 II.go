@@ -88,9 +88,32 @@
 //     return nil
 // }
 
+// func detectCycle(head *ListNode) *ListNode {
+//     if head == nil {
+//         return nil
+//     }
+//     p1, p2 := head, head
+//     for p2 != nil {
+//         p1 = p1.Next
+//         if p2.Next == nil {
+//             return nil
+//         }
+//         p2 = p2.Next.Next
+//         if p1 == p2 {
+//             p1 = head
+//             for p1 != p2 {
+//                 p1 = p1.Next
+//                 p2 = p2.Next
+//             }
+//             return p1
+//         }
+//     }
+//     return nil
+// }
+
 func detectCycle(head *ListNode) *ListNode {
     if head == nil {
-        return nil
+        return head
     }
     p1, p2 := head, head
     for p2 != nil {

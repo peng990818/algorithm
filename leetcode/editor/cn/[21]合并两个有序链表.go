@@ -44,6 +44,35 @@
  *     Next *ListNode
  * }
  */
+// func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
+//     if list1 == nil {
+//         return list2
+//     }
+//     if list2 == nil {
+//         return list1
+//     }
+//     dummy := &ListNode{}
+//     p3 := dummy
+//     p1, p2 := list1, list2
+//     for p1 != nil && p2 != nil {
+//         if p1.Val < p2.Val {
+//             p3.Next = p1
+//             p1 = p1.Next
+//         } else {
+//             p3.Next = p2
+//             p2 = p2.Next
+//         }
+//         p3 = p3.Next
+//     }
+//     if p1 != nil {
+//         p3.Next = p1
+//     }
+//     if p2 != nil {
+//         p3.Next = p2
+//     }
+//     return dummy.Next
+// }
+
 func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
     if list1 == nil {
         return list2
@@ -52,23 +81,22 @@ func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
         return list1
     }
     dummy := &ListNode{}
-    p3 := dummy
-    p1, p2 := list1, list2
-    for p1 != nil && p2 != nil {
-        if p1.Val < p2.Val {
-            p3.Next = p1
-            p1 = p1.Next
+    p := dummy
+    for list1 != nil && list2 != nil {
+        if list1.Val < list2.Val {
+            p.Next = list1
+            list1 = list1.Next
         } else {
-            p3.Next = p2
-            p2 = p2.Next
+            p.Next = list2
+            list2 = list2.Next
         }
-        p3 = p3.Next
+        p = p.Next
     }
-    if p1 != nil {
-        p3.Next = p1
+    if list1 != nil {
+        p.Next = list1
     }
-    if p2 != nil {
-        p3.Next = p2
+    if list2 != nil {
+        p.Next = list2
     }
     return dummy.Next
 }

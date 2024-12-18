@@ -49,9 +49,30 @@
  *     Next *ListNode
  * }
  */
+// func removeNthFromEnd(head *ListNode, n int) *ListNode {
+//     if head == nil {
+//         return nil
+//     }
+//     p1, p2 := head, head
+//     for n > 0 && p2 != nil {
+//         p2 = p2.Next
+//         n--
+//     }
+//     if p2 == nil {
+//         return head.Next
+//     }
+//     for p2.Next != nil {
+//         p1 = p1.Next
+//         p2 = p2.Next
+//     }
+//     tmp := p1.Next.Next
+//     p1.Next = tmp
+//     return head
+// }
+
 func removeNthFromEnd(head *ListNode, n int) *ListNode {
     if head == nil {
-        return nil
+        return head
     }
     p1, p2 := head, head
     for n > 0 && p2 != nil {
@@ -59,6 +80,7 @@ func removeNthFromEnd(head *ListNode, n int) *ListNode {
         n--
     }
     if p2 == nil {
+        // 删除第一个
         return head.Next
     }
     for p2.Next != nil {
