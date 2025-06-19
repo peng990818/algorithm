@@ -32,6 +32,18 @@
  * }
  */
 func trainingPlan(head *ListNode, cnt int) *ListNode {
-    
+    fast, slow := head, head
+    for cnt > 0 {
+        if fast == nil {
+            return fast
+        }
+        fast = fast.Next
+        cnt--
+    }
+    for fast != nil {
+        slow = slow.Next
+        fast = fast.Next
+    }
+    return slow
 }
 //leetcode submit region end(Prohibit modification and deletion)

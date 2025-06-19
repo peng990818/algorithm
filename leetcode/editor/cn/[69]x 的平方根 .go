@@ -33,18 +33,33 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+// func mySqrt(x int) int {
+//     l, r := 0, x
+//     res := -1
+//     for l <= r {
+//         mid := l + (r-l)/2
+//         if mid*mid <= x {
+//             res = mid
+//             l = mid + 1
+//         } else {
+//             r = mid - 1
+//         }
+//     }
+//     return res
+// }
+
 func mySqrt(x int) int {
-    l, r := 0, x
-    res := -1
-    for l <= r {
-        mid := l + (r-l)/2
-        if mid*mid <= x {
-            res = mid
-            l = mid + 1
-        } else {
-            r = mid - 1
-        }
-    }
-    return res
+l, r := 0, x
+var res int
+for l<=r {
+mid := l + (r-l)/2
+if mid*mid <= x {
+l = mid + 1
+res = mid
+} else {
+r = mid - 1
+}
+}
+return res
 }
 //leetcode submit region end(Prohibit modification and deletion)

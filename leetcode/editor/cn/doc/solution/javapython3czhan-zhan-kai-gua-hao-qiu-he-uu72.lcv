@@ -1,0 +1,181 @@
+> [224. 基本计算器](https://leetcode.cn/problems/basic-calculator/)
+
+[TOC]
+
+# 题目
+
+给你一个字符串表达式 `s` ，请你实现一个基本计算器来计算并返回它的值。
+
+注意:不允许使用任何将字符串作为数学表达式计算的内置函数，比如 `eval()` 。
+
+# 题目分析
+
+> 参考 [官方题解 —— 《基本计算器》](https://leetcode.cn/problems/basic-calculator/solutions/646369/ji-ben-ji-suan-qi-by-leetcode-solution-jvir/?envType=study-plan-v2&envId=top-interview-150)
+
+## 思路分析
+
+中缀表达式进行正常的四则运算，即按优先级高低先算括号里的再算括号外，就需要将中缀字符串转为逆波兰表达式再求解。
+
+但是这道题并不是四则运算，而是只有加减的二则运算。运算符的优先级只有两层：1.括号；2.加减；
+
+因此我们可以把**括号展开，这样整个表达式就只有加减运算**，都是同级运算。
+
+* 
+
+```
+1 + (3 - 2) - (6 - (4 + 5)) = 1 + 3 - 2 - 6 + 4 + 5
+```
+
+## 括号展开
+
+对于括号展开，我们要一步到位将所有嵌套的括号都展开而不是一级一级去展开的话，我们就要直到**每一级括号相对于最外层的符号是怎样的**。
+
+我们知道，如果括号之前的符号为`+`，则括号内的运算符号不变；如果括号之前的符号为`-`，则括号内的运算符要改变。
+当存在多个括号嵌套时，不仅要看括号前的符号，还要看上一级的括号符号是什么，才能确定这一级括号的符号。
+
+![image-20241013213342078.png](https://pic.leetcode.cn/1728827843-EtPmMB-image-20241013213342078.png)
+
+而最外一层的运算，我们可以看成整体有个括号的，最外一层的符号为正。
+
+![image-20241013214208486.png](https://pic.leetcode.cn/1728827853-tccDbc-image-20241013214208486.png)
+
+因此我们可以使用一个**栈结构来存储每一层的符号**，初始将`+1`入栈，表示最顶层的符号。
+
+## 统一加减为求和
+
+在上一步我们通过栈记录每一层括号的符号，模拟括号的展开。
+由于将已经将括号展开了，那么就可以直接根据加减符号进行运算了。而减法实际上就是加上一个负数，即**我们是在对一堆数进行累加**，这些数由两部分组成：符号和数值。
+
+* 
+
+```
+number = sign * value
+sign = 1, -1
+value > 0
+```
+
+由于栈结构存储了每一层符号了，我们可以通过访问栈顶元素获取当前层的符号，然后再根据**加减运算符对符号进行改变**。即加号保持当前层符号不变，减号取反。
+
+![image-20241013213614299.png](https://pic.leetcode.cn/1728827862-wifoIJ-image-20241013213614299.png)
+
+具体过程如下（主要表示遇到数字和不同符号的处理动作）
+
+![image-20241013214819299.png](https://pic.leetcode.cn/1728827869-AyBWXk-image-20241013214819299.png)
+![image-20241013215342234.png](https://pic.leetcode.cn/1728827869-jXffcj-image-20241013215342234.png)
+![image-20241013215614619.png](https://pic.leetcode.cn/1728827869-FJAPLo-image-20241013215614619.png)
+
+# 代码
+
+* []
+
+```Java
+class Solution {
+    public int calculate(String s) {
+        Stack<Integer> st = new Stack<>();  // 存放每一层的符号，一个括号表示一层
+        int sign = 1;   // 值为1或-1，表示当前数的符号
+        st.push(sign);  // 最顶层的符号为+1
+        int res = 0;    // 结果
+        int number;
+        int n = s.length();
+        int i = 0;
+        char ch;
+        while(i < n){
+            if(Character.isDigit(ch = s.charAt(i))){
+                // 如果为数字，生成数值
+                number = 0;
+                while(i < n && Character.isDigit(ch = s.charAt(i))){
+                    number = number * 10 + (ch - '0');
+                    i++;
+                }
+                // 累加和，真实数字等于符号乘以数值
+                res += sign * number;
+            }else{
+                if(ch == '+'){
+                    sign = st.peek();   // 加号，获取当前层的符号
+                }else if(ch == '-'){    
+                    sign = -st.peek();  // 减号，获取当前层的相反符号
+                }else if(ch == '('){    
+                    st.push(sign);      // 左括号，进入新一层，将当前层符号入栈
+                }else if(ch == ')'){
+                    st.pop();   // 右括号，完成一层的运算，弹出这一层符号
+                }
+                i++;    // 索引右移
+            }
+        }
+        return res;
+    }
+}
+```
+
+* []
+
+```Python
+class Solution:
+    def calculate(self, s: str) -> int:
+        st = [1]    # 符号栈，存放每一层的符号，一个括号表示一层；最顶层的符号为+1
+        sign = 1    # 值为1或-1，表示当前数的符号
+        n = len(s)
+        i = 0
+        res = 0
+        while i < n:
+            if s[i].isdigit():
+                # 如果为数字，生成数值
+                number = 0
+                while i < n and s[i].isdigit():
+                    number = number * 10 + int(s[i])
+                    i += 1
+                # 累加和，真实数字等于符号乘以数值
+                res += sign * number
+            else:
+                if s[i] == '+':
+                    sign = st[-1]   # 加号，获取当前层的符号
+                elif s[i] == '-':
+                    sign = -st[-1]  # 减号，获取当前层的相反符号
+                elif s[i] == '(':
+                    st.append(sign) # 左括号，进入新一层，将当前层符号入栈
+                elif s[i] == ')':
+                    st.pop()        # 右括号，完成一层的运算，弹出这一层符号
+                i +=1   # 索引右移
+        return res
+```
+
+* []
+
+```C++
+class Solution {
+public:
+    int calculate(string s) {
+        stack<int> st({1});  // 符号栈，存放每一层的符号，一个括号表示一层；最顶层的符号为+1；
+        int sign = 1;   // 值为1或-1，表示当前数的符号
+        int res = 0;    // 结果
+        int number;
+        int n = s.size();
+        int i = 0;
+        while(i < n){
+            if(isdigit(s[i])){
+                // 如果为数字，生成数值
+                number = 0;
+                while(i < n && isdigit(s[i])){
+                    number = number * 10 + (s[i] - '0');
+                    i++;
+                }
+                // 累加和，真实数字等于符号乘以数值
+                res += sign * number;
+            }else{
+                if(s[i] == '+'){
+                    sign = st.top();   // 加号，获取当前层的符号
+                }else if(s[i] == '-'){    
+                    sign = -st.top();  // 减号，获取当前层的相反符号
+                }else if(s[i] == '('){    
+                    st.push(sign);      // 左括号，进入新一层，将当前层符号入栈
+                }else if(s[i] == ')'){
+                    st.pop();   // 右括号，完成一层的运算，弹出这一层符号
+                }
+                i++;    // 索引右移
+            }
+        }
+        return res;
+    }
+};
+```
+

@@ -115,48 +115,90 @@
 // return (ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z') || (ch >= '0' && ch <= '9')
 // }
 
-var delta byte = 'a' - 'A'
+// var delta byte = 'a' - 'A'
+// func isPalindrome(s string) bool {
+//     if len(s) <= 1 {
+//         return true
+//     }
+//     i, j := 0, len(s) - 1
+//     for i<=j {
+//         if !isOwn(s[i]) {
+//             i++
+//             continue
+//         }
+//         if !isOwn(s[j]) {
+//             j--
+//             continue
+//         }
+//         if !equal(s[i], s[j]) {
+//             return false
+//         }
+//         i++
+//         j--
+//     }
+//     return true
+// }
+//
+// func isOwn(s byte) bool {
+//     return (s >= '0' && s <= '9') || (s >= 'a' && s <= 'z') || (s >= 'A' && s <= 'Z')
+// }
+//
+// func equal(a, b byte) bool {
+//     if a == b {
+//         return true
+//     }
+//     if (a >= '0' && a <= '9') || (b >= '0' && b <= '9') {
+//         return false
+//     }
+//     if a > b && a-b == delta {
+//         return true
+//     }
+//     if b > a && b-a == delta {
+//         return true
+//     }
+//     return false
+// }
+
 func isPalindrome(s string) bool {
-    if len(s) <= 1 {
-        return true
-    }
-    i, j := 0, len(s) - 1
-    for i<=j {
-        if !isOwn(s[i]) {
-            i++
-            continue
-        }
-        if !isOwn(s[j]) {
-            j--
-            continue
-        }
-        if !equal(s[i], s[j]) {
-            return false
-        }
-        i++
-        j--
-    }
-    return true
+if len(s) <= 1 {
+return true
+}
+s = strings.ToLower(s)
+step := 0
+i, j := 0, len(s)-1
+for i < j {
+if isNotAlnum(s[i]) {
+i++
+continue
+}
+if isNotAlnum(s[j]) {
+j--
+continue
+}
+if s[i] == s[j] {
+step++
+i++
+j--
+} else {
+fmt.Println(s[i], s[j])
+return false
+}
+}
+return true
 }
 
-func isOwn(s byte) bool {
-    return (s >= '0' && s <= '9') || (s >= 'a' && s <= 'z') || (s >= 'A' && s <= 'Z')
+func isNotAlnum(r byte) bool {
+// 数字范围 '0'–'9'，大写字母 'A'–'Z'，小写字母 'a'–'z'
+if r >= '0' && r <= '9' {
+return false
 }
-
-func equal(a, b byte) bool {
-    if a == b {
-        return true
-    }
-    if (a >= '0' && a <= '9') || (b >= '0' && b <= '9') {
-        return false
-    }
-    if a > b && a-b == delta {
-        return true
-    }
-    if b > a && b-a == delta {
-        return true
-    }
-    return false
+if r >= 'A' && r <= 'Z' {
+return false
+}
+if r >= 'a' && r <= 'z' {
+return false
+}
+return true
 }
 
 //leetcode submit region end(Prohibit modification and deletion)

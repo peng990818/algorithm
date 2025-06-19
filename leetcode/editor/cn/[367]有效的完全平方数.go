@@ -35,25 +35,17 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 func isPerfectSquare(num int) bool {
-    if num == 1 {
-        return true
-    }
-    l, r := int64(1), int64(num)
-    mid := (l+r) >> 1
-    for l < r {
-      if int64(mid)*int64(mid) > int64(num) {
-          r = mid
-      } else if int64(mid)*int64(mid) < int64(num) {
-          l = mid
-      } else {
-          return true
-      }
-      tmp := mid
-      mid = (l+r) >> 1
-      if tmp == mid {
-          break
-      }
-    }
-    return false
+l, r := 1, num
+for l <= r {
+mid := l + (r-l)/2
+if mid*mid < num {
+l = mid + 1
+} else if mid*mid > num {
+r = mid - 1
+} else {
+return true
+}
+}
+return false
 }
 //leetcode submit region end(Prohibit modification and deletion)

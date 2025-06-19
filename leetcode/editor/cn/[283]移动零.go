@@ -61,16 +61,29 @@
 //     }
 // }
 
-func moveZeroes(nums []int)  {
-    if len(nums) == 0 {
-        return
-    }
-    slow := -1
-    for fast:=0;fast<len(nums);fast++ {
-        if nums[fast] != 0 {
-            slow++
-            nums[fast], nums[slow] = nums[slow], nums[fast]
-        }
-    }
+// func moveZeroes(nums []int)  {
+//     if len(nums) == 0 {
+//         return
+//     }
+//     slow := -1
+//     for fast:=0;fast<len(nums);fast++ {
+//         if nums[fast] != 0 {
+//             slow++
+//             nums[fast], nums[slow] = nums[slow], nums[fast]
+//         }
+//     }
+// }
+
+func moveZeroes(nums []int) {
+if len(nums) <= 1 {
+return
+}
+zero := 0
+for i := 0; i < len(nums); i++ {
+if nums[i] != 0 {
+nums[zero], nums[i] = nums[i], nums[zero]
+zero++
+}
+}
 }
 //leetcode submit region end(Prohibit modification and deletion)

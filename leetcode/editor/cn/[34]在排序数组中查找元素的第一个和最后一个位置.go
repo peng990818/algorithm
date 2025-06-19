@@ -68,32 +68,74 @@
 //     return res
 // }
 
+// func searchRange(nums []int, target int) []int {
+//     if len(nums) == 0 {
+//         return []int{-1, -1}
+//     }
+//     // 找到第一个等于target的索引，视为左边界
+//     left := binarySearch(nums, target, true)
+//     // 找到第一个大于target的索引，再减去1，视为右边界
+//     right := binarySearch(nums, target, false) - 1
+//     if left <= right && right < len(nums) && nums[left] == target && nums[right] == target {
+//         return []int{left, right}
+//     }
+//     return []int{-1, -1}
+// }
+//
+// func binarySearch(nums []int, target int, flag bool) int {
+//     l, r := 0, len(nums)-1
+//     res := len(nums)
+//     for l<=r {
+//         mid := l + (r-l)/2
+//         if nums[mid] > target || (flag && nums[mid] >= target) {
+//             r = mid-1
+//             res = mid
+//         } else {
+//             l = mid+1
+//         }
+//     }
+//     return res
+// }
+
+
 func searchRange(nums []int, target int) []int {
-    if len(nums) == 0 {
-        return []int{-1, -1}
-    }
-    // 找到第一个等于target的索引，视为左边界
-    left := binarySearch(nums, target, true)
-    // 找到第一个大于target的索引，再减去1，视为右边界
-    right := binarySearch(nums, target, false) - 1
-    if left <= right && right < len(nums) && nums[left] == target && nums[right] == target {
-        return []int{left, right}
-    }
-    return []int{-1, -1}
+left, right := getLeft(nums, target), getRight(nums, target)
+if left == -2 || right == -2 {
+return []int{-1, -1}
+}
+if right-left > 1 {
+return []int{left + 1, right - 1}
+}
+return []int{-1, -1}
 }
 
-func binarySearch(nums []int, target int, flag bool) int {
-    l, r := 0, len(nums)-1
-    res := len(nums)
-    for l<=r {
-        mid := l + (r-l)/2
-        if nums[mid] > target || (flag && nums[mid] >= target) {
-            r = mid-1
-            res = mid
-        } else {
-            l = mid+1
-        }
-    }
-    return res
+func getLeft(nums []int, target int) int {
+l, r := 0, len(nums)-1
+left := -2
+for l <= r {
+mid := l + (r-l)/2
+if nums[mid] >= target {
+r = mid - 1
+left = r
+} else {
+l = mid + 1
+}
+}
+return left
+}
+
+func getRight(nums []int, target int) int {
+l, r := 0, len(nums)-1
+right := -2
+for l <= r {
+mid := l + (r-l)/2
+if nums[mid] <= target {
+l = mid + 1
+right = l
+} else {
+r = mid - 1
+}
+}
+return right
 }
 //leetcode submit region end(Prohibit modification and deletion)

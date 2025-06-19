@@ -1,0 +1,46 @@
+### 解题思路
+
+建立两个栈（st_num和st_signs），来存储遇到括号前的符号sign（初始值为1,代表正，-1代表负），和括号外面已经算过的结果ans（初始值值为0），从栈顶到栈底依次是从内层到外层的结果。
+扫描字符串，遇到空格直接跳过，遇到正负号则更新正负号，遇到左括号，将当前的结果和符号存入对应的栈中，遇到右括号，更新运算结果。
+为什么要这样做？
+假设没有括号的情况下，我们可以直接在当前得到的结果上累加。但是有括号就不同了，我们要先把之前算过的结果存起来，然后再单独算计算括号里面的结果，直到遇到反括号，将当前括号内的结果（当前括号内的结果是要包括括号前的符号的）和上一层的结果（上次的ans）加起来，上一层的结果即为st_num的栈顶元素。
+感谢[@maple-z](/u/maple-z/)对配图的勘误，这里放一张他的图：
+![1621150390-GfyytK-js.svg](https://pic.leetcode-cn.com/1621162828-gevipv-1621150390-GfyytK-js.svg)
+以及他的JS题解：https://leetcode-cn.com/problems/basic-calculator/solution/tu-jie-shuang-zhan-suan-fa-by-maple-z-qe2x/
+其实一个栈也可以实现，每次成双入栈，成双出栈，但是得注意两个入栈和出栈的顺序。
+
+### 代码
+
+* java
+
+```java
+class Solution {
+     public int calculate(String s) {
+        int ans=0;
+        char[] str=s.toCharArray();
+        int len=str.length;
+        Stack<Integer> st_num=new Stack<>();
+        Stack<Integer> st_signs=new Stack<>();
+        int sign=1;//正负号,运算符号
+        for(int i=0;i<len;i++){
+            if(str[i]==' ') continue;
+            if(str[i]=='+'||str[i]=='-') sign=str[i]=='+'? 1:-1;
+            else if(str[i]>='0'&&str[i]<='9'){//数字
+                int num=str[i]-'0';
+                while(i<len-1&&str[i+1]>='0'&&str[i+1]<='9'){//将这个数字找完
+                    num=num*10+(str[++i]-'0');
+                }
+                ans+=sign*num;
+            }else if(str[i]=='('){//左括号，暂存结果
+                st_num.push(ans);
+                st_signs.push(sign);
+                ans=0;
+                sign=1;
+            }
+            else ans=st_num.pop()+ans*st_signs.pop();//右括号更新结果
+        }
+        return ans;
+    }
+}
+```
+

@@ -55,22 +55,56 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+// func isValid(s string) bool {
+//     stack := make([]byte, 0)
+//     for i:=0;i<len(s);i++ {
+//         if s[i] == '(' || s[i] == '[' || s[i] == '{' {
+//             stack = append(stack, s[i])
+//         } else {
+//             if len(stack) == 0 {
+//                 return false
+//             }
+//             top := stack[len(stack)-1]
+//             if (s[i] == ')' && top == '(') || (s[i] == ']' && top == '[') || (s[i] == '}' && top == '{') {
+//                 stack = stack[:len(stack)-1]
+//             } else {
+//                 return false
+//             }
+//         }
+//     }
+//     if len(stack) > 0 {
+//         return false
+//     }
+//     return true
+// }
+
+
 func isValid(s string) bool {
+    if len(s) == 0 {
+        return true
+    }
     stack := make([]byte, 0)
     for i:=0;i<len(s);i++ {
         if s[i] == '(' || s[i] == '[' || s[i] == '{' {
             stack = append(stack, s[i])
-        } else {
-            if len(stack) == 0 {
-                return false
-            }
-            top := stack[len(stack)-1]
-            if (s[i] == ')' && top == '(') || (s[i] == ']' && top == '[') || (s[i] == '}' && top == '{') {
+            continue
+        }
+        if len(stack) > 0 {
+            tmp := stack[len(stack)-1]
+            if s[i] == ')' && tmp == '(' {
                 stack = stack[:len(stack)-1]
-            } else {
-                return false
+                continue
+            }
+            if s[i] == ']'&& tmp == '[' {
+                stack = stack[:len(stack)-1]
+                continue
+            }
+            if s[i] == '}' && tmp == '{' {
+                stack = stack[:len(stack)-1]
+                continue
             }
         }
+        return false
     }
     if len(stack) > 0 {
         return false

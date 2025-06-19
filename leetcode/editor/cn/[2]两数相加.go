@@ -49,6 +49,62 @@
  *     Next *ListNode
  * }
  */
+// func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
+//     if l1 == nil {
+//         return l2
+//     }
+//     if l2 == nil {
+//         return l1
+//     }
+//     dummy, flag := &ListNode{}, false
+//     p := dummy
+//     for l1 != nil && l2 != nil {
+//         tmp := l1.Val + l2.Val
+//         if flag {
+//             tmp += 1
+//             flag = false
+//         }
+//         if tmp >= 10 {
+//             tmp -= 10
+//             flag = true
+//         }
+//         p.Next = &ListNode{Val: tmp}
+//         p = p.Next
+//         l1 = l1.Next
+//         l2 = l2.Next
+//     }
+//     for l1 != nil {
+//         if flag {
+//             l1.Val++
+//             flag = false
+//         }
+//         if l1.Val >= 10 {
+//             l1.Val -= 10
+//             flag = true
+//         }
+//         p.Next = &ListNode{Val: l1.Val}
+//         p = p.Next
+//         l1 = l1.Next
+//     }
+//     for l2 != nil {
+//         if flag {
+//             l2.Val++
+//             flag = false
+//         }
+//         if l2.Val >= 10 {
+//             l2.Val -= 10
+//             flag = true
+//         }
+//         p.Next = &ListNode{Val: l2.Val}
+//         p = p.Next
+//         l2 = l2.Next
+//     }
+//     if flag {
+//         p.Next = &ListNode{Val: 1}
+//     }
+//     return dummy.Next
+// }
+
 func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
     if l1 == nil {
         return l2
@@ -56,51 +112,22 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
     if l2 == nil {
         return l1
     }
-    dummy, flag := &ListNode{}, false
+    dummy := &ListNode{}
+    d := 0
     p := dummy
-    for l1 != nil && l2 != nil {
-        tmp := l1.Val + l2.Val
-        if flag {
-            tmp += 1
-            flag = false
+    for l1 != nil || l2 != nil || d > 0 {
+        num := d
+        if l1 != nil {
+            num += l1.Val
+            l1 = l1.Next
         }
-        if tmp >= 10 {
-            tmp -= 10
-            flag = true
+        if l2 != nil {
+            num += l2.Val
+            l2 = l2.Next
         }
-        p.Next = &ListNode{Val: tmp}
+        p.Next = &ListNode{Val: num%10}
         p = p.Next
-        l1 = l1.Next
-        l2 = l2.Next
-    }
-    for l1 != nil {
-        if flag {
-            l1.Val++
-            flag = false
-        }
-        if l1.Val >= 10 {
-            l1.Val -= 10
-            flag = true
-        }
-        p.Next = &ListNode{Val: l1.Val}
-        p = p.Next
-        l1 = l1.Next
-    }
-    for l2 != nil {
-        if flag {
-            l2.Val++
-            flag = false
-        }
-        if l2.Val >= 10 {
-            l2.Val -= 10
-            flag = true
-        }
-        p.Next = &ListNode{Val: l2.Val}
-        p = p.Next
-        l2 = l2.Next
-    }
-    if flag {
-        p.Next = &ListNode{Val: 1}
+        d = num / 10
     }
     return dummy.Next
 }
