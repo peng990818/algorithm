@@ -97,43 +97,41 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 func simplifyPath(path string) string {
-if len(path) == 0 {
-return ""
+strs := make([]string, 0)
+var tmp []byte
+for i := 0; i < len(path); i++ {
+if path[i] == '/' {
+if len(tmp) > 0 {
+strs = append(strs, string(tmp))
+tmp = nil
 }
-tmp := make([][]byte, 0)
-j := 0
-tmp = append(tmp, []byte{path[0]})
-for i := 1; i < len(path); i++ {
-if path[i] != '/' {
-tmp[j] = append(tmp[j], path[i])
 continue
 }
-j++
-tmp = append(tmp, []byte{path[i]})
+tmp = append(tmp, path[i])
 }
-res := make([]byte, 0)
-for _, v := range tmp {
-if string(v) == "/" || string(v) == "/." {
+if len(tmp) > 0 {
+strs = append(strs, string(tmp))
+}
+stack := make([]string, 0)
+for i := 0; i < len(strs); i++ {
+switch strs[i] {
+case "..":
+if len(stack) > 0 {
+stack = stack[:len(stack)-1]
+}
+case ".":
 continue
-}
-if string(v) == "/.." {
-if len(res) == 0 {
-continue
-}
-k := len(res) - 1
-for ; k > 0; k-- {
-if res[k] == '/' {
-break
+default:
+stack = append(stack, strs[i])
 }
 }
-res = res[:k]
-continue
+res := "/"
+for i := 0; i < len(stack); i++ {
+res += stack[i]
+if i < len(stack)-1 {
+res += "/"
 }
-res = append(res, v...)
 }
-if len(res) == 0 {
-return "/"
-}
-return string(res)
+return res
 }
 //leetcode submit region end(Prohibit modification and deletion)

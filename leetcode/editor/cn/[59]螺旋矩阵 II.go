@@ -86,61 +86,116 @@
 //     return start
 // }
 
+// func generateMatrix(n int) [][]int {
+//     if n <= 0 {
+//         return nil
+//     }
+//     matrix := make([][]int, n)
+//     for i:=0;i<n;i++ {
+//         matrix[i] = make([]int, n)
+//     }
+//     tr, tc, dr, dc := 0, 0, n-1, n-1
+//     start := 1
+//     for tr <= dr && tc <= dc {
+//         start = generateEdge(matrix, tr, tc, dr, dc, start)
+//         tr++
+//         tc++
+//         dr--
+//         dc--
+//     }
+//     return matrix
+// }
+//
+// func generateEdge(matrix [][]int, tr, tc, dr, dc, start int) int {
+//     if tr == dr {
+//         for i:=tc;i<=dc;i++ {
+//             matrix[tr][i] = start
+//             start++
+//         }
+//     } else if tc == dc {
+//         for i:=tr;i<=dr;i++ {
+//             matrix[i][tc] = start
+//             start++
+//         }
+//     } else {
+// i, j := tr, tc
+// for j < dc {
+// matrix[tr][j] = start
+// start++
+// j++
+// }
+// for i < dr {
+// matrix[i][dc] = start
+// start++
+// i++
+// }
+// for j > tc {
+// matrix[dr][j] = start
+// start++
+// j--
+// }
+// for i > tr {
+// matrix[i][tc] = start
+// start++
+// i--
+// }
+//     }
+//     return start
+//
+// }
+
 func generateMatrix(n int) [][]int {
-    if n <= 0 {
-        return nil
-    }
-    matrix := make([][]int, n)
-    for i:=0;i<n;i++ {
-        matrix[i] = make([]int, n)
-    }
-    tr, tc, dr, dc := 0, 0, n-1, n-1
-    start := 1
-    for tr <= dr && tc <= dc {
-        start = generateEdge(matrix, tr, tc, dr, dc, start)
-        tr++
-        tc++
-        dr--
-        dc--
-    }
-    return matrix
+matrix := make([][]int, n)
+for i := 0; i < n; i++ {
+matrix[i] = make([]int, n)
 }
 
-func generateEdge(matrix [][]int, tr, tc, dr, dc, start int) int {
-    if tr == dr {
-        for i:=tc;i<=dc;i++ {
-            matrix[tr][i] = start
-            start++
-        }
-    } else if tc == dc {
-        for i:=tr;i<=dr;i++ {
-            matrix[i][tc] = start
-            start++
-        }
-    } else {
-i, j := tr, tc
-for j < dc {
-matrix[tr][j] = start
-start++
+cur := 1
+r1, c1, r2, c2 := 0, 0, n-1, n-1
+for r1 <= r2 && c1 <= c2 {
+cur = edge(matrix, cur, r1, c1, r2, c2)
+r1++
+r2--
+c1++
+c2--
+}
+return matrix
+}
+
+func edge(matrix [][]int, cur, r1, c1, r2, c2 int) int {
+if r1 == r2 {
+for i := c1; i <= c2; i++ {
+matrix[r1][i] = cur
+cur++
+}
+} else if c1 == c2 {
+for i := r1; i <= r2; i++ {
+matrix[i][c1] = cur
+cur++
+}
+} else {
+i, j := r1, c1
+for j < c2 {
+matrix[i][j] = cur
+cur++
 j++
 }
-for i < dr {
-matrix[i][dc] = start
-start++
+for i < r2 {
+matrix[i][j] = cur
+cur++
 i++
 }
-for j > tc {
-matrix[dr][j] = start
-start++
+for j > c1 {
+matrix[i][j] = cur
+cur++
 j--
 }
-for i > tr {
-matrix[i][tc] = start
-start++
+for i > r1 {
+matrix[i][j] = cur
+cur++
 i--
 }
-    }
-    return start
-
+}
+return cur
 }
 //leetcode submit region end(Prohibit modification and deletion)

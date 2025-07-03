@@ -67,16 +67,39 @@
  *     Right *TreeNode
  * }
  */
+// func postorderTraversal(root *TreeNode) (res []int) {
+//     // 递归实现
+//     if root == nil {
+//         return
+//     }
+//     res = append(res, postorderTraversal(root.Left)...)
+//     res = append(res, postorderTraversal(root.Right)...)
+//     res = append(res, root.Val)
+//     return
+//     // todo 循环实现
+//     // todo morisi遍历实现
+// }
+
 func postorderTraversal(root *TreeNode) (res []int) {
-    // 递归实现
-    if root == nil {
-        return
-    }
-    res = append(res, postorderTraversal(root.Left)...)
-    res = append(res, postorderTraversal(root.Right)...)
-    res = append(res, root.Val)
-    return
-    // todo 循环实现
-    // todo morisi遍历实现
+if root == nil {
+return nil
+}
+stack := []*TreeNode{}
+stack = append(stack, root)
+for len(stack) > 0 {
+tmp := stack[len(stack)-1]
+stack = stack[:len(stack)-1]
+res = append(res, tmp.Val)
+if tmp.Left != nil {
+stack = append(stack, tmp.Left)
+}
+if tmp.Right != nil {
+stack = append(stack, tmp.Right)
+}
+}
+for i, j := 0, len(res)-1; i < j; i, j = i+1, j-1 {
+res[i], res[j] = res[j], res[i]
+}
+return res
 }
 //leetcode submit region end(Prohibit modification and deletion)

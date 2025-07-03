@@ -44,17 +44,44 @@
  *     Next *ListNode
  * }
  */
+// func removeElements(head *ListNode, val int) *ListNode {
+//     if head == nil {
+//         return nil
+//     }
+//     if head.Val == val {
+//         tmp := head
+//         head = head.Next
+//         tmp.Next = nil
+//         return removeElements(head, val)
+//     }
+//     head.Next = removeElements(head.Next, val)
+//     return head
+// }
+
+// func removeElements(head *ListNode, val int) *ListNode {
+// dump := &ListNode{}
+// dump.Next = head
+// p := dump
+// for p.Next != nil {
+// if p.Next.Val == val {
+// tmp := p.Next
+// p.Next = tmp.Next
+// tmp.Next = nil
+// continue
+// }
+// p = p.Next
+// }
+// return dump.Next
+// }
+
 func removeElements(head *ListNode, val int) *ListNode {
-    if head == nil {
-        return nil
-    }
-    if head.Val == val {
-        tmp := head
-        head = head.Next
-        tmp.Next = nil
-        return removeElements(head, val)
-    }
-    head.Next = removeElements(head.Next, val)
-    return head
+if head == nil {
+return nil
+}
+if head.Val == val {
+return removeElements(head.Next, val)
+}
+head.Next = removeElements(head.Next, val)
+return head
 }
 //leetcode submit region end(Prohibit modification and deletion)

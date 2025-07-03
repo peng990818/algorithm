@@ -52,36 +52,66 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+// func reverseWords(s string) string {
+//     // 字符串切割，然后反转
+//     words := make([]string, 0)
+//     cur := make([]byte, 0)
+//     for i:=0;i<len(s);i++ {
+//         if s[i] == ' ' {
+//             if len(cur) > 0 {
+//                 words = append(words, string(cur))
+//                 cur = make([]byte, 0)
+//             }
+//         } else {
+//             cur = append(cur, s[i])
+//         }
+//     }
+//     if len(cur) > 0 {
+//         words = append(words, string(cur))
+//     }
+//
+//     i, j := 0, len(words)-1
+//     for i<j {
+//         words[i], words[j] = words[j], words[i]
+//         i++
+//         j--
+//     }
+//
+//     res := words[0]
+//     for i:=1;i<len(words);i++ {
+//         res += " " + words[i]
+//     }
+//     return res
+// }
+
 func reverseWords(s string) string {
-    // 字符串切割，然后反转
-    words := make([]string, 0)
-    cur := make([]byte, 0)
-    for i:=0;i<len(s);i++ {
-        if s[i] == ' ' {
-            if len(cur) > 0 {
-                words = append(words, string(cur))
-                cur = make([]byte, 0)
-            }
-        } else {
-            cur = append(cur, s[i])
-        }
-    }
-    if len(cur) > 0 {
-        words = append(words, string(cur))
-    }
+var words [][]byte
+var cur []byte
+for i := 0; i < len(s); i++ {
+if s[i] == ' ' {
+if len(cur) > 0 {
+words = append(words, cur)
+cur = make([]byte, 0)
+}
+continue
+}
+cur = append(cur, s[i])
+}
+if len(cur) > 0 {
+words = append(words, cur)
+}
 
-    i, j := 0, len(words)-1
-    for i<j {
-        words[i], words[j] = words[j], words[i]
-        i++
-        j--
-    }
-
-    res := words[0]
-    for i:=1;i<len(words);i++ {
-        res += " " + words[i]
-    }
-    return res
+for i, j := 0, len(words)-1; i < j; i, j = i+1, j-1 {
+words[i], words[j] = words[j], words[i]
+}
+res := make([]byte, 0)
+for i, word := range words {
+res = append(res, word...)
+if i != len(words)-1 {
+res = append(res, ' ')
+}
+}
+return string(res)
 }
 
 //leetcode submit region end(Prohibit modification and deletion)

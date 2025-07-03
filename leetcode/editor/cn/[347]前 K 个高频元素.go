@@ -150,32 +150,88 @@
 // return
 // }
 
+// func topKFrequent(nums []int, k int) []int {
+// if len(nums) == 0 {
+// return nil
+// }
+//
+// // 统计频率
+// mp := make(map[int]int, len(nums))
+// for _, v := range nums {
+// mp[v]++
+// }
+//
+// // 转换为二维数组 [值, 频率]
+// arr := make([][]int, 0, len(mp))
+// for key, val := range mp {
+// arr = append(arr, []int{key, val})
+// }
+//
+// // 构建堆
+// buildHeap(arr)
+//
+// // 取前 k 个
+// res := make([]int, 0, k)
+// for i := 0; i < k; i++ {
+// res = append(res, pop(&arr))
+// }
+//
+// return res
+// }
+//
+// func heapify(arr [][]int, index int, size int) {
+// left := 2*index + 1
+// for left < size {
+// largest := index
+// if arr[largest][1] < arr[left][1] {
+// largest = left
+// }
+// if left+1 < size && arr[largest][1] < arr[left+1][1] {
+// largest = left + 1
+// }
+// if largest == index {
+// break
+// }
+// // 交换
+// arr[index], arr[largest] = arr[largest], arr[index]
+// index = largest
+// left = 2*index + 1
+// }
+// }
+//
+// func buildHeap(arr [][]int) {
+// for i := len(arr)/2 - 1; i >= 0; i-- {
+// heapify(arr, i, len(arr))
+// }
+// }
+//
+// func pop(arr *[][]int) (res int) {
+// if len(*arr) == 0 {
+// return
+// }
+// res = (*arr)[0][0] // 堆顶元素
+// (*arr)[0], (*arr)[len(*arr)-1] = (*arr)[len(*arr)-1], (*arr)[0]
+// *arr = (*arr)[:len(*arr)-1] // 移除堆顶
+// heapify(*arr, 0, len(*arr)) // 重新调整堆
+// return
+// }
+
 func topKFrequent(nums []int, k int) []int {
-if len(nums) == 0 {
-return nil
+mp := map[int]int{}
+for _, n := range nums {
+mp[n]++
 }
 
-// 统计频率
-mp := make(map[int]int, len(nums))
-for _, v := range nums {
-mp[v]++
-}
-
-// 转换为二维数组 [值, 频率]
 arr := make([][]int, 0, len(mp))
-for key, val := range mp {
-arr = append(arr, []int{key, val})
+for k, v := range mp {
+arr = append(arr, []int{k, v})
 }
 
-// 构建堆
 buildHeap(arr)
-
-// 取前 k 个
-res := make([]int, 0, k)
+res := []int{}
 for i := 0; i < k; i++ {
-res = append(res, pop(&arr))
+res = append(res, popMax(&arr))
 }
-
 return res
 }
 
@@ -190,10 +246,9 @@ if left+1 < size && arr[largest][1] < arr[left+1][1] {
 largest = left + 1
 }
 if largest == index {
-break
+return
 }
-// 交换
-arr[index], arr[largest] = arr[largest], arr[index]
+arr[largest], arr[index] = arr[index], arr[largest]
 index = largest
 left = 2*index + 1
 }
@@ -205,15 +260,14 @@ heapify(arr, i, len(arr))
 }
 }
 
-func pop(arr *[][]int) (res int) {
-if len(*arr) == 0 {
-return
-}
-res = (*arr)[0][0] // 堆顶元素
+func popMax(arr *[][]int) int {
+res := (*arr)[0][0]
 (*arr)[0], (*arr)[len(*arr)-1] = (*arr)[len(*arr)-1], (*arr)[0]
-*arr = (*arr)[:len(*arr)-1] // 移除堆顶
-heapify(*arr, 0, len(*arr)) // 重新调整堆
-return
+*arr = (*arr)[:len(*arr)-1]
+heapify(*arr, 0, len(*arr))
+return res
 }
+
+
 
 //leetcode submit region end(Prohibit modification and deletion)

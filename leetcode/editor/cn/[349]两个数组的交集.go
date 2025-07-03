@@ -52,24 +52,69 @@
 // }
 
 // 排序+双指针
+// func intersection(nums1 []int, nums2 []int) []int {
+//     sort.Ints(nums1)
+//     sort.Ints(nums2)
+//     res := make([]int, 0, len(nums2))
+//     i, j := 0, 0
+//     for i<len(nums1) && j < len(nums2) {
+//         if nums1[i] == nums2[j] {
+//             if len(res) == 0 || nums1[i] > res[len(res)-1] {
+//                 res = append(res, nums1[i])
+//             }
+//             i++
+//             j++
+//         } else if nums1[i] < nums2[j] {
+//             i++
+//         } else {
+//             j++
+//         }
+//     }
+//     return res
+// }
+
+// func intersection(nums1 []int, nums2 []int) []int {
+// if len(nums1) == 0 || len(nums2) == 0 {
+// return nil
+// }
+// set := make(map[int]struct{}, len(nums1))
+// for _, num := range nums1 {
+// set[num] = struct{}{}
+// }
+// mp := make(map[int]struct{})
+// for _, num := range nums2 {
+// if _, ok := set[num]; ok {
+// mp[num] = struct{}{}
+// }
+// }
+// var result []int
+// for num := range mp {
+// result = append(result, num)
+// }
+// return result
+// }
+
 func intersection(nums1 []int, nums2 []int) []int {
-    sort.Ints(nums1)
-    sort.Ints(nums2)
-    res := make([]int, 0, len(nums2))
-    i, j := 0, 0
-    for i<len(nums1) && j < len(nums2) {
-        if nums1[i] == nums2[j] {
-            if len(res) == 0 || nums1[i] > res[len(res)-1] {
-                res = append(res, nums1[i])
-            }
-            i++
-            j++
-        } else if nums1[i] < nums2[j] {
-            i++
-        } else {
-            j++
-        }
-    }
-    return res
+if len(nums1) == 0 || len(nums2) == 0 {
+return nil
+}
+sort.Ints(nums1)
+sort.Ints(nums2)
+var res []int
+i, j := 0, 0
+for i < len(nums1) && j < len(nums2) {
+if nums1[i] == nums2[j] {
+if len(res) == 0 || res[len(res)-1] < nums1[i] {
+res = append(res, nums1[i])
+}
+i++
+j++
+} else if nums1[i] < nums2[j] {
+i++
+} else {
+j++
+}
+}
+return res
 }
 //leetcode submit region end(Prohibit modification and deletion)

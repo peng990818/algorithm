@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6120838b-994b-43bd-bfc1-d045d07487a4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[1047]删除字符串中的所有相邻重复项.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[1047]删除字符串中的所有相邻重复项.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[142]环形链表 II.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[142]环形链表 II.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[144]二叉树的前序遍历.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[144]二叉树的前序遍历.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[145]二叉树的后序遍历.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[145]二叉树的后序遍历.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[151]反转字符串中的单词.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[151]反转字符串中的单词.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[203]移除链表元素.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[203]移除链表元素.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[206]反转链表.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[206]反转链表.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[209]长度最小的子数组.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[209]长度最小的子数组.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[20]有效的括号.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[20]有效的括号.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[239]滑动窗口最大值.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[239]滑动窗口最大值.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[27]移除元素.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[27]移除元素.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[344]反转字符串.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[344]反转字符串.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[347]前 K 个高频元素.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[347]前 K 个高频元素.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[349]两个数组的交集.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[349]两个数组的交集.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[59]螺旋矩阵 II.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[59]螺旋矩阵 II.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[71]简化路径.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[71]简化路径.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[94]二叉树的中序遍历.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[94]二叉树的中序遍历.go" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
+  <component name="GOROOT" url="file://$USER_HOME$/go/go1.23.3" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2oq13mUkBSUvzC0Yrtudfd9CcAS" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
+    &quot;Go Test.TestBubbleSort in algorithm/algorithm.executor&quot;: &quot;Run&quot;,
+    &quot;Go Test.TestBucketSort in algorithm/algorithm.executor&quot;: &quot;Run&quot;,
+    &quot;Go Test.TestCountSort in algorithm/algorithm.executor&quot;: &quot;Run&quot;,
+    &quot;Go Test.TestGenerateRandomArray in algorithm/algorithm.executor&quot;: &quot;Run&quot;,
+    &quot;Go Test.TestHeapSort in algorithm/algorithm.executor&quot;: &quot;Run&quot;,
+    &quot;Go Test.TestInsertSort in algorithm/algorithm.executor&quot;: &quot;Run&quot;,
+    &quot;Go Test.TestMergeSort in algorithm/algorithm.executor&quot;: &quot;Run&quot;,
+    &quot;Go Test.TestName in algorithm/algorithm.executor&quot;: &quot;Debug&quot;,
+    &quot;Go Test.TestQuickSort in algorithm/algorithm.executor&quot;: &quot;Run&quot;,
+    &quot;Go Test.TestRadixSort in algorithm/algorithm.executor&quot;: &quot;Run&quot;,
+    &quot;Go Test.TestReversePair in algorithm/algorithm.executor&quot;: &quot;Run&quot;,
+    &quot;Go Test.TestSelectSort in algorithm/algorithm.executor&quot;: &quot;Run&quot;,
+    &quot;Go Test.TestShellSort in algorithm/algorithm.executor&quot;: &quot;Run&quot;,
+    &quot;Go Test.TestSmallSum in algorithm/algorithm.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/xdf&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/algorithm" />
+      <recent name="$PROJECT_DIR$/algorithm/sort" />
+      <recent name="$PROJECT_DIR$/practice" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Go Test.TestName in algorithm/algorithm">
+    <configuration name="TestName in algorithm/algorithm" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="algorithm" />
+      <working_directory value="$PROJECT_DIR$/algorithm" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="algorithm/algorithm" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestName\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestRadixSort in algorithm/algorithm" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="algorithm" />
+      <working_directory value="$PROJECT_DIR$/algorithm" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="algorithm/algorithm" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestRadixSort\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestReversePair in algorithm/algorithm" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="algorithm" />
+      <working_directory value="$PROJECT_DIR$/algorithm" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="algorithm/algorithm" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestReversePair\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestShellSort in algorithm/algorithm" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="algorithm" />
+      <working_directory value="$PROJECT_DIR$/algorithm" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="algorithm/algorithm" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestShellSort\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestSmallSum in algorithm/algorithm" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="algorithm" />
+      <working_directory value="$PROJECT_DIR$/algorithm" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="algorithm/algorithm" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestSmallSum\E$" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Test.TestName in algorithm/algorithm" />
+        <item itemvalue="Go Test.TestReversePair in algorithm/algorithm" />
+        <item itemvalue="Go Test.TestSmallSum in algorithm/algorithm" />
+        <item itemvalue="Go Test.TestShellSort in algorithm/algorithm" />
+        <item itemvalue="Go Test.TestRadixSort in algorithm/algorithm" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-gosdk-3b128438d3f6-07d2d2d66b1e-org.jetbrains.plugins.go.sharedIndexes.bundled-GO-251.26927.50" />
+        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-GO-251.26927.50" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6120838b-994b-43bd-bfc1-d045d07487a4" name="Changes" comment="" />
+      <created>1750320848883</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1750320848883</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VgoProject">
+    <settings-migrated>true</settings-migrated>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/leetcode/editor/cn/[31]下一个排列.go</url>
+          <line>67</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/algorithm/algorithm_test.go</url>
+          <line>139</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/algorithm/algorithm_test.go</url>
+          <line>114</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

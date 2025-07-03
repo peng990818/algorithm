@@ -67,17 +67,38 @@
  *     Right *TreeNode
  * }
  */
+// func preorderTraversal(root *TreeNode) []int {
+//     if root == nil {
+//         return nil
+//     }
+//     result := make([]int, 0)
+//     result = append(result, root.Val)
+//     result = append(result, preorderTraversal(root.Left)...)
+//     result = append(result, preorderTraversal(root.Right)...)
+//     return result
+//     // todo 非递归版本
+//     // todo morisi遍历
+// }
+
 func preorderTraversal(root *TreeNode) []int {
-    if root == nil {
-        return nil
-    }
-    result := make([]int, 0)
-    result = append(result, root.Val)
-    result = append(result, preorderTraversal(root.Left)...)
-    result = append(result, preorderTraversal(root.Right)...)
-    return result
-    // todo 非递归版本
-    // todo morisi遍历
+if root == nil {
+return nil
+}
+stack := []*TreeNode{}
+stack = append(stack, root)
+res := make([]int, 0)
+for len(stack) > 0 {
+tmp := stack[len(stack)-1]
+res = append(res, tmp.Val)
+stack = stack[:len(stack)-1]
+if tmp.Right != nil {
+stack = append(stack, tmp.Right)
+}
+if tmp.Left != nil {
+stack = append(stack, tmp.Left)
+}
+}
+return res
 }
 
 

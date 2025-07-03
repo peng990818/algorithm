@@ -127,13 +127,29 @@
 // }
 
 // 递归
+// func reverseList(head *ListNode) *ListNode {
+//     if head == nil || head.Next == nil {
+//         return head
+//     }
+//     newHead := reverseList(head.Next)
+//     head.Next.Next = head
+//     head.Next = nil
+//     return newHead
+// }
+
 func reverseList(head *ListNode) *ListNode {
-    if head == nil || head.Next == nil {
-        return head
-    }
-    newHead := reverseList(head.Next)
-    head.Next.Next = head
-    head.Next = nil
-    return newHead
+if head == nil {
+return nil
+}
+
+p1, p2 := (*ListNode)(nil), head
+for p2.Next != nil {
+p3 := p2.Next
+p2.Next = p1
+p1 = p2
+p2 = p3
+}
+p2.Next = p1
+return p2
 }
 //leetcode submit region end(Prohibit modification and deletion)

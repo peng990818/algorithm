@@ -73,22 +73,44 @@
 //     return res
 // }
 
+// func minSubArrayLen(target int, nums []int) int {
+//     start, end := 0, 0
+//     res := math.MaxInt32
+//     sum := 0
+//     for end < len(nums) {
+//         sum+=nums[end]
+//         for sum >= target {
+//             res = min (res, end-start+1)
+//             sum-=nums[start]
+//             start++
+//         }
+//         end++
+//     }
+//     if res == math.MaxInt32 {
+//         return 0
+//     }
+//     return res
+// }
+
 func minSubArrayLen(target int, nums []int) int {
-    start, end := 0, 0
-    res := math.MaxInt32
-    sum := 0
-    for end < len(nums) {
-        sum+=nums[end]
-        for sum >= target {
-            res = min (res, end-start+1)
-            sum-=nums[start]
-            start++
-        }
-        end++
-    }
-    if res == math.MaxInt32 {
-        return 0
-    }
-    return res
+if len(nums) == 0 {
+return 0
+}
+res := math.MaxInt32
+start, end := 0, 0
+cur := 0
+for end < len(nums) {
+cur += nums[end]
+for cur >= target {
+res = min(res, end-start+1)
+cur -= nums[start]
+start++
+}
+end++
+}
+if res == math.MaxInt32 {
+    return 0
+}
+return res
 }
 //leetcode submit region end(Prohibit modification and deletion)

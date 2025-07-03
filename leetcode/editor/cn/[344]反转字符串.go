@@ -30,12 +30,18 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
-func reverseString(s []byte)  {
-    // 对称交换
-    m, n := len(s) / 2, len(s)-1
-    for i := 0; i < m; i++ {
-        s[i], s[n-i] = s[n-i], s[i]
-    }
-    return
+// func reverseString(s []byte)  {
+//     // 对称交换
+//     m, n := len(s) / 2, len(s)-1
+//     for i := 0; i < m; i++ {
+//         s[i], s[n-i] = s[n-i], s[i]
+//     }
+//     return
+// }
+
+func reverseString(s []byte) {
+for i, j := 0, len(s)-1; i < j; i, j = i+1, j-1 {
+s[i], s[j] = s[j], s[i]
+}
 }
 //leetcode submit region end(Prohibit modification and deletion)

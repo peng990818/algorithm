@@ -112,25 +112,27 @@
 // }
 
 func detectCycle(head *ListNode) *ListNode {
-    if head == nil {
-        return head
-    }
-    p1, p2 := head, head
-    for p2 != nil {
-        p1 = p1.Next
-        if p2.Next == nil {
-            return nil
-        }
-        p2 = p2.Next.Next
-        if p1 == p2 {
-            p1 = head
-            for p1 != p2 {
-                p1 = p1.Next
-                p2 = p2.Next
-            }
-            return p1
-        }
-    }
-    return nil
+if head == nil || head.Next == nil {
+return nil
+}
+var flag bool
+fast, slow := head, head
+for fast.Next != nil && fast.Next.Next != nil {
+fast = fast.Next.Next
+slow = slow.Next
+if fast == slow {
+flag = true
+break
+}
+}
+if !flag {
+return nil
+}
+fast = head
+for fast != slow {
+fast = fast.Next
+slow = slow.Next
+}
+return fast
 }
 //leetcode submit region end(Prohibit modification and deletion)

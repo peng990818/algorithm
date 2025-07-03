@@ -62,18 +62,32 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+// func removeElement(nums []int, val int) int {
+// if len(nums) == 0 {
+// return 0
+// }
+// slow, fast := 0, 0
+// for fast < len(nums) {
+// if nums[fast] != val {
+// nums[slow] = nums[fast]
+// slow++
+// }
+// fast++
+// }
+// return slow
+// }
+
 func removeElement(nums []int, val int) int {
 if len(nums) == 0 {
 return 0
 }
-slow, fast := 0, 0
-for fast < len(nums) {
-if nums[fast] != val {
-nums[slow] = nums[fast]
-slow++
+savePos := -1
+for i := 0; i < len(nums); i++ {
+if nums[i] != val {
+savePos++
+nums[savePos] = nums[i]
 }
-fast++
 }
-return slow
+return savePos + 1
 }
 //leetcode submit region end(Prohibit modification and deletion)
