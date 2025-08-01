@@ -1,0 +1,158 @@
+首先先把图的邻接表存进字典，并且按字典序排序，然后从‘JFK’开始深搜，每前进一层就减去一条路径，直到某个起点不存在路径的时候就会跳出while循环进行回溯，相对先找不到路径的一定是放在相对后面，所以当前搜索的起点from会插在当前输出路径的第一个位置。
+
+* []
+
+```python
+class Solution:
+    def findItinerary(self, tickets: List[List[str]]) -> List[str]:
+        d = collections.defaultdict(list)   #邻接表
+        for f, t in tickets:
+            d[f] += [t]         #路径存进邻接表
+        for f in d:
+            d[f].sort()         #邻接表排序
+        ans = []
+        def dfs(f):             #深搜函数
+            while d[f]:
+                dfs(d[f].pop(0))#路径检索
+            ans.insert(0, f)    #放在最前
+        dfs('JFK')
+        return ans
+```
+
+* []
+
+```python
+class Solution:
+    def findItinerary(self, tickets: List[List[str]]) -> List[str]:
+        d = collections.defaultdict(list)
+        for f, t in tickets:
+            d[f] += [t]
+        for f in d:
+            d[f].sort(reverse=True)
+        ans = []
+        def dfs(f):
+            while d[f]:
+                dfs(d[f].pop())
+            ans.append(f)
+        dfs('JFK')
+        return ans[:: -1]
+```
+
+* []
+
+```go
+var d map[string][]string
+var ans []string
+
+func findItinerary(tickets [][]string) []string {
+    d = map[string][]string{}
+    for _, v := range tickets {
+        d[v[0]] = append(d[v[0]], v[1])
+    }
+    for _, v := range d {
+        sort.Strings(v)
+    }
+    ans = []string{}
+    dfs("JFK")
+    return ans
+}
+
+func dfs(f string) {
+    for len(d[f]) > 0 {
+        v := d[f][0]
+        d[f] = d[f][1: ]
+        dfs(v)
+    }
+    ans = append([]string{f}, ans...)
+}
+```
+
+* []
+
+```go
+var d map[string][]string
+var ans []string
+
+func findItinerary(tickets [][]string) []string {
+    d = map[string][]string{}
+    for _, v := range tickets {
+        d[v[0]] = append(d[v[0]], v[1])
+    }
+    for _, v := range d {
+        sort.Strings(v)
+    }
+    ans = []string{}
+    dfs("JFK")
+    n := len(ans)
+	for i := 0; i < n / 2; i++ {
+        ans[i], ans[n - i - 1] = ans[n - i - 1], ans[i]
+	}
+    return ans
+}
+
+func dfs(f string) {
+    for len(d[f]) > 0 {
+        v := d[f][0]
+        d[f] = d[f][1: ]
+        dfs(v)
+    }
+    ans = append(ans, f)
+}
+```
+
+* []
+
+```rust
+// 感谢rustcc论坛大佬Neutron3529指点，不然又编译不过了
+use std::collections::HashMap;
+impl Solution {
+    pub fn find_itinerary(tickets: Vec<Vec<String>>) -> Vec<String> {
+        let mut d: HashMap<_, Vec<_>> = HashMap::new();
+        for t in &tickets {
+            d.entry(t[0].clone()).or_default().push(t[1].clone());
+        }
+        for (_, f) in d.iter_mut() {
+            f.sort_by(|a, b| b.cmp(a));
+        }
+        let mut ans = vec![];
+        fn dfs(f: String, d: &mut HashMap<String, Vec<String>>, ans: &mut Vec<String>) {
+            while let Some(df) = d.get_mut(&f).unwrap_or(&mut vec![]).pop() {
+                dfs(df, d, ans)
+            }
+            ans.push(f);
+        }
+        dfs("JFK".to_string(), &mut d, &mut ans);
+        ans.reverse();
+        ans
+    }
+}
+```
+
+* []
+
+```rust
+use std::collections::HashMap;
+impl Solution {
+    pub fn find_itinerary(tickets: Vec<Vec<String>>) -> Vec<String> {
+        let mut d: HashMap<_, Vec<_>> = HashMap::new();
+        // 通过取下标再去引用来解决String类型生命周期不够长的问题
+        for i in 0..tickets.len() {
+            d.entry(&tickets[i][0]).or_default().push(&tickets[i][1]);
+        }
+        for (_, f) in d.iter_mut() {
+            f.sort_by(|a, b| b.cmp(a));
+        }
+        let mut ans = vec![];
+        fn dfs(f: String, d: &mut HashMap<&String, Vec<&String>>, ans: &mut Vec<String>) {
+            while let Some(df) = d.get_mut(&f).unwrap_or(&mut vec![]).pop() {
+                dfs(df.to_owned(), d, ans)
+            }
+            ans.push(f);
+        }
+        dfs("JFK".to_string(), &mut d, &mut ans);
+        ans.reverse();
+        ans
+    }
+}
+```
+

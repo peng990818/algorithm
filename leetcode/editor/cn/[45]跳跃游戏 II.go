@@ -41,28 +41,71 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
-func jump(nums []int) int {
-    if len(nums) == 1 {
-        return 0
-    }
-    i, res := 0, 0
-    for i < len(nums) {
-        // 一步到底
-        if i + nums[i] >= len(nums) - 1 {
-            return res + 1
-        }
+// func jump(nums []int) int {
+//     if len(nums) == 1 {
+//         return 0
+//     }
+//     i, res := 0, 0
+//     for i < len(nums) {
+//         // 一步到底
+//         if i + nums[i] >= len(nums) - 1 {
+//             return res + 1
+//         }
+//
+//         max, index, j := nums[i] + nums[i+nums[i]], i+nums[i],i + 1
+//         for j < i+nums[i] && j < len(nums) {
+//             if nums[j] + j-i > max {
+//                 max = nums[j] + j-i
+//                 index = j
+//             }
+//             j++
+//         }
+//         i = index
+//         res++
+//     }
+//     return res
+// }
 
-        max, index, j := nums[i] + nums[i+nums[i]], i+nums[i],i + 1
-        for j < i+nums[i] && j < len(nums) {
-            if nums[j] + j-i > max {
-                max = nums[j] + j-i
-                index = j
-            }
-            j++
-        }
-        i = index
-        res++
-    }
-    return res
+// func jump(nums []int) int {
+// if len(nums) == 0 {
+// return 0
+// }
+// if len(nums) == 1 {
+// return 0
+// }
+//
+// ans := 0
+// cur, next := 0, 0
+// for i := 0; i < len(nums); i++ {
+// next = max(nums[i]+i, next)
+// if i == cur {
+// ans++
+// cur = next
+// if next >= len(nums)-1 {
+// break
+// }
+// }
+// }
+// return ans
+// }
+
+func jump(nums []int) int {
+if len(nums) == 0 {
+return 0
+}
+if len(nums) == 1 {
+return 0
+}
+
+ans := 0
+cur, next := 0, 0
+for i := 0; i < len(nums)-1; i++ {
+next = max(nums[i]+i, next)
+if i == cur {
+ans++
+cur = next
+}
+}
+return ans
 }
 //leetcode submit region end(Prohibit modification and deletion)

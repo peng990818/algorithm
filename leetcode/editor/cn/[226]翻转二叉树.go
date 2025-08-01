@@ -60,13 +60,33 @@
 
 
 
+// func invertTree(root *TreeNode) *TreeNode {
+//     if root == nil {
+//         return nil
+//     }
+//     tmp := root.Left
+//     root.Left = invertTree(root.Right)
+//     root.Right = invertTree(tmp)
+//     return root
+// }
+
+// func invertTree(root *TreeNode) *TreeNode {
+// if root == nil {
+// return nil
+// }
+// tmp := root.Left
+// root.Left = invertTree(root.Right)
+// root.Right = invertTree(tmp)
+// return root
+// }
+
 func invertTree(root *TreeNode) *TreeNode {
-    if root == nil {
-        return nil
-    }
-    tmp := root.Left
-    root.Left = invertTree(root.Right)
-    root.Right = invertTree(tmp)
-    return root
+if root == nil {
+return nil
+}
+root.Left, root.Right = root.Right, root.Left
+invertTree(root.Left)
+invertTree(root.Right)
+return root
 }
 //leetcode submit region end(Prohibit modification and deletion)

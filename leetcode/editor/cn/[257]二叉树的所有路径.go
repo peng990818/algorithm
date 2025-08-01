@@ -37,29 +37,57 @@
  *     Right *TreeNode
  * }
  */
+// func binaryTreePaths(root *TreeNode) []string {
+//     if root == nil {
+//         return nil
+//     }
+//     res := make([]string, 0)
+//     process(root, &res, "")
+//     return res
+// }
+//
+// func process(root *TreeNode, res *[]string, path string) {
+//     if root == nil {
+//         return
+//     }
+//     path = path + strconv.FormatInt(int64(root.Val), 10)
+//     if root.Left == nil && root.Right == nil {
+//         *res = append(*res, path)
+//     }
+//     path+="->"
+//     if root.Left != nil {
+//         process(root.Left, res, path)
+//     }
+//     if root.Right != nil {
+//         process(root.Right, res, path)
+//     }
+// }
+
+// 回溯
+
 func binaryTreePaths(root *TreeNode) []string {
-    if root == nil {
-        return nil
-    }
-    res := make([]string, 0)
-    process(root, &res, "")
-    return res
+if root == nil {
+return nil
+}
+res := make([]string, 0)
+process(&res, root, "")
+return res
 }
 
-func process(root *TreeNode, res *[]string, path string) {
-    if root == nil {
-        return
-    }
-    path = path + strconv.FormatInt(int64(root.Val), 10)
-    if root.Left == nil && root.Right == nil {
-        *res = append(*res, path)
-    }
-    path+="->"
-    if root.Left != nil {
-        process(root.Left, res, path)
-    }
-    if root.Right != nil {
-        process(root.Right, res, path)
-    }
+func process(res *[]string, root *TreeNode, path string) {
+if root == nil {
+return
+}
+path += strconv.Itoa(root.Val)
+if root.Left == nil && root.Right == nil {
+*res = append(*res, path)
+}
+path += "->"
+if root.Left != nil {
+process(res, root.Left, path)
+}
+if root.Right != nil {
+process(res, root.Right, path)
+}
 }
 //leetcode submit region end(Prohibit modification and deletion)

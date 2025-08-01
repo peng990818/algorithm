@@ -43,19 +43,33 @@
  *     Right *TreeNode
  * }
  */
+// func buildTree(inorder []int, postorder []int) *TreeNode {
+//     if len(inorder) == 0 {
+//         return nil
+//     }
+//     root := &TreeNode{Val: postorder[len(postorder)-1]}
+//     i:=0
+//     for ;i<len(inorder);i++ {
+//         if inorder[i] == postorder[len(postorder)-1] {
+//             break
+//         }
+//     }
+//     root.Left = buildTree(inorder[:i], postorder[:i])
+//     root.Right = buildTree(inorder[i+1:], postorder[i:len(postorder)-1])
+//     return root
+// }
+
 func buildTree(inorder []int, postorder []int) *TreeNode {
-    if len(inorder) == 0 {
-        return nil
-    }
-    root := &TreeNode{Val: postorder[len(postorder)-1]}
-    i:=0
-    for ;i<len(inorder);i++ {
-        if inorder[i] == postorder[len(postorder)-1] {
-            break
-        }
-    }
-    root.Left = buildTree(inorder[:i], postorder[:i])
-    root.Right = buildTree(inorder[i+1:], postorder[i:len(postorder)-1])
-    return root
+if len(inorder) == 0 || len(postorder) == 0 {
+return nil
+}
+node := &TreeNode{Val: postorder[len(postorder)-1]}
+for i := 0; i < len(inorder); i++ {
+if inorder[i] == node.Val {
+node.Left = buildTree(inorder[:i], postorder[:i])
+node.Right = buildTree(inorder[i+1:], postorder[i:len(postorder)-1])
+}
+}
+return node
 }
 //leetcode submit region end(Prohibit modification and deletion)

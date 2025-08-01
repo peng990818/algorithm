@@ -59,34 +59,41 @@
 //     return countNodes(root.Left) + countNodes(root.Right) + 1
 // }
 
-func countNodes(root *TreeNode) int {
-    if root == nil {
-        return 0
-    }
-    // 求层数
-    h, p := 0, root
-    for p != nil {
-        h++
-        p = p.Left
-    }
+// func countNodes(root *TreeNode) int {
+//     if root == nil {
+//         return 0
+//     }
+//     // 求层数
+//     h, p := 0, root
+//     for p != nil {
+//         h++
+//         p = p.Left
+//     }
+//
+//     // 确定范围 [2^(h-1),2^h-1]
+//     // 二分查找
+//     return sort.Search(1<<h, func(k int) bool {
+//         if k <= 1 << (h-1) {
+//             return false
+//         }
+//         bits := 1 << (h-2)
+//         node := root
+//         for node != nil && bits > 0 {
+//             if bits&k == 0 {
+//                 node = node.Left
+//             } else {
+//                 node = node.Right
+//             }
+//             bits >>= 1
+//         }
+//         return node == nil
+//     }) - 1
+// }
 
-    // 确定范围 [2^(h-1),2^h-1]
-    // 二分查找
-    return sort.Search(1<<h, func(k int) bool {
-        if k <= 1 << (h-1) {
-            return false
-        }
-        bits := 1 << (h-2)
-        node := root
-        for node != nil && bits > 0 {
-            if bits&k == 0 {
-                node = node.Left
-            } else {
-                node = node.Right
-            }
-            bits >>= 1
-        }
-        return node == nil
-    }) - 1
+func countNodes(root *TreeNode) int {
+if root == nil {
+return 0
+}
+return countNodes(root.Left) + countNodes(root.Right) + 1
 }
 //leetcode submit region end(Prohibit modification and deletion)

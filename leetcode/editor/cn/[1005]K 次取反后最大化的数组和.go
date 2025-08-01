@@ -48,32 +48,54 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
-func findMin(nums []int) int {
-    n := len(nums)
-    min := nums[0]
-    minIndex := 0
-    for i:=1;i<n;i++ {
-        if nums[i] < min {
-            min = nums[i]
-            minIndex = i
-        }
-    }
-    return minIndex
-}
+// func findMin(nums []int) int {
+//     n := len(nums)
+//     min := nums[0]
+//     minIndex := 0
+//     for i:=1;i<n;i++ {
+//         if nums[i] < min {
+//             min = nums[i]
+//             minIndex = i
+//         }
+//     }
+//     return minIndex
+// }
+//
+// func largestSumAfterKNegations(nums []int, k int) int {
+//     for i:=0;i<k;i++ {
+//         index := findMin(nums)
+//         if nums[index] == 0 {
+//             break
+//         } else {
+//             nums[index]*=-1
+//         }
+//     }
+//     sum := 0
+//     for _, v := range nums {
+//         sum += v
+//     }
+//     return sum
+// }
 
 func largestSumAfterKNegations(nums []int, k int) int {
-    for i:=0;i<k;i++ {
-        index := findMin(nums)
-        if nums[index] == 0 {
-            break
-        } else {
-            nums[index]*=-1
-        }
-    }
-    sum := 0
-    for _, v := range nums {
-        sum += v
-    }
-    return sum
+// 绝对值从大到小排序
+sort.Slice(nums, func(i, j int) bool {
+return math.Abs(float64(nums[i])) > math.Abs(float64(nums[j]))
+})
+for i := 0; i < len(nums); i++ {
+if nums[i] < 0 && k>0 {
+nums[i] *= -1
+k--
+}
+}
+if k % 2 == 1 {
+nums[len(nums)-1] *= -1
+}
+
+res := 0
+for i:=0;i<len(nums);i++ {
+res += nums[i]
+}
+return res
 }
 //leetcode submit region end(Prohibit modification and deletion)

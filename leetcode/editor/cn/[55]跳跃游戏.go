@@ -100,24 +100,41 @@
 // }
 
 // 真正的贪心
+// func canJump(nums []int) bool {
+//     n := len(nums)
+//     most := 0
+//     for i:=0;i<n;i++ {
+//         if i <= most {
+//             // 位置都可达
+//             most = max(most, i+nums[i])
+//             if most >= n-1 {
+//                 return true
+//             }
+//         } else {
+//             return false
+//         }
+//     }
+//     return false
+// }
+
 func canJump(nums []int) bool {
-    n := len(nums)
-    most := 0
-    for i:=0;i<n;i++ {
-        if i <= most {
-            // 位置都可达
-            most = max(most, i+nums[i])
-            if most >= n-1 {
-                return true
-            }
-        } else {
-            return false
-        }
-    }
-    return false
+if len(nums) == 0 {
+return false
 }
-
-
+if len(nums) == 1 {
+return true
+}
+i := 0
+end := nums[i] + i
+for i <= end && i < len(nums) {
+if end >= len(nums)-1 {
+return true
+}
+end = max(nums[i] + i, end)
+i++
+}
+return false
+}
 
 
 

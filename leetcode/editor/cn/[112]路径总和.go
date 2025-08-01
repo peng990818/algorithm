@@ -53,14 +53,58 @@
  *     Right *TreeNode
  * }
  */
+// func hasPathSum(root *TreeNode, targetSum int) bool {
+//     if root == nil {
+//         return false
+//     }
+//     // 必须要递归到叶子节点才可以判断
+//     if root.Left == nil && root.Right == nil {
+//         return root.Val == targetSum
+//     }
+//     return hasPathSum(root.Left, targetSum-root.Val) || hasPathSum(root.Right, targetSum-root.Val)
+// }
+
+// // 回溯
+// func hasPathSum(root *TreeNode, targetSum int) bool {
+// if root == nil {
+// return false
+// }
+// return process(root, targetSum)
+// }
+//
+// func process(root *TreeNode, targetSum int) bool {
+// if root.Left == nil && root.Right == nil {
+// if targetSum == root.Val {
+// return true
+// } else {
+// return false
+// }
+// }
+// if root.Left != nil {
+// targetSum -= root.Val
+// if process(root.Left, targetSum) {
+// return true
+// }
+// targetSum += root.Val
+// }
+// if root.Right != nil {
+// targetSum -= root.Val
+// if process(root.Right, targetSum) {
+// return true
+// }
+// targetSum += root.Val
+// }
+// return false
+// }
+
+// 递归
 func hasPathSum(root *TreeNode, targetSum int) bool {
-    if root == nil {
-        return false
-    }
-    // 必须要递归到叶子节点才可以判断
-    if root.Left == nil && root.Right == nil {
-        return root.Val == targetSum
-    }
-    return hasPathSum(root.Left, targetSum-root.Val) || hasPathSum(root.Right, targetSum-root.Val)
+if root == nil {
+return false
+}
+if root.Left == nil && root.Right == nil {
+return root.Val == targetSum
+}
+return hasPathSum(root.Left, targetSum-root.Val) || hasPathSum(root.Right, targetSum-root.Val)
 }
 //leetcode submit region end(Prohibit modification and deletion)

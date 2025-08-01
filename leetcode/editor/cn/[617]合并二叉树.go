@@ -44,28 +44,49 @@
  *     Right *TreeNode
  * }
  */
-func mergeTrees(root1 *TreeNode, root2 *TreeNode) *TreeNode {
-    if root1 == nil && root2 == nil {
-        return nil
-    }
-    root := &TreeNode{}
-    if root1 != nil {
-        root.Val += root1.Val
-    }
-    if root2 != nil {
-        root.Val += root2.Val
-    }
-    if root1 == nil {
-        root.Left = mergeTrees(nil, root2.Left)
-        root.Right = mergeTrees(nil, root2.Right)
-    } else if root2 == nil {
-        root.Left = mergeTrees(root1.Left, nil)
-        root.Right = mergeTrees(root1.Right, nil)
-    } else {
-        root.Left = mergeTrees(root1.Left, root2.Left)
-        root.Right = mergeTrees(root1.Right, root2.Right)
-    }
+// func mergeTrees(root1 *TreeNode, root2 *TreeNode) *TreeNode {
+//     if root1 == nil && root2 == nil {
+//         return nil
+//     }
+//     root := &TreeNode{}
+//     if root1 != nil {
+//         root.Val += root1.Val
+//     }
+//     if root2 != nil {
+//         root.Val += root2.Val
+//     }
+//     if root1 == nil {
+//         root.Left = mergeTrees(nil, root2.Left)
+//         root.Right = mergeTrees(nil, root2.Right)
+//     } else if root2 == nil {
+//         root.Left = mergeTrees(root1.Left, nil)
+//         root.Right = mergeTrees(root1.Right, nil)
+//     } else {
+//         root.Left = mergeTrees(root1.Left, root2.Left)
+//         root.Right = mergeTrees(root1.Right, root2.Right)
+//     }
+//
+//     return root
+// }
 
-    return root
+func mergeTrees(root1 *TreeNode, root2 *TreeNode) *TreeNode {
+if root1 == nil && root2 == nil {
+return nil
+}
+var l1, l2, r1, r2 *TreeNode
+node := &TreeNode{}
+if root1 != nil {
+node.Val += root1.Val
+l1 = root1.Left
+r1 = root1.Right
+}
+if root2 != nil {
+node.Val += root2.Val
+l2 = root2.Left
+r2 = root2.Right
+}
+node.Left = mergeTrees(l1, l2)
+node.Right = mergeTrees(r1, r2)
+return node
 }
 //leetcode submit region end(Prohibit modification and deletion)

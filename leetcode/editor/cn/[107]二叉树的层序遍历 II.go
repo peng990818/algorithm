@@ -44,33 +44,60 @@
  *     Right *TreeNode
  * }
  */
+// func levelOrderBottom(root *TreeNode) [][]int {
+//     if root == nil {
+//         return nil
+//     }
+//     res := make([][]int, 0)
+//     queue := make([]*TreeNode, 0)
+//     queue = append(queue, root)
+//     for len(queue) > 0 {
+//         tmp, newQueue := []int{}, make([]*TreeNode, 0)
+//         for i:=0;i<len(queue);i++ {
+//             tmp = append(tmp, queue[i].Val)
+//             if queue[i].Left != nil {
+//                 newQueue = append(newQueue, queue[i].Left)
+//             }
+//             if queue[i].Right != nil {
+//                 newQueue = append(newQueue, queue[i].Right)
+//             }
+//         }
+//         queue = newQueue
+//         res = append(res, tmp)
+//     }
+//     i,j := 0, len(res)-1
+//     for i<j {
+//         res[i], res[j] = res[j], res[i]
+//         i++
+//         j--
+//     }
+//     return res
+// }
+
 func levelOrderBottom(root *TreeNode) [][]int {
-    if root == nil {
-        return nil
-    }
-    res := make([][]int, 0)
-    queue := make([]*TreeNode, 0)
-    queue = append(queue, root)
-    for len(queue) > 0 {
-        tmp, newQueue := []int{}, make([]*TreeNode, 0)
-        for i:=0;i<len(queue);i++ {
-            tmp = append(tmp, queue[i].Val)
-            if queue[i].Left != nil {
-                newQueue = append(newQueue, queue[i].Left)
-            }
-            if queue[i].Right != nil {
-                newQueue = append(newQueue, queue[i].Right)
-            }
-        }
-        queue = newQueue
-        res = append(res, tmp)
-    }
-    i,j := 0, len(res)-1
-    for i<j {
-        res[i], res[j] = res[j], res[i]
-        i++
-        j--
-    }
-    return res
+if root == nil {
+return nil
+}
+queue := []*TreeNode{root}
+result := [][]int{}
+for len(queue) > 0 {
+size := len(queue)
+tmp := make([]int, 0, size)
+for i := 0; i < size; i++ {
+tmp = append(tmp, queue[i].Val)
+if queue[i].Left != nil {
+queue = append(queue, queue[i].Left)
+}
+if queue[i].Right != nil {
+queue = append(queue, queue[i].Right)
+}
+}
+queue = queue[size:]
+result = append(result, tmp)
+}
+for i, j := 0, len(result)-1; i < j; i, j = i+1, j-1 {
+result[i], result[j] = result[j], result[i]
+}
+return result
 }
 //leetcode submit region end(Prohibit modification and deletion)

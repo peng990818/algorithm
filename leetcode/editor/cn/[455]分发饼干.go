@@ -39,16 +39,30 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+// func findContentChildren(g []int, s []int) int {
+//     sort.Ints(g)
+//     sort.Ints(s)
+//     res := 0
+//     for i, j := 0, 0; i < len(g) && j < len(s); j++ {
+//         if s[j] >= g[i] {
+//             res++
+//             i++
+//         }
+//     }
+//     return res
+// }
+
 func findContentChildren(g []int, s []int) int {
-    sort.Ints(g)
-    sort.Ints(s)
-    res := 0
-    for i, j := 0, 0; i < len(g) && j < len(s); j++ {
-        if s[j] >= g[i] {
-            res++
-            i++
-        }
-    }
-    return res
+sort.Ints(g)
+sort.Ints(s)
+var res int
+i := len(s) - 1
+for j := len(g) - 1; j >= 0; j-- {
+if i>=0 && s[i] >= g[j] {
+res++
+i--
+}
+}
+return res
 }
 //leetcode submit region end(Prohibit modification and deletion)

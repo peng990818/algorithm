@@ -63,17 +63,32 @@
 
 
 // 左树值的范围均小于root，右树值的范围均大于root
-func helper(root *TreeNode, lower, upper int) bool {
-    if root == nil {
-        return true
-    }
-    if root.Val <= lower || root.Val >= upper {
-        return false
-    }
-    return helper(root.Left, lower, root.Val) && helper(root.Right, root.Val, upper)
-}
+// func helper(root *TreeNode, lower, upper int) bool {
+//     if root == nil {
+//         return true
+//     }
+//     if root.Val <= lower || root.Val >= upper {
+//         return false
+//     }
+//     return helper(root.Left, lower, root.Val) && helper(root.Right, root.Val, upper)
+// }
+//
+// func isValidBST(root *TreeNode) bool {
+//     return helper(root, math.MinInt64, math.MaxInt64)
+// }
 
-func isValidBST(root *TreeNode) bool {
-    return helper(root, math.MinInt64, math.MaxInt64)
-}
+// 中序遍历方式的递归
+// var pre *TreeNode
+// func isValidBST(root *TreeNode) bool {
+// if root == nil {
+// return true
+// }
+// bl := isValidBST(root.Left)
+// if pre != nil && pre.Val >= root.Val {
+// return false
+// }
+// pre = root
+// br := isValidBST(root.Right)
+// return bl && br
+// }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -44,32 +44,56 @@
  *     Right *TreeNode
  * }
  */
+// func isBalanced(root *TreeNode) bool {
+//     _, b := isBalanced2(root)
+//     return b
+// }
+//
+// func isBalanced2(root *TreeNode) (int, bool) {
+//     if root == nil {
+//         return 0, true
+//     }
+//     depthL, bL := isBalanced2(root.Left)
+//     depthR, bR := isBalanced2(root.Right)
+//     if !bL || !bR {
+//         return 0, false
+//     }
+//     d, max := 0, 0
+//     if depthL > depthR {
+//         d = depthL - depthR
+//         max = depthL
+//     } else {
+//         d = depthR - depthL
+//         max = depthR
+//     }
+//     if d <= 1 {
+//         return max+1, true
+//     }
+//     return max+1, false
+// }
+
 func isBalanced(root *TreeNode) bool {
-    _, b := isBalanced2(root)
-    return b
+_, b := getHeight(root)
+return b
 }
 
-func isBalanced2(root *TreeNode) (int, bool) {
-    if root == nil {
-        return 0, true
-    }
-    depthL, bL := isBalanced2(root.Left)
-    depthR, bR := isBalanced2(root.Right)
-    if !bL || !bR {
-        return 0, false
-    }
-    d, max := 0, 0
-    if depthL > depthR {
-        d = depthL - depthR
-        max = depthL
-    } else {
-        d = depthR - depthL
-        max = depthR
-    }
-    if d <= 1 {
-        return max+1, true
-    }
-    return max+1, false
+func getHeight(root *TreeNode) (int, bool) {
+if root == nil {
+return 0, true
 }
-
+l, bl := getHeight(root.Left)
+r, br := getHeight(root.Right)
+h, c := 0, 0
+if l > r {
+h = l
+c = l - r
+} else {
+h = r
+c = r - l
+}
+if bl && br && c <= 1 {
+return h+1, true
+}
+return h+1, false
+}
 //leetcode submit region end(Prohibit modification and deletion)

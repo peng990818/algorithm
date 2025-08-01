@@ -41,22 +41,52 @@
  *     Left *TreeNode
  *     Right *TreeNode
  * }
- */
+//  */
+// func sumOfLeftLeaves(root *TreeNode) (res int) {
+//     if root == nil {
+//         return 0
+//     }
+//     res += sumOfLeftLeaves(root.Right)
+//     // 叶子节点
+//     rl := root.Left
+//     if rl == nil {
+//         return
+//     }
+//     if rl.Left == nil && rl.Right == nil {
+//         res+=rl.Val
+//     } else {
+//         res += sumOfLeftLeaves(rl)
+//     }
+//     return
+// }
+
+// func sumOfLeftLeaves(root *TreeNode) (res int) {
+// if root == nil {
+// return
+// }
+// if root.Left == nil && root.Right == nil {
+// return 0
+// }
+// res += sumOfLeftLeaves(root.Left)
+// if root.Left != nil && root.Left.Left == nil && root.Left.Right == nil {
+// res += root.Left.Val
+// }
+// res += sumOfLeftLeaves(root.Right)
+// return
+// }
+
 func sumOfLeftLeaves(root *TreeNode) (res int) {
-    if root == nil {
-        return 0
-    }
-    res += sumOfLeftLeaves(root.Right)
-    // 叶子节点
-    rl := root.Left
-    if rl == nil {
-        return
-    }
-    if rl.Left == nil && rl.Right == nil {
-        res+=rl.Val
-    } else {
-        res += sumOfLeftLeaves(rl)
-    }
-    return
+if root == nil {
+return
+}
+if root.Left == nil && root.Right == nil {
+return 0
+}
+if root.Left != nil && root.Left.Left == nil && root.Left.Right == nil {
+res += root.Left.Val
+}
+res += sumOfLeftLeaves(root.Left)
+res += sumOfLeftLeaves(root.Right)
+return
 }
 //leetcode submit region end(Prohibit modification and deletion)

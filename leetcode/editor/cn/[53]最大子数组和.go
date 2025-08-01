@@ -61,27 +61,56 @@
 //     return max
 // }
 
+// func maxSubArray(nums []int) int {
+//     if len(nums) == 0 {
+//         return 0
+//     }
+//     dp := make([]int, len(nums))
+//     dp[0] = nums[0]
+//     res := dp[0]
+//     for i:=1;i<len(nums);i++ {
+//         if dp[i-1] >= 0 {
+//             dp[i] += nums[i] + dp[i-1]
+//         } else {
+//             dp[i] = nums[i]
+//         }
+//         res = max(res, dp[i])
+//     }
+//     return res
+// }
+
+// func maxSubArray(nums []int) int {
+// dp := make([]int, len(nums))
+// dp[0] = nums[0]
+// res := dp[0]
+// for i := 1; i < len(nums); i++ {
+// if dp[i-1] >= 0 {
+// dp[i] += nums[i]+dp[i-1]
+// } else {
+// dp[i] = nums[i]
+// }
+// res = max(res, dp[i])
+// }
+// return res
+// }
+
 func maxSubArray(nums []int) int {
-    if len(nums) == 0 {
-        return 0
-    }
-    dp := make([]int, len(nums))
-    dp[0] = nums[0]
-    res := dp[0]
-    for i:=1;i<len(nums);i++ {
-        if dp[i-1] >= 0 {
-            dp[i] += nums[i] + dp[i-1]
-        } else {
-            dp[i] = nums[i]
-        }
-        res = max(res, dp[i])
-    }
-    return res
+if len(nums) == 0 {
+return 0
 }
-
-
-
-
+res := math.MinInt32
+count := 0
+for i := 0; i < len(nums); i++ {
+count += nums[i]
+if count > res {
+res = count
+}
+if count < 0 {
+count = 0
+}
+}
+return res
+}
 
 
 //leetcode submit region end(Prohibit modification and deletion)
