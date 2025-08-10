@@ -8,26 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/leetcode/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/leetcode/editor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/leetcode/statistics.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/leetcode/statistics.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[1005]K 次取反后最大化的数组和.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[1005]K 次取反后最大化的数组和.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[101]对称二叉树.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[101]对称二叉树.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[102]二叉树的层序遍历.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[102]二叉树的层序遍历.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[104]二叉树的最大深度.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[104]二叉树的最大深度.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[106]从中序与后序遍历序列构造二叉树.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[106]从中序与后序遍历序列构造二叉树.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[107]二叉树的层序遍历 II.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[107]二叉树的层序遍历 II.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[110]平衡二叉树.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[110]平衡二叉树.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[111]二叉树的最小深度.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[111]二叉树的最小深度.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[112]路径总和.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[112]路径总和.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[222]完全二叉树的节点个数.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[222]完全二叉树的节点个数.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[226]翻转二叉树.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[226]翻转二叉树.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[236]二叉树的最近公共祖先.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[236]二叉树的最近公共祖先.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[257]二叉树的所有路径.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[257]二叉树的所有路径.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[404]左叶子之和.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[404]左叶子之和.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[455]分发饼干.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[455]分发饼干.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[45]跳跃游戏 II.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[45]跳跃游戏 II.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[53]最大子数组和.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[53]最大子数组和.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[55]跳跃游戏.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[55]跳跃游戏.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[617]合并二叉树.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[617]合并二叉树.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[98]验证二叉搜索树.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[98]验证二叉搜索树.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[406]根据身高重建队列.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[406]根据身高重建队列.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,8 +46,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-gosdk-3b128438d3f6-07d2d2d66b1e-org.jetbrains.plugins.go.sharedIndexes.bundled-GO-251.27812.54" />
-        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-GO-251.27812.54" />
+        <option value="bundled-gosdk-f466f9b0953e-3d2cccfc42a2-org.jetbrains.plugins.go.sharedIndexes.bundled-GO-252.23892.449" />
+        <option value="bundled-js-predefined-d6986cc7102b-e03c56caf84a-JavaScript-GO-252.23892.449" />
       </set>
     </attachedChunks>
   </component>
