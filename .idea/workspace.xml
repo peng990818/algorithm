@@ -8,7 +8,13 @@
       <change beforePath="$PROJECT_DIR$/.idea/leetcode/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/leetcode/editor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/leetcode/statistics.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/leetcode/statistics.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[406]根据身高重建队列.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[406]根据身高重建队列.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[416]分割等和子集.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[416]分割等和子集.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[494]目标和.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[494]目标和.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[509]斐波那契数.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[509]斐波那契数.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[62]不同路径.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[62]不同路径.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[63]不同路径 II.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[63]不同路径 II.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[70]爬楼梯.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[70]爬楼梯.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[96]不同的二叉搜索树.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[96]不同的二叉搜索树.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +36,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,

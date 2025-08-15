@@ -30,7 +30,7 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
-// func canPartition(nums []int) bool {
+//
 //     if len(nums) < 2 {
 //         return false
 //     }
@@ -101,45 +101,164 @@
 // return dp[target]
 // }
 
-func canPartition(nums []int) bool {
-    n := len(nums)
-    if n < 2 {
-        return false
-    }
-    sum, max := 0, 0
-    for _, v := range nums {
-        sum += v
-        if v > max {
-            max = v
-        }
-    }
-    if sum%2 != 0 {
-        return false
-    }
-    target := sum/2
-    if max > target {
-        return false
-    }
+// func canPartition(nums []int) bool {
+//     n := len(nums)
+//     if n < 2 {
+//         return false
+//     }
+//     sum, max := 0, 0
+//     for _, v := range nums {
+//         sum += v
+//         if v > max {
+//             max = v
+//         }
+//     }
+//     if sum%2 != 0 {
+//         return false
+//     }
+//     target := sum/2
+//     if max > target {
+//         return false
+//     }
+//
+//     dp := make([][]bool, n)
+//     for i := range dp {
+//         dp[i] = make([]bool, target+1)
+//     }
+//     for i:=0;i<n;i++ {
+//         dp[i][0] = true
+//     }
+//     dp[0][nums[0]] = true
+//     for i:=1;i<n;i++ {
+//         v := nums[i]
+//         for j := 1;j<=target;j++ {
+//             if j>=v {
+//                 dp[i][j] = dp[i-1][j] || dp[i-1][j-v]
+//             } else {
+//                 dp[i][j] = dp[i-1][j]
+//             }
+//         }
+//     }
+//     return dp[n-1][target]
+// }
 
-    dp := make([][]bool, n)
-    for i := range dp {
-        dp[i] = make([]bool, target+1)
-    }
-    for i:=0;i<n;i++ {
-        dp[i][0] = true
-    }
-    dp[0][nums[0]] = true
-    for i:=1;i<n;i++ {
-        v := nums[i]
-        for j := 1;j<=target;j++ {
-            if j>=v {
-                dp[i][j] = dp[i-1][j] || dp[i-1][j-v]
-            } else {
-                dp[i][j] = dp[i-1][j]
-            }
-        }
-    }
-    return dp[n-1][target]
+// func canPartition(nums []int) bool {
+// sum := 0
+// maxVal := math.MinInt32
+// for _, v := range nums {
+// sum += v
+// maxVal = max(maxVal, v)
+// }
+// if sum%2 != 0 || maxVal > sum/2 {
+// return false
+// }
+//
+// dp := make([][]bool, sum/2+1)
+// for i := 0; i < len(dp); i++ {
+// dp[i] = make([]bool, len(nums))
+// }
+//
+// for i := 0; i < len(nums); i++ {
+// dp[nums[i]][i] = true
+// }
+//
+// for i := 1; i < sum/2+1; i++ {
+// for j := 1; j < len(nums); j++ {
+// // 不要这个数能凑成目标值i
+// dp[i][j] = dp[i][j-1]
+// if i >= nums[j] {
+// // 要这个数能凑成目标值i
+// // 只要有一个满足就可以
+// dp[i][j] = dp[i][j] || dp[i-nums[j]][j-1]
+// }
+// }
+// }
+// return dp[sum/2][len(nums)-1]
+// }
+
+// func canPartition(nums []int) bool {
+// sum := 0
+// for _, v := range nums {
+// sum += v
+// }
+// if sum%2 != 0 {
+// return false
+// }
+//
+// dp := make([]bool, len(nums))
+//
+// for i := 0; i < sum/2+1; i++ {
+// for j := 0; j < len(nums); j++ {
+// if i == nums[j] {
+// dp[j] = true
+// }
+// }
+//
+// // fmt.Println(dp)
+// // fmt.Println("=================")
+//
+// for j := len(nums) - 1; j > 0; j-- {
+// if i >= nums[j] && dp[j-1] {
+// dp[j] = true
+// }
+// }
+// // fmt.Println(dp)
+// // fmt.Println("--------------------")
+// }
+// return dp[len(nums)-1]
+// }
+
+// func canPartition(nums []int) bool {
+// sum := 0
+// maxVal := math.MinInt32
+// for _, v := range nums {
+// sum += v
+// maxVal = max(maxVal, v)
+// }
+//
+// if sum%2 != 0 || maxVal > sum/2 {
+// return false
+// }
+//
+// dp := make([][]bool, len(nums))
+// for i:=0;i<len(nums);i++ {
+// dp[i] = make([]bool, sum/2+1)
+// dp[i][nums[i]] = true
+// }
+//
+// for i:=1;i<len(nums);i++ {
+// for j := 1;j<sum/2+1;j++ {
+// // 不要这个数
+// dp[i][j] = dp[i-1][j]
+// if j >= nums[i] {
+// // 要这个数 dp[i-1][j-nums[i]]
+// dp[i][j] = dp[i][j] || dp[i-1][j-nums[i]]
+// }
+// }
+// }
+// return dp[len(nums)-1][sum/2]
+// }
+
+func canPartition(nums []int) bool {
+sum := 0
+maxVal := math.MinInt32
+for _, v := range nums {
+sum += v
+maxVal = max(maxVal, v)
+}
+
+if sum%2 != 0 || maxVal > sum/2 {
+return false
+}
+
+dp := make([]bool, sum/2+1)
+dp[0] = true // 容量为零一定可以
+for i:=0;i<len(nums);i++ {
+for j:=sum/2;j>=nums[i];j-- {
+dp[j] = dp[j] || dp[j-nums[i]]
+}
+}
+return dp[sum/2]
 }
 
 //leetcode submit region end(Prohibit modification and deletion)

@@ -45,19 +45,31 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+// func fib(n int) int {
+//     if n == 1 {
+//         return 1
+//     }
+//     if n == 2 {
+//         return 1
+//     }
+//     f1, f2, f3 := 1, 1, 0
+//     for i := 2;i<n;i++ {
+//         f3 = f1+f2
+//         f1 = f2
+//         f2 = f3
+//     }
+//     return f3
+// }
+
 func fib(n int) int {
-    if n == 1 {
-        return 1
-    }
-    if n == 2 {
-        return 1
-    }
-    f1, f2, f3 := 1, 1, 0
-    for i := 2;i<n;i++ {
-        f3 = f1+f2
-        f1 = f2
-        f2 = f3
-    }
-    return f3
+if n <= 1 {
+return n
+}
+f1, f2, f3 := 0, 1, 0
+for i := 2; i <= n; i++ {
+f3 = f1 + f2
+f1, f2 = f2, f3
+}
+return f3
 }
 //leetcode submit region end(Prohibit modification and deletion)
