@@ -62,21 +62,40 @@
 //     return dp[len(s)]
 // }
 
+// func wordBreak(s string, wordDict []string) bool {
+//     wordSet := make(map[string]bool, len(wordDict))
+//     for _, v := range wordDict {
+//         wordSet[v] = true
+//     }
+//     dp := make([]bool, len(s)+1)
+//     dp[0] = true
+//     for i:=1;i<=len(s);i++ {
+//         for j:=0;j<i;j++ {
+//             if dp[j] && wordSet[s[j:i]] {
+//                 dp[i] = true
+//                 break
+//             }
+//         }
+//     }
+//     return dp[len(s)]
+// }
+
 func wordBreak(s string, wordDict []string) bool {
-    wordSet := make(map[string]bool, len(wordDict))
-    for _, v := range wordDict {
-        wordSet[v] = true
-    }
-    dp := make([]bool, len(s)+1)
-    dp[0] = true
-    for i:=1;i<=len(s);i++ {
-        for j:=0;j<i;j++ {
-            if dp[j] && wordSet[s[j:i]] {
-                dp[i] = true
-                break
-            }
-        }
-    }
-    return dp[len(s)]
+mp := make(map[string]struct{}, len(wordDict))
+for _, v := range wordDict {
+mp[v] = struct{}{}
+}
+
+dp := make([]bool, len(s)+1)
+dp[0] = true
+
+for i:=1;i<=len(s);i++ {
+for j:=0;j<i;j++ {
+if _, ok := mp[s[j:i]];ok&&dp[j] {
+dp[i] = true
+}
+}
+}
+return dp[len(s)]
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -46,15 +46,28 @@
 
 
 
+// func numSquares(n int) int {
+//     dp := make([]int, n+1)
+//     for i:=1;i<=n;i++ {
+//         minNum := math.MaxInt32
+//         for j:=1;j*j<=i;j++ {
+//             minNum = min(minNum, dp[i-j*j])
+//         }
+//         dp[i] = minNum + 1
+//     }
+//     return dp[n]
+// }
+
 func numSquares(n int) int {
-    dp := make([]int, n+1)
-    for i:=1;i<=n;i++ {
-        minNum := math.MaxInt32
-        for j:=1;j*j<=i;j++ {
-            minNum = min(minNum, dp[i-j*j])
-        }
-        dp[i] = minNum + 1
-    }
-    return dp[n]
+dp := make([]int, n+1)
+for i:=1;i<n+1;i++ {
+dp[i] = math.MaxInt32
+}
+for i:=1;i<=n;i++ {
+for j:=1;j*j <= i;j++ {
+dp[i] = min(dp[i-j*j]+1, dp[i])
+}
+}
+return dp[n]
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -49,22 +49,38 @@
 //     return dp[len(dp)-1]
 // }
 
+// func rob(nums []int) int {
+//     if len(nums) == 0 {
+//         return 0
+//     }
+//     dp := make([]int, len(nums))
+//     for i, num := range nums {
+//         if i == 0 {
+//             dp[i] = num
+//             continue
+//         }
+//         if i == 1 {
+//             dp[i] = max(num, nums[i-1])
+//             continue
+//         }
+//         dp[i] = max(dp[i-2] + num, dp[i-1])
+//     }
+//     return dp[len(dp)-1]
+// }
+
 func rob(nums []int) int {
-    if len(nums) == 0 {
-        return 0
-    }
-    dp := make([]int, len(nums))
-    for i, num := range nums {
-        if i == 0 {
-            dp[i] = num
-            continue
-        }
-        if i == 1 {
-            dp[i] = max(num, nums[i-1])
-            continue
-        }
-        dp[i] = max(dp[i-2] + num, dp[i-1])
-    }
-    return dp[len(dp)-1]
+if len(nums) == 0 {
+return 0
+}
+if len(nums) == 1 {
+return nums[0]
+}
+dp := make([]int, len(nums))
+dp[0] = nums[0]
+dp[1] = max(nums[0], nums[1])
+for i:=2;i<len(nums);i++ {
+dp[i] = max(dp[i-1], dp[i-2]+nums[i])
+}
+return dp[len(nums)-1]
 }
 //leetcode submit region end(Prohibit modification and deletion)

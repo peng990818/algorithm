@@ -48,26 +48,80 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
-func nextGreaterElement(nums1 []int, nums2 []int) []int {
-    mp := make(map[int]int, len(nums1))
-    res := make([]int, len(nums1))
-    stack := make([]int, 0)
-    for j:=len(nums2)-1;j>=0;j-- {
-        num := nums2[j]
-        for len(stack) > 0 && num >= stack[len(stack)-1] {
-            stack = stack[:len(stack)-1]
-        }
-        if len(stack) > 0 {
-            mp[num] = stack[len(stack)-1]
-        } else {
-            mp[num] = -1
-        }
-        stack = append(stack, num)
-    }
+// func nextGreaterElement(nums1 []int, nums2 []int) []int {
+//     mp := make(map[int]int, len(nums1))
+//     res := make([]int, len(nums1))
+//     stack := make([]int, 0)
+//     for j:=len(nums2)-1;j>=0;j-- {
+//         num := nums2[j]
+//         for len(stack) > 0 && num >= stack[len(stack)-1] {
+//             stack = stack[:len(stack)-1]
+//         }
+//         if len(stack) > 0 {
+//             mp[num] = stack[len(stack)-1]
+//         } else {
+//             mp[num] = -1
+//         }
+//         stack = append(stack, num)
+//     }
+//
+//     for i, num := range nums1 {
+//         res[i] = mp[num]
+//     }
+//     return res
+// }
+// func nextGreaterElement(nums1 []int, nums2 []int) []int {
+// tmp := make([]int, len(nums2))
+// for i:=range tmp {
+// tmp[i] = -1
+// }
+// stack := make([]int, 0)
+// for i:=0;i<len(nums2);i++ {
+// for len(stack) > 0 && nums2[i] > nums2[stack[len(stack)-1]] {
+// top := stack[len(stack)-1]
+// tmp[top] = i
+// stack = stack[:len(stack)-1]
+// }
+// stack = append(stack, i)
+// }
+// res := make([]int, len(nums1))
+// for i := range nums1 {
+// for j:=range nums2 {
+// if nums1[i] == nums2[j] {
+// if tmp[j] >= 0 {
+// res[i] = nums2[tmp[j]]
+// break
+// }
+// res[i] = tmp[j]
+// }
+// }
+// }
+// return res
+// }
 
-    for i, num := range nums1 {
-        res[i] = mp[num]
-    }
-    return res
+func nextGreaterElement(nums1 []int, nums2 []int) []int {
+mp := make(map[int]int, len(nums1))
+for i:=range nums1 {
+mp[nums1[i]] = -1
+}
+
+stack := make([]int, 0)
+for i:=0;i<len(nums2);i++ {
+for len(stack)>0 && nums2[i] > stack[len(stack)-1] {
+top := stack[len(stack)-1]
+if _, ok := mp[top];ok {
+mp[top] = nums2[i]
+}
+stack = stack[:len(stack)-1]
+}
+stack = append(stack, nums2[i])
+}
+
+res := make([]int, len(nums1))
+for i :=range nums1 {
+res[i] = mp[nums1[i]]
+}
+return res
+
 }
 //leetcode submit region end(Prohibit modification and deletion)

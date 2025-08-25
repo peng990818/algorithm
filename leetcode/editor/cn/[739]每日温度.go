@@ -37,19 +37,58 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 
+// func dailyTemperatures(temperatures []int) []int {
+//     n := len(temperatures)
+//     res := make([]int, n)
+//     stack := []int{}
+//     for i:=0;i<n;i++ {
+//         t := temperatures[i]
+//         for len(stack) > 0 && t > temperatures[stack[len(stack)-1]] {
+//             prevIndex := stack[len(stack)-1]
+//             stack = stack[:len(stack)-1]
+//             res[prevIndex] = i-prevIndex
+//         }
+//         stack = append(stack, i)
+//     }
+//     return res
+// }
+
+// func dailyTemperatures(temperatures []int) []int {
+// if len(temperatures) == 0 {
+// return nil
+// }
+// stack := make([]int, 0)
+// stack = append(stack, 0)
+// res := make([]int, len(temperatures))
+// for i := 1; i < len(temperatures); i++ {
+// if len(stack) == 0 || temperatures[i] < temperatures[stack[len(stack)-1]] {
+// stack = append(stack, i)
+// continue
+// }
+// for len(stack) > 0 && temperatures[i] > temperatures[stack[len(stack)-1]] {
+// top := stack[len(stack)-1]
+// res[top] = i - top
+// stack = stack[:len(stack)-1]
+// }
+// stack = append(stack, i)
+// }
+// return res
+// }
+
 func dailyTemperatures(temperatures []int) []int {
-    n := len(temperatures)
-    res := make([]int, n)
-    stack := []int{}
-    for i:=0;i<n;i++ {
-        t := temperatures[i]
-        for len(stack) > 0 && t > temperatures[stack[len(stack)-1]] {
-            prevIndex := stack[len(stack)-1]
-            stack = stack[:len(stack)-1]
-            res[prevIndex] = i-prevIndex
-        }
-        stack = append(stack, i)
-    }
-    return res
+if len(temperatures) == 0 {
+return nil
+}
+stack := make([]int, 0)
+res := make([]int, len(temperatures))
+for i := 0; i < len(temperatures); i++ {
+for len(stack) > 0 && temperatures[i] > temperatures[stack[len(stack)-1]] {
+top := stack[len(stack)-1]
+res[top] = i - top
+stack = stack[:len(stack)-1]
+}
+stack = append(stack, i)
+}
+return res
 }
 //leetcode submit region end(Prohibit modification and deletion)

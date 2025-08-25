@@ -167,21 +167,41 @@
 //     return
 // }
 
-func trap(height []int) (ans int) {
-    left, right := 0, len(height)-1
-    leftMax, rightMax := 0, 0
-    for left < right {
-        leftMax = max(leftMax, height[left])
-        rightMax = max(rightMax, height[right])
-        if height[left] < height[right] {
-            ans += leftMax-height[left]
-            left++
-        } else {
-            ans += rightMax-height[right]
-            right--
-        }
-    }
-    return
+// func trap(height []int) (ans int) {
+//     left, right := 0, len(height)-1
+//     leftMax, rightMax := 0, 0
+//     for left < right {
+//         leftMax = max(leftMax, height[left])
+//         rightMax = max(rightMax, height[right])
+//         if height[left] < height[right] {
+//             ans += leftMax-height[left]
+//             left++
+//         } else {
+//             ans += rightMax-height[right]
+//             right--
+//         }
+//     }
+//     return
+// }
+
+func trap(height []int) int {
+stack := make([]int, 0)
+stack = append(stack, 0)
+sum := 0
+for i:=1;i<len(height);i++ {
+for len(stack) > 0 && height[i] > height[stack[len(stack)-1]] {
+mid := stack[len(stack)-1]
+stack = stack[:len(stack)-1]
+if len(stack) > 0 {
+top := stack[len(stack)-1]
+h := min(height[i], height[top]) - height[mid]
+w := i-top-1
+sum += h*w
+}
+}
+stack = append(stack, i)
+}
+return sum
 }
 
 //leetcode submit region end(Prohibit modification and deletion)

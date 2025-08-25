@@ -71,14 +71,29 @@
 // }
 
 // 一维
+// func combinationSum4(nums []int, target int) int {
+// dp := make([]int, target+1)
+// // 所有数字都不用
+// dp[0] = 1
+// for i:=1;i<=target;i++ {
+// for j:=0;j<len(nums);j++ {
+// if i >= nums[j] {
+// dp[i] += dp[i-nums[j]]
+// }
+// }
+// }
+// return dp[target]
+// }
+
 func combinationSum4(nums []int, target int) int {
 dp := make([]int, target+1)
-// 所有数字都不用
 dp[0] = 1
-for i:=1;i<=target;i++ {
-for j:=0;j<len(nums);j++ {
-if i >= nums[j] {
-dp[i] += dp[i-nums[j]]
+n := len(nums)
+// 注意顺序，属于排列问题
+for j:=1;j<=target;j++ {
+for i:=0;i<n;i++ {
+if j >= nums[i] {
+dp[j] += dp[j-nums[i]]
 }
 }
 }

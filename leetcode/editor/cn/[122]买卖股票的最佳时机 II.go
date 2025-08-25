@@ -44,14 +44,33 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 // 两天一个维度进行分解，选取每天的正收益加在一起
+// func maxProfit(prices []int) int {
+// res := 0
+// for i := 1; i < len(prices); i++ {
+// tmp := prices[i] - prices[i-1]
+// if tmp > 0 {
+// res += tmp
+// }
+// }
+// return res
+// }
+
 func maxProfit(prices []int) int {
-res := 0
-for i := 1; i < len(prices); i++ {
-tmp := prices[i] - prices[i-1]
-if tmp > 0 {
-res += tmp
+// 0 持有股票的最大现金值
+// 1 不持有股票的最大现金值
+if len(prices) == 0 {
+return 0
 }
+dp := make([][]int, len(prices))
+for i:=0;i<len(prices);i++ {
+dp[i] = make([]int, 2)
 }
-return res
+dp[0][0] = -prices[0]
+dp[0][1] = 0
+for i:=1;i<len(prices);i++ {
+dp[i][0] = max(dp[i-1][0], dp[i-1][1]-prices[i])
+dp[i][1] = max(dp[i-1][1], dp[i-1][0]+prices[i])
+}
+return dp[len(prices)-1][1]
 }
 //leetcode submit region end(Prohibit modification and deletion)

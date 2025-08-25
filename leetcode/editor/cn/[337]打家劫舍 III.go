@@ -128,19 +128,38 @@
 //     return []int{selected, notSelected}
 // }
 
-func rob(root *TreeNode) int {
-    val := dfs(root)
-    return max(val[0], val[1])
-}
+// func rob(root *TreeNode) int {
+//     val := dfs(root)
+//     return max(val[0], val[1])
+// }
+//
+// func dfs(node *TreeNode) []int {
+//     if node == nil {
+//         return []int{0, 0}
+//     }
+//     l := dfs(node.Left)
+//     r := dfs(node.Right)
+//     selected := node.Val + l[1] + r[1]
+//     notSelected := max(l[0], l[1]) + max(r[0], r[1])
+//     return []int{selected, notSelected}
+// }
 
-func dfs(node *TreeNode) []int {
-    if node == nil {
-        return []int{0, 0}
-    }
-    l := dfs(node.Left)
-    r := dfs(node.Right)
-    selected := node.Val + l[1] + r[1]
-    notSelected := max(l[0], l[1]) + max(r[0], r[1])
-    return []int{selected, notSelected}
+func rob(root *TreeNode) int {
+res := robTree(root)
+return max(res[0], res[1])
+}
+// 0 不偷
+// 1 偷
+func robTree(cur *TreeNode) []int {
+if cur == nil {
+return []int {0, 0}
+}
+lArray := robTree(cur.Left)
+rArray := robTree(cur.Right)
+// 偷
+val1 := cur.Val + lArray[0] + rArray[0]
+// 不偷
+val2 := max(lArray[0], lArray[1]) + max(rArray[0], rArray[1])
+return []int{val2, val1}
 }
 //leetcode submit region end(Prohibit modification and deletion)

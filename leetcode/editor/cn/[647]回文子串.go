@@ -35,16 +35,24 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 func countSubstrings(s string) int {
-    n, res := len(s), 0
-    for i:=0;i<2*n-1;i++ {
-        l, r := i/2, i/2+i%2
-        for l>=0&&r < n&&s[l] == s[r] {
-            l--
-            r++
-            res++
-        }
-    }
-    return res
-    // todo 动态规划
+var res int
+dp := make([][]bool, len(s))
+for i:=range dp {
+dp[i] = make([]bool, len(s))
+}
+for i:=len(s)-1;i>=0;i-- {
+for j:=i;j<len(s);j++ {
+if s[i] == s[j] {
+if j-i <= 1 {
+res++
+dp[i][j] = true
+} else if dp[i+1][j-1] {
+res++
+dp[i][j] = true
+}
+}
+}
+}
+return res
 }
 //leetcode submit region end(Prohibit modification and deletion)
