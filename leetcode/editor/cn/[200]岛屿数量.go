@@ -80,36 +80,113 @@
 //     return res
 // }
 
-func dfs(grid [][]byte, r, c int) {
-    nr, nc := len(grid), len(grid[0])
-    grid[r][c] = '0'
-    if r-1 >= 0 && grid[r-1][c] == '1' {
-        dfs(grid, r-1, c)
-    }
-    if r+1 < nr && grid[r+1][c] == '1' {
-        dfs(grid, r+1, c)
-    }
-    if c-1 >= 0 && grid[r][c-1] == '1' {
-        dfs(grid, r, c-1)
-    }
-    if c+1 < nc && grid[r][c+1] == '1' {
-        dfs(grid, r, c+1)
-    }
+// func dfs(grid [][]byte, r, c int) {
+//     nr, nc := len(grid), len(grid[0])
+//     grid[r][c] = '0'
+//     if r-1 >= 0 && grid[r-1][c] == '1' {
+//         dfs(grid, r-1, c)
+//     }
+//     if r+1 < nr && grid[r+1][c] == '1' {
+//         dfs(grid, r+1, c)
+//     }
+//     if c-1 >= 0 && grid[r][c-1] == '1' {
+//         dfs(grid, r, c-1)
+//     }
+//     if c+1 < nc && grid[r][c+1] == '1' {
+//         dfs(grid, r, c+1)
+//     }
+// }
+//
+// func numIslands(grid [][]byte) int {
+//     if len(grid) == 0 || len(grid[0]) == 0 {
+//         return 0
+//     }
+//     cnt := 0
+//     for i:=0;i<len(grid);i++ {
+//         for j:=0;j<len(grid[0]);j++ {
+//             if grid[i][j] == '1' {
+//                 dfs(grid, i, j)
+//                 cnt++
+//             }
+//         }
+//     }
+//     return cnt
+// }
+
+
+
+// func dfs(grid [][]byte, i, j int) {
+// nr, nc := len(grid), len(grid[0])
+// grid[i][j] = '0'
+// if i < nr-1 && grid[i+1][j] == '1' {
+// dfs(grid, i+1, j)
+// }
+// if i>0 && grid[i-1][j] == '1' {
+// dfs(grid,i-1,j)
+// }
+// if j < nc-1 && grid[i][j+1] == '1' {
+// dfs(grid, i, j+1)
+// }
+// if j>0 && grid[i][j-1] == '1' {
+// dfs(grid, i, j-1)
+// }
+// }
+//
+// func numIslands(grid [][]byte) int {
+// if len(grid) == 0 || len(grid[0]) == 0 {
+// return 0
+// }
+// var res int
+// for i:=0;i<len(grid);i++ {
+// for j:=0;j<len(grid[0]);j++ {
+// if grid[i][j] == '1' {
+// res++
+// dfs(grid, i, j)
+// }
+// }
+// }
+// return res
+// }
+
+func bfs(grid [][]byte, i, j int) {
+queue := make([][]int, 0)
+queue = append(queue, []int{i, j})
+grid[i][j] = '0'
+for len(queue)>0{
+r, c := queue[0][0], queue[0][1]
+if r-1 >= 0 && grid[r-1][c] == '1' {
+grid[r-1][c] = '0'
+queue = append(queue, []int{r-1, c})
+}
+if r+1 < len(grid)&& grid[r+1][c] == '1' {
+grid[r+1][c] = '0'
+queue = append(queue, []int{r+1, c})
+}
+if c-1 >= 0 && grid[r][c-1] == '1' {
+grid[r][c-1] = '0'
+queue = append(queue, []int{r, c-1})
+}
+if c+1 < len(grid[0]) && grid[r][c+1] == '1' {
+grid[r][c+1] = '0'
+queue = append(queue, []int{r, c+1})
+}
+queue = queue[1:]
+}
 }
 
 func numIslands(grid [][]byte) int {
-    if len(grid) == 0 || len(grid[0]) == 0 {
-        return 0
-    }
-    cnt := 0
-    for i:=0;i<len(grid);i++ {
-        for j:=0;j<len(grid[0]);j++ {
-            if grid[i][j] == '1' {
-                dfs(grid, i, j)
-                cnt++
-            }
-        }
-    }
-    return cnt
+if len(grid) == 0 || len(grid[0]) == 0 {
+return 0
+}
+var res int
+for i:=0;i<len(grid);i++ {
+for j:=0;j<len(grid[0]);j++ {
+if grid[i][j] == '1' {
+res++
+bfs(grid, i, j)
+}
+}
+}
+return res
 }
 //leetcode submit region end(Prohibit modification and deletion)

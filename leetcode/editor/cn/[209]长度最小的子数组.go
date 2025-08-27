@@ -92,24 +92,47 @@
 //     return res
 // }
 
+// func minSubArrayLen(target int, nums []int) int {
+// if len(nums) == 0 {
+// return 0
+// }
+// res := math.MaxInt32
+// start, end := 0, 0
+// cur := 0
+// for end < len(nums) {
+// cur += nums[end]
+// for cur >= target {
+// res = min(res, end-start+1)
+// cur -= nums[start]
+// start++
+// }
+// end++
+// }
+// if res == math.MaxInt32 {
+//     return 0
+// }
+// return res
+// }
+
 func minSubArrayLen(target int, nums []int) int {
 if len(nums) == 0 {
 return 0
 }
+
 res := math.MaxInt32
-start, end := 0, 0
-cur := 0
-for end < len(nums) {
-cur += nums[end]
-for cur >= target {
-res = min(res, end-start+1)
-cur -= nums[start]
-start++
+sum := 0
+i := 0
+for j:=0;j<len(nums);j++ {
+sum += nums[j]
+for sum >= target {
+res = min(res, j-i+1)
+sum -= nums[i]
+i++
 }
-end++
 }
+
 if res == math.MaxInt32 {
-    return 0
+return 0
 }
 return res
 }

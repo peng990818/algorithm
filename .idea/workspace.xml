@@ -4,25 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78733800-1940-4a51-a689-53915b97a923" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/leetcode/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/leetcode/editor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/leetcode/statistics.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/leetcode/statistics.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[121]买卖股票的最佳时机.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[121]买卖股票的最佳时机.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[122]买卖股票的最佳时机 II.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[122]买卖股票的最佳时机 II.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[139]单词拆分.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[139]单词拆分.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[198]打家劫舍.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[198]打家劫舍.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[279]完全平方数.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[279]完全平方数.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[322]零钱兑换.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[322]零钱兑换.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[337]打家劫舍 III.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[337]打家劫舍 III.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[377]组合总和 Ⅳ.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[377]组合总和 Ⅳ.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[42]接雨水.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[42]接雨水.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[496]下一个更大元素 I.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[496]下一个更大元素 I.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[647]回文子串.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[647]回文子串.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[72]编辑距离.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[72]编辑距离.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[739]每日温度.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[739]每日温度.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/editor/cn/[84]柱状图中最大的矩形.go" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/editor/cn/[84]柱状图中最大的矩形.go" afterDir="false" />
-    </list>
+    <list default="true" id="78733800-1940-4a51-a689-53915b97a923" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
