@@ -98,42 +98,85 @@
 // }
 
 
+// func searchRange(nums []int, target int) []int {
+// left, right := getLeft(nums, target), getRight(nums, target)
+// if left == -2 || right == -2 {
+// return []int{-1, -1}
+// }
+// if right-left > 1 {
+// return []int{left + 1, right - 1}
+// }
+// return []int{-1, -1}
+// }
+//
+// func getLeft(nums []int, target int) int {
+// l, r := 0, len(nums)-1
+// left := -2
+// for l <= r {
+// mid := l + (r-l)/2
+// if nums[mid] >= target {
+// r = mid - 1
+// left = r
+// } else {
+// l = mid + 1
+// }
+// }
+// return left
+// }
+//
+// func getRight(nums []int, target int) int {
+// l, r := 0, len(nums)-1
+// right := -2
+// for l <= r {
+// mid := l + (r-l)/2
+// if nums[mid] <= target {
+// l = mid + 1
+// right = l
+// } else {
+// r = mid - 1
+// }
+// }
+// return right
+// }
+
 func searchRange(nums []int, target int) []int {
-left, right := getLeft(nums, target), getRight(nums, target)
-if left == -2 || right == -2 {
-return []int{-1, -1}
+l := searchLeft(nums, target)
+r := searchRight(nums, target)
+if l == -2 || r == -2 {
+return []int{-1,-1}
 }
-if right-left > 1 {
-return []int{left + 1, right - 1}
+if r-l > 1 {
+return []int{l+1, r-1}
 }
-return []int{-1, -1}
+return []int{-1,-1}
 }
 
-func getLeft(nums []int, target int) int {
+func searchLeft(nums []int, target int) int {
 l, r := 0, len(nums)-1
 left := -2
-for l <= r {
-mid := l + (r-l)/2
+for l<=r {
+mid := l +(r-l) >> 1
 if nums[mid] >= target {
-r = mid - 1
+r = mid-1
 left = r
 } else {
-l = mid + 1
+l = mid+1
 }
 }
 return left
 }
 
-func getRight(nums []int, target int) int {
+
+func searchRight(nums []int, target int) int {
 l, r := 0, len(nums)-1
 right := -2
-for l <= r {
-mid := l + (r-l)/2
-if nums[mid] <= target {
-l = mid + 1
-right = l
+for l<=r {
+mid := l +(r-l) >> 1
+if nums[mid] > target {
+r = mid-1
 } else {
-r = mid - 1
+l = mid+1
+right = l
 }
 }
 return right
