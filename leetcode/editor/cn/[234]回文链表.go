@@ -123,40 +123,83 @@
 //     return res
 // }
 
+// func reverse(head *ListNode) *ListNode {
+//     if head == nil || head.Next == nil {
+//         return head
+//     }
+//     p1, p2 := (*ListNode)(nil), head
+//     for p2.Next != nil {
+//         p3 := p2.Next
+//         p2.Next = p1
+//         p1 = p2
+//         p2 = p3
+//     }
+//     p2.Next = p1
+//     return p2
+// }
+//
+// func isPalindrome(head *ListNode) bool {
+//     if head == nil || head.Next == nil {
+//         return true
+//     }
+//     slow, fast := head, head
+//     for fast.Next != nil && fast.Next.Next != nil {
+//         fast = fast.Next.Next
+//         slow = slow.Next
+//     }
+//     rHead := reverse(slow.Next)
+//     p1, p2 := head, rHead
+//     for p1 != nil && p2 != nil {
+//         if p1.Val != p2.Val {
+//             return false
+//         }
+//         p1 = p1.Next
+//         p2 = p2.Next
+//     }
+//     slow.Next = reverse(rHead)
+//     return true
+// }
+
 func reverse(head *ListNode) *ListNode {
-    if head == nil || head.Next == nil {
-        return head
-    }
-    p1, p2 := (*ListNode)(nil), head
-    for p2.Next != nil {
-        p3 := p2.Next
-        p2.Next = p1
-        p1 = p2
-        p2 = p3
-    }
-    p2.Next = p1
-    return p2
+if head == nil || head.Next == nil {
+return head
+}
+
+p1, p2 := (*ListNode)(nil), head
+for p2.Next != nil {
+p3 := p2.Next
+p2.Next = p1
+p1 = p2
+p2 = p3
+}
+p2.Next = p1
+return p2
 }
 
 func isPalindrome(head *ListNode) bool {
-    if head == nil || head.Next == nil {
-        return true
-    }
-    slow, fast := head, head
-    for fast.Next != nil && fast.Next.Next != nil {
-        fast = fast.Next.Next
-        slow = slow.Next
-    }
-    rHead := reverse(slow.Next)
-    p1, p2 := head, rHead
-    for p1 != nil && p2 != nil {
-        if p1.Val != p2.Val {
-            return false
-        }
-        p1 = p1.Next
-        p2 = p2.Next
-    }
-    slow.Next = reverse(rHead)
-    return true
+if head == nil || head.Next == nil {
+return true
+}
+slow, fast := head, head
+for fast.Next != nil && fast.Next.Next != nil {
+slow = slow.Next
+fast = fast.Next.Next
+}
+
+rHead := reverse(slow.Next)
+
+p1, p2 := head, rHead
+
+res := true
+for p1 != nil && p2 != nil {
+if p1.Val != p2.Val {
+res = false
+}
+p1 = p1.Next
+p2 = p2.Next
+}
+
+slow.Next = reverse(rHead)
+return res
 }
 //leetcode submit region end(Prohibit modification and deletion)

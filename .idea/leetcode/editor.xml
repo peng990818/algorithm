@@ -157,6 +157,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/cn/[1207]独一无二的出现次数.go">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/leetcode/editor/cn/doc/content/[1207]独一无二的出现次数.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1207" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/cn/[1207]独一无二的出现次数.go" />
+              <option name="titleSlug" value="unique-number-of-occurrences" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/cn/[121]买卖股票的最佳时机.go">
           <value>
             <LeetcodeEditor>
@@ -209,6 +220,17 @@
               <option name="host" value="leetcode.cn" />
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/cn/[135]分发糖果.go" />
               <option name="titleSlug" value="candy" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/cn/[1365]有多少小于当前数字的数字.go">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/leetcode/editor/cn/doc/content/[1365]有多少小于当前数字的数字.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1365" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/cn/[1365]有多少小于当前数字的数字.go" />
+              <option name="titleSlug" value="how-many-numbers-are-smaller-than-the-current-number" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -341,6 +363,17 @@
               <option name="host" value="leetcode.cn" />
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/cn/[188]买卖股票的最佳时机 IV.go" />
               <option name="titleSlug" value="best-time-to-buy-and-sell-stock-iv" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/cn/[189]轮转数组.go">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/leetcode/editor/cn/doc/content/[189]轮转数组.md" />
+              <option name="frontendQuestionId" value="leetcode.cn189" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/cn/[189]轮转数组.go" />
+              <option name="titleSlug" value="rotate-array" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -1268,6 +1301,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/cn/[724]寻找数组的中心下标.go">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/leetcode/editor/cn/doc/content/[724]寻找数组的中心下标.md" />
+              <option name="frontendQuestionId" value="leetcode.cn724" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/cn/[724]寻找数组的中心下标.go" />
+              <option name="titleSlug" value="find-pivot-index" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/cn/[72]编辑距离.go">
           <value>
             <LeetcodeEditor>
@@ -1353,6 +1397,17 @@
               <option name="host" value="leetcode.cn" />
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/cn/[860]柠檬水找零.go" />
               <option name="titleSlug" value="lemonade-change" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/cn/[941]有效的山脉数组.go">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/leetcode/editor/cn/doc/content/[941]有效的山脉数组.md" />
+              <option name="frontendQuestionId" value="leetcode.cn941" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/cn/[941]有效的山脉数组.go" />
+              <option name="titleSlug" value="valid-mountain-array" />
             </LeetcodeEditor>
           </value>
         </entry>
