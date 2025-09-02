@@ -70,20 +70,38 @@
 // }
 
 // 官方
+// func isIsomorphic(s string, t string) bool {
+//     if len(s) != len(t) {
+//         return false
+//     }
+//     s2t := make(map[byte]byte, len(s))
+//     t2s := make(map[byte]byte, len(t))
+//     for i:=0;i<len(s);i++ {
+//         x, y := s[i], t[i]
+//         if s2t[x] > 0 && s2t[x] != y || t2s[y] > 0 && t2s[y] != x {
+//             return false
+//         }
+//         s2t[x] = y
+//         t2s[y] = x
+//     }
+//     return true
+// }
+
 func isIsomorphic(s string, t string) bool {
-    if len(s) != len(t) {
-        return false
-    }
-    s2t := make(map[byte]byte, len(s))
-    t2s := make(map[byte]byte, len(t))
-    for i:=0;i<len(s);i++ {
-        x, y := s[i], t[i]
-        if s2t[x] > 0 && s2t[x] != y || t2s[y] > 0 && t2s[y] != x {
-            return false
-        }
-        s2t[x] = y
-        t2s[y] = x
-    }
-    return true
+if len(s) != len(t) {
+return false
+}
+mps := make(map[byte]byte, len(s))
+mpt := make(map[byte]byte, len(t))
+for i:=0;i<len(s);i++ {
+v1, ok1 := mps[s[i]]
+v2, ok2 := mpt[t[i]]
+if ok1&&v1 != t[i] || ok2&&v2 != s[i] {
+return false
+}
+mps[s[i]] = t[i]
+mpt[t[i]] = s[i]
+}
+return true
 }
 //leetcode submit region end(Prohibit modification and deletion)

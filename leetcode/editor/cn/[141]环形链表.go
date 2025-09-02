@@ -105,22 +105,37 @@
 //     return false
 // }
 
+// func hasCycle(head *ListNode) bool {
+//     if head == nil || head.Next == nil {
+//         return false
+//     }
+//     slow, fast := head, head.Next.Next
+//     for slow != nil && fast != nil {
+//         if slow == fast {
+//             return true
+//         }
+//         slow = slow.Next
+//         if fast.Next != nil {
+//             fast = fast.Next.Next
+//         } else {
+//             return false
+//         }
+//     }
+//     return false
+// }
+
 func hasCycle(head *ListNode) bool {
-    if head == nil || head.Next == nil {
-        return false
-    }
-    slow, fast := head, head.Next.Next
-    for slow != nil && fast != nil {
-        if slow == fast {
-            return true
-        }
-        slow = slow.Next
-        if fast.Next != nil {
-            fast = fast.Next.Next
-        } else {
-            return false
-        }
-    }
-    return false
+if head == nil || head.Next == nil {
+return false
+}
+slow, fast := head, head
+for fast.Next != nil && fast.Next.Next != nil {
+fast = fast.Next.Next
+slow = slow.Next
+if fast == slow {
+return true
+}
+}
+return false
 }
 //leetcode submit region end(Prohibit modification and deletion)

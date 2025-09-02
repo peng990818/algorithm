@@ -32,34 +32,62 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 
+// func commonChars(words []string) []string {
+//     if len(words) == 0 {
+//         return nil
+//     }
+//     mp := make(map[rune][]int, 26)
+//     for i, w := range words {
+//         for _, c := range w {
+//             s, ok := mp[c]
+//             if ok {
+//                 s[i]++
+//             } else {
+//                 mp[c] = make([]int, len(words))
+//                 mp[c][i] = 1
+//             }
+//         }
+//     }
+//     res := make([]string, 0)
+//     for k, v := range mp {
+//         for _, val := range v {
+//             if val == 0 {
+//                 continue
+//             }
+//         }
+//         sort.Ints(v)
+//         for i:=0; i<v[0];i++ {
+//             res = append(res, string(k))
+//         }
+//     }
+//     return res
+// }
 func commonChars(words []string) []string {
-    if len(words) == 0 {
-        return nil
-    }
-    mp := make(map[rune][]int, 26)
-    for i, w := range words {
-        for _, c := range w {
-            s, ok := mp[c]
-            if ok {
-                s[i]++
-            } else {
-                mp[c] = make([]int, len(words))
-                mp[c][i] = 1
-            }
-        }
-    }
-    res := make([]string, 0)
-    for k, v := range mp {
-        for _, val := range v {
-            if val == 0 {
-                continue
-            }
-        }
-        sort.Ints(v)
-        for i:=0; i<v[0];i++ {
-            res = append(res, string(k))
-        }
-    }
-    return res
+if len(words) == 0 {
+return nil
+}
+mp := make(map[byte]int, 26)
+mpOther := make(map[byte]int, 26)
+
+for i:=0;i<len(words[0]);i++ {
+mp[words[0][i]]++
+}
+for i:=1;i<len(words);i++ {
+for j:=0;j<len(words[i]);j++ {
+mpOther[words[i][j]]++
+}
+for k, v := range mp {
+mp[k] = min(v, mpOther[k])
+}
+mpOther = make(map[byte]int, 26)
+}
+
+var res []string
+for k, v := range mp {
+for i:=0;i<v;i++ {
+res = append(res, string(k))
+}
+}
+return res
 }
 //leetcode submit region end(Prohibit modification and deletion)

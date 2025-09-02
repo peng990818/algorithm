@@ -49,25 +49,68 @@
  *     Next *ListNode
  * }
  */
+// func reorderList(head *ListNode)  {
+//     if head == nil {
+//         return
+//     }
+//     arr := make([]*ListNode, 0)
+//     for head != nil {
+//         arr = append(arr, head)
+//         head = head.Next
+//     }
+//     i, j := 0, len(arr)-1
+//     for i<j {
+//         arr[i].Next = arr[j]
+//         i++
+//         if i == j {
+//             break
+//         }
+//         arr[j].Next = arr[i]
+//         j--
+//     }
+//     arr[i].Next = nil
+// }
+
+func reverse(head *ListNode) *ListNode {
+if head == nil || head.Next == nil {
+return head
+}
+p1, p2 := (*ListNode)(nil), head
+for p2.Next != nil {
+p3 := p2.Next
+p2.Next = p1
+p1 = p2
+p2 = p3
+}
+p2.Next = p1
+return p2
+}
+
 func reorderList(head *ListNode)  {
-    if head == nil {
-        return
-    }
-    arr := make([]*ListNode, 0)
-    for head != nil {
-        arr = append(arr, head)
-        head = head.Next
-    }
-    i, j := 0, len(arr)-1
-    for i<j {
-        arr[i].Next = arr[j]
-        i++
-        if i == j {
-            break
-        }
-        arr[j].Next = arr[i]
-        j--
-    }
-    arr[i].Next = nil
+if head == nil || head.Next == nil {
+return
+}
+slow, fast := head, head
+for fast.Next != nil && fast.Next.Next != nil {
+slow = slow.Next
+fast = fast.Next.Next
+}
+rHead := reverse(slow.Next)
+slow.Next = nil
+dummy := &ListNode{}
+p := dummy
+p1, p2 := head, rHead
+flag := false
+for p1 != nil || p2 != nil {
+if !flag {
+p.Next = p1
+p1 = p1.Next
+} else {
+p.Next = p2
+p2 = p2.Next
+}
+flag = !flag
+p = p.Next
+}
 }
 //leetcode submit region end(Prohibit modification and deletion)

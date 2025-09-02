@@ -795,6 +795,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/cn/[35]搜索插入位置.go">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/leetcode/editor/cn/doc/content/[35]搜索插入位置.md" />
+              <option name="frontendQuestionId" value="leetcode.cn35" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/cn/[35]搜索插入位置.go" />
+              <option name="titleSlug" value="search-insert-position" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/cn/[367]有效的完全平方数.go">
           <value>
             <LeetcodeEditor>
@@ -1397,6 +1408,17 @@
               <option name="host" value="leetcode.cn" />
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/cn/[860]柠檬水找零.go" />
               <option name="titleSlug" value="lemonade-change" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/cn/[922]按奇偶排序数组 II.go">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/leetcode/editor/cn/doc/content/[922]按奇偶排序数组 II.md" />
+              <option name="frontendQuestionId" value="leetcode.cn922" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/cn/[922]按奇偶排序数组 II.go" />
+              <option name="titleSlug" value="sort-array-by-parity-ii" />
             </LeetcodeEditor>
           </value>
         </entry>
