@@ -48,24 +48,42 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+// func backspaceCompare(s string, t string) bool {
+//     return handle(s) == handle(t)
+// }
+//
+// func handle(s string) string {
+// v := 0
+// bs := []byte(s)
+// for i := 0; i < len(bs); i++ {
+// if bs[i] == '#' {
+// v--
+// if v < 0 {
+// v = 0
+// }
+// continue
+// }
+// bs[v] = bs[i]
+// v++
+// }
+// return string(bs[:v])
+// }
+
 func backspaceCompare(s string, t string) bool {
-    return handle(s) == handle(t)
+return handle(s) == handle(t)
 }
 
-func handle(s string) string {
-v := 0
-bs := []byte(s)
-for i := 0; i < len(bs); i++ {
-if bs[i] == '#' {
-v--
-if v < 0 {
-v = 0
+func handle(src string) string {
+res := make([]byte, 0, len(src))
+for i:=0;i<len(src);i++ {
+if src[i] == '#' {
+if len(res) > 0 {
+res = res[:len(res)-1]
 }
 continue
 }
-bs[v] = bs[i]
-v++
+res = append(res, src[i])
 }
-return string(bs[:v])
+return string(res)
 }
 //leetcode submit region end(Prohibit modification and deletion)

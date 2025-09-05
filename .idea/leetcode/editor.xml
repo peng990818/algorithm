@@ -3,6 +3,17 @@
   <component name="LeetcodeEditor">
     <option name="projectConfig">
       <map>
+        <entry key="$PROJECT_DIR$/leetcode/editor/cn/[1002]查找共用字符.go">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/leetcode/editor/cn/doc/content/[1002]查找共用字符.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1002" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/cn/[1002]查找共用字符.go" />
+              <option name="titleSlug" value="find-common-characters" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/cn/[1005]K 次取反后最大化的数组和.go">
           <value>
             <LeetcodeEditor>
@@ -451,6 +462,17 @@
               <option name="host" value="leetcode.cn" />
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/cn/[203]移除链表元素.go" />
               <option name="titleSlug" value="remove-linked-list-elements" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/cn/[205]同构字符串.go">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/leetcode/editor/cn/doc/content/[205]同构字符串.md" />
+              <option name="frontendQuestionId" value="leetcode.cn205" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/cn/[205]同构字符串.go" />
+              <option name="titleSlug" value="isomorphic-strings" />
             </LeetcodeEditor>
           </value>
         </entry>
