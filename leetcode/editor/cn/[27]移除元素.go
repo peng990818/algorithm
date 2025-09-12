@@ -91,18 +91,29 @@
 // return savePos + 1
 // }
 
-func removeElement(nums []int, val int) int {
-if len(nums) == 0 {
-return 0
-}
+// func removeElement(nums []int, val int) int {
+// if len(nums) == 0 {
+// return 0
+// }
+//
+// index := -1
+// for i := 0;i<len(nums);i++ {
+// if nums[i] != val {
+// index++
+// nums[i], nums[index] = nums[index], nums[i]
+// }
+// }
+// return index+1
+// }
 
-index := -1
-for i := 0;i<len(nums);i++ {
+func removeElement(nums []int, val int) int {
+res := -1
+for i:=0;i<len(nums);i++ {
 if nums[i] != val {
-index++
-nums[i], nums[index] = nums[index], nums[i]
+res++
+nums[res], nums[i] = nums[i], nums[res]
 }
 }
-return index+1
+return res+1
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -54,24 +54,41 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 // 寻找比当前数大一点的数
-func nextPermutation(nums []int)  {
-    if len(nums) <= 1 {
-        return
-    }
-    i, j, k := len(nums)-2, len(nums)-1, len(nums)-1
+// func nextPermutation(nums []int)  {
+//     if len(nums) <= 1 {
+//         return
+//     }
+//     i, j, k := len(nums)-2, len(nums)-1, len(nums)-1
+//
+//     for i>=0 && nums[i] >= nums[j] {
+//         i--
+//         j--
+//     }
+//     if i>=0 {
+//         for nums[i] >= nums[k] {
+//             k--
+//         }
+//         nums[i], nums[k] = nums[k], nums[i]
+//     }
+//     for i, j := j, len(nums)-1;i<j;i, j = i+1, j-1 {
+//         nums[i], nums[j] = nums[j], nums[i]
+//     }
+// }
 
-    for i>=0 && nums[i] >= nums[j] {
-        i--
-        j--
-    }
-    if i>=0 {
-        for nums[i] >= nums[k] {
-            k--
-        }
-        nums[i], nums[k] = nums[k], nums[i]
-    }
-    for i, j := j, len(nums)-1;i<j;i, j = i+1, j-1 {
-        nums[i], nums[j] = nums[j], nums[i]
-    }
+func nextPermutation(nums []int)  {
+for i:=len(nums)-1;i>=0;i-- {
+for j:=len(nums)-1;j>i;j-- {
+if nums[j] > nums[i] {
+nums[j], nums[i] = nums[i], nums[j]
+for m,n:=i+1,len(nums)-1;m<n;m,n=m+1,n-1{
+nums[m], nums[n] = nums[n], nums[m]
+}
+return
+}
+}
+}
+for m,n:=0,len(nums)-1;m<n;m,n=m+1,n-1{
+nums[m], nums[n] = nums[n], nums[m]
+}
 }
 //leetcode submit region end(Prohibit modification and deletion)

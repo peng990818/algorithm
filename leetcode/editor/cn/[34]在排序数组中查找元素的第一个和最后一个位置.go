@@ -139,46 +139,88 @@
 // return right
 // }
 
+// func searchRange(nums []int, target int) []int {
+// l := searchLeft(nums, target)
+// r := searchRight(nums, target)
+// if l == -2 || r == -2 {
+// return []int{-1,-1}
+// }
+// if r-l > 1 {
+// return []int{l+1, r-1}
+// }
+// return []int{-1,-1}
+// }
+//
+// func searchLeft(nums []int, target int) int {
+// l, r := 0, len(nums)-1
+// left := -2
+// for l<=r {
+// mid := l +(r-l) >> 1
+// if nums[mid] >= target {
+// r = mid-1
+// left = r
+// } else {
+// l = mid+1
+// }
+// }
+// return left
+// }
+//
+//
+// func searchRight(nums []int, target int) int {
+// l, r := 0, len(nums)-1
+// right := -2
+// for l<=r {
+// mid := l +(r-l) >> 1
+// if nums[mid] > target {
+// r = mid-1
+// } else {
+// l = mid+1
+// right = l
+// }
+// }
+// return right
+// }
+
 func searchRange(nums []int, target int) []int {
 l := searchLeft(nums, target)
 r := searchRight(nums, target)
-if l == -2 || r == -2 {
-return []int{-1,-1}
+if l == -1 || r == -1 {
+return []int{-1, -1}
 }
-if r-l > 1 {
-return []int{l+1, r-1}
+if r-l >= 0 {
+return []int{l, r}
 }
-return []int{-1,-1}
+return []int{-1, -1}
 }
 
 func searchLeft(nums []int, target int) int {
 l, r := 0, len(nums)-1
-left := -2
-for l<=r {
-mid := l +(r-l) >> 1
+res := -1
+for l <= r {
+mid := l + (r-l)>>1
 if nums[mid] >= target {
-r = mid-1
-left = r
+r = mid - 1
+res = mid
 } else {
-l = mid+1
+l = mid + 1
 }
 }
-return left
+return res
 }
-
 
 func searchRight(nums []int, target int) int {
 l, r := 0, len(nums)-1
-right := -2
-for l<=r {
-mid := l +(r-l) >> 1
-if nums[mid] > target {
-r = mid-1
+res := -1
+for l <= r {
+mid := l + (r-l)>>1
+if nums[mid] <= target {
+l = mid + 1
+res = mid
 } else {
-l = mid+1
-right = l
+r = mid - 1
 }
 }
-return right
+return res
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -77,11 +77,37 @@
 // return res
 // }
 
+// func sortedSquares(nums []int) []int {
+// res := make([]int, len(nums))
+// k := len(nums) - 1
+// for i, j := 0, len(nums)-1;i<=j; {
+// if nums[i] * nums[i] < nums[j] * nums[j] {
+// res[k] = nums[j]*nums[j]
+// j--
+// } else {
+// res[k] = nums[i]*nums[i]
+// i++
+// }
+// k--
+// }
+// return res
+// }
+
+// func sortedSquares(nums []int) []int {
+// sort.Slice(nums, func(i, j int) bool {
+// return math.Abs(float64(nums[i])) < math.Abs(float64(nums[j]))
+// })
+// for i:=0;i<len(nums);i++ {
+// nums[i] *= nums[i]
+// }
+// return nums
+// }
+
 func sortedSquares(nums []int) []int {
 res := make([]int, len(nums))
-k := len(nums) - 1
-for i, j := 0, len(nums)-1;i<=j; {
-if nums[i] * nums[i] < nums[j] * nums[j] {
+k := len(nums)-1
+for i,j:=0,len(nums)-1;i<=j;{
+if nums[i]*nums[i] < nums[j]*nums[j] {
 res[k] = nums[j]*nums[j]
 j--
 } else {

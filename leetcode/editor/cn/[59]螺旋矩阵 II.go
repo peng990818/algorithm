@@ -144,58 +144,109 @@
 //
 // }
 
+// func generateMatrix(n int) [][]int {
+// matrix := make([][]int, n)
+// for i := 0; i < n; i++ {
+// matrix[i] = make([]int, n)
+// }
+//
+// cur := 1
+// r1, c1, r2, c2 := 0, 0, n-1, n-1
+// for r1 <= r2 && c1 <= c2 {
+// cur = edge(matrix, cur, r1, c1, r2, c2)
+// r1++
+// r2--
+// c1++
+// c2--
+// }
+// return matrix
+// }
+//
+// func edge(matrix [][]int, cur, r1, c1, r2, c2 int) int {
+// if r1 == r2 {
+// for i := c1; i <= c2; i++ {
+// matrix[r1][i] = cur
+// cur++
+// }
+// } else if c1 == c2 {
+// for i := r1; i <= r2; i++ {
+// matrix[i][c1] = cur
+// cur++
+// }
+// } else {
+// i, j := r1, c1
+// for j < c2 {
+// matrix[i][j] = cur
+// cur++
+// j++
+// }
+// for i < r2 {
+// matrix[i][j] = cur
+// cur++
+// i++
+// }
+// for j > c1 {
+// matrix[i][j] = cur
+// cur++
+// j--
+// }
+// for i > r1 {
+// matrix[i][j] = cur
+// cur++
+// i--
+// }
+// }
+// return cur
+// }
+
 func generateMatrix(n int) [][]int {
 matrix := make([][]int, n)
-for i := 0; i < n; i++ {
+for i:=range matrix {
 matrix[i] = make([]int, n)
 }
-
-cur := 1
-r1, c1, r2, c2 := 0, 0, n-1, n-1
-for r1 <= r2 && c1 <= c2 {
-cur = edge(matrix, cur, r1, c1, r2, c2)
-r1++
-r2--
-c1++
-c2--
+start := 1
+for i,j:=0,n-1;i<=j;i,j=i+1,j-1 {
+start = edge(matrix, start, i, i, j, j)
 }
 return matrix
 }
 
-func edge(matrix [][]int, cur, r1, c1, r2, c2 int) int {
+func edge(matrix [][]int, start int, r1, c1, r2,c2 int) int {
 if r1 == r2 {
-for i := c1; i <= c2; i++ {
-matrix[r1][i] = cur
-cur++
+for i:=c1;i<=c2;i++ {
+matrix[r1][i] = start
+start++
 }
-} else if c1 == c2 {
-for i := r1; i <= r2; i++ {
-matrix[i][c1] = cur
-cur++
+return start
 }
-} else {
+if c1 == c2 {
+for j:=r1;j<=r2;j++ {
+matrix[j][c1] = start
+start++
+}
+return start
+}
 i, j := r1, c1
-for j < c2 {
-matrix[i][j] = cur
-cur++
+for j<c2 {
+matrix[r1][j] = start
+start++
 j++
 }
-for i < r2 {
-matrix[i][j] = cur
-cur++
+for i<r2 {
+matrix[i][c2] = start
+start++
 i++
 }
-for j > c1 {
-matrix[i][j] = cur
-cur++
+for j>c1 {
+matrix[r2][j] = start
+start++
 j--
 }
-for i > r1 {
-matrix[i][j] = cur
-cur++
+for i>r1 {
+matrix[i][c1] = start
+start++
 i--
 }
-}
-return cur
+return start
 }
 //leetcode submit region end(Prohibit modification and deletion)
