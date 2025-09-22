@@ -81,36 +81,68 @@
 //     return res
 // }
 
+// func threeSum(nums []int) [][]int {
+//     if len(nums) <= 2 {
+//         return nil
+//     }
+//     sort.Ints(nums)
+//     res := make([][]int, 0)
+//     for i:=0;i<len(nums)-2;i++ {
+//         // 去重
+//         if i != 0 && nums[i-1] == nums[i] {
+//             continue
+//         }
+//         sum := -nums[i]
+//         l, r := i+1, len(nums)-1
+//         for l < r {
+//             // 去重
+//             if l > i+1 && nums[l-1] == nums[l] {
+//                 l++
+//                 continue
+//             }
+//             tmp := nums[l] + nums[r]
+//             if tmp < sum {
+//                 l++
+//             } else if tmp > sum {
+//                 r--
+//             } else {
+//                 res = append(res, []int{nums[i], nums[l], nums[r]})
+//                 l++
+//             }
+//         }
+//     }
+//     return res
+// }
+
 func threeSum(nums []int) [][]int {
-    if len(nums) <= 2 {
-        return nil
-    }
-    sort.Ints(nums)
-    res := make([][]int, 0)
-    for i:=0;i<len(nums)-2;i++ {
-        // 去重
-        if i != 0 && nums[i-1] == nums[i] {
-            continue
-        }
-        sum := -nums[i]
-        l, r := i+1, len(nums)-1
-        for l < r {
-            // 去重
-            if l > i+1 && nums[l-1] == nums[l] {
-                l++
-                continue
-            }
-            tmp := nums[l] + nums[r]
-            if tmp < sum {
-                l++
-            } else if tmp > sum {
-                r--
-            } else {
-                res = append(res, []int{nums[i], nums[l], nums[r]})
-                l++
-            }
-        }
-    }
-    return res
+sort.Ints(nums)
+var res [][]int
+for i:=0;i<len(nums)-2;i++ {
+if nums[i] > 0 {
+continue
+}
+if i>0 && nums[i] == nums[i-1] {
+continue
+}
+l, r := i+1, len(nums)-1
+for l < r {
+if nums[i] + nums[l] + nums[r] < 0 {
+l++
+} else if nums[i] + nums[l] + nums[r] > 0 {
+r--
+} else {
+res = append(res, []int{nums[i], nums[l], nums[r]})
+for r > l && nums[r] == nums[r-1] {
+r--
+}
+for l < r && nums[l] == nums[l+1] {
+l++
+}
+l++
+r--
+}
+}
+}
+return res
 }
 //leetcode submit region end(Prohibit modification and deletion)

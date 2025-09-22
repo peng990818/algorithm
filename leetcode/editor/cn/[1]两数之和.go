@@ -47,25 +47,35 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+// func twoSum(nums []int, target int) []int {
+//     // 暴力解法
+//     // for i:=0;i<len(nums);i++ {
+//     //     for j:=i+1;j<len(nums);j++ {
+//     //         if nums[i]+nums[j] == target {
+//     //             return []int{i, j}
+//     //         }
+//     //     }
+//     // }
+//     // return nil
+//
+//     // 使用hash加速寻找target-nums[i]的过程
+//     mp := make(map[int]int, len(nums))
+//     for i:=0;i<len(nums);i++ {
+//         if v, ok := mp[target-nums[i]];ok {
+//             return []int{v, i}
+//         }
+//         mp[nums[i]] = i
+//     }
+//     return nil
+// }
 func twoSum(nums []int, target int) []int {
-    // 暴力解法
-    // for i:=0;i<len(nums);i++ {
-    //     for j:=i+1;j<len(nums);j++ {
-    //         if nums[i]+nums[j] == target {
-    //             return []int{i, j}
-    //         }
-    //     }
-    // }
-    // return nil
-
-    // 使用hash加速寻找target-nums[i]的过程
-    mp := make(map[int]int, len(nums))
-    for i:=0;i<len(nums);i++ {
-        if v, ok := mp[target-nums[i]];ok {
-            return []int{v, i}
-        }
-        mp[nums[i]] = i
-    }
-    return nil
+mp := make(map[int]int)
+for i, v := range nums {
+if val, ok := mp[target-nums[i]];ok {
+return []int{val, i}
+}
+mp[v] = i
+}
+return nil
 }
 //leetcode submit region end(Prohibit modification and deletion)

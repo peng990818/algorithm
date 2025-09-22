@@ -39,39 +39,79 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+// func fourSum(nums []int, target int) [][]int {
+// if len(nums) < 4 {
+// return nil
+// }
+// var res [][]int
+// sort.Ints(nums)
+// for k := 0; k < len(nums)-3; k++ {
+// if nums[k] > target && nums[k] >= 0 {
+// break
+// }
+// if k > 0 && nums[k] == nums[k-1] {
+// continue
+// }
+// for i := k + 1; i < len(nums)-2; i++ {
+// if nums[i]+nums[k] >= 0 && nums[i]+nums[k] > target {
+// break
+// }
+// if i > k+1 && nums[i] == nums[i-1] {
+// continue
+// }
+// l, r := i+1, len(nums)-1
+// for l < r {
+// if nums[k]+nums[i]+nums[l]+nums[r] < target {
+// l++
+// } else if nums[k]+nums[i]+nums[l]+nums[r] > target {
+// r--
+// } else {
+// res = append(res, []int{nums[k], nums[i], nums[l], nums[r]})
+// for l < r && nums[l] == nums[l+1] {
+// l++
+// }
+// for l < r && nums[r] == nums[r-1] {
+// r--
+// }
+// l++
+// r--
+// }
+// }
+// }
+// }
+// return res
+// }
+
 func fourSum(nums []int, target int) [][]int {
-if len(nums) < 4 {
-return nil
-}
-var res [][]int
 sort.Ints(nums)
-for k := 0; k < len(nums)-3; k++ {
-if nums[k] > target && nums[k] >= 0 {
+var res [][]int
+for i:=0;i<len(nums);i++ {
+if nums[i] > target && nums[i] >= 0 {
 break
 }
-if k > 0 && nums[k] == nums[k-1] {
+if i>0 && nums[i] == nums[i-1] {
 continue
 }
-for i := k + 1; i < len(nums)-2; i++ {
-if nums[i]+nums[k] >= 0 && nums[i]+nums[k] > target {
+for j:=i+1;j<len(nums);j++ {
+if nums[i] + nums[j] > target && nums[i]+nums[j] >= 0 {
 break
 }
-if i > k+1 && nums[i] == nums[i-1] {
+if j>i+1 && nums[j] == nums[j-1] {
 continue
 }
-l, r := i+1, len(nums)-1
+l, r := j+1, len(nums)-1
 for l < r {
-if nums[k]+nums[i]+nums[l]+nums[r] < target {
+if nums[i] + nums[j] + nums[l] + nums[r] < target {
 l++
-} else if nums[k]+nums[i]+nums[l]+nums[r] > target {
+} else if nums[i] + nums[j] + nums[l] + nums[r] > target {
 r--
 } else {
-res = append(res, []int{nums[k], nums[i], nums[l], nums[r]})
+res = append(res, []int{nums[i], nums[j], nums[l], nums[r]})
+for r > l && nums[r] == nums[r-1] {
+r--
+}
 for l < r && nums[l] == nums[l+1] {
 l++
-}
-for l < r && nums[r] == nums[r-1] {
-r--
 }
 l++
 r--
