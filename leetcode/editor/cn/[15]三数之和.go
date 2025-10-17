@@ -114,23 +114,51 @@
 //     return res
 // }
 
+// func threeSum(nums []int) [][]int {
+// sort.Ints(nums)
+// var res [][]int
+// for i:=0;i<len(nums)-2;i++ {
+// if nums[i] > 0 {
+// continue
+// }
+// if i>0 && nums[i] == nums[i-1] {
+// continue
+// }
+// l, r := i+1, len(nums)-1
+// for l < r {
+// if nums[i] + nums[l] + nums[r] < 0 {
+// l++
+// } else if nums[i] + nums[l] + nums[r] > 0 {
+// r--
+// } else {
+// res = append(res, []int{nums[i], nums[l], nums[r]})
+// for r > l && nums[r] == nums[r-1] {
+// r--
+// }
+// for l < r && nums[l] == nums[l+1] {
+// l++
+// }
+// l++
+// r--
+// }
+// }
+// }
+// return res
+// }
+
 func threeSum(nums []int) [][]int {
-sort.Ints(nums)
 var res [][]int
-for i:=0;i<len(nums)-2;i++ {
+sort.Ints(nums)
+for i:=0;i<len(nums);i++ {
 if nums[i] > 0 {
 continue
 }
-if i>0 && nums[i] == nums[i-1] {
+if i > 0 && nums[i] == nums[i-1] {
 continue
 }
 l, r := i+1, len(nums)-1
 for l < r {
-if nums[i] + nums[l] + nums[r] < 0 {
-l++
-} else if nums[i] + nums[l] + nums[r] > 0 {
-r--
-} else {
+if nums[i] + nums[l] + nums[r] == 0 {
 res = append(res, []int{nums[i], nums[l], nums[r]})
 for r > l && nums[r] == nums[r-1] {
 r--
@@ -140,8 +168,13 @@ l++
 }
 l++
 r--
+} else if nums[i] + nums[l] + nums[r] < 0 {
+l++
+} else {
+r--
 }
 }
+
 }
 return res
 }

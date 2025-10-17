@@ -233,23 +233,42 @@
 //     return pA
 // }
 
+// func getIntersectionNode(headA, headB *ListNode) *ListNode {
+//     if headA == nil || headB == nil {
+//         return nil
+//     }
+//     pA, pB := headA, headB
+//     for pA != pB {
+//         if pA != nil {
+//             pA = pA.Next
+//         } else {
+//             pA = headB
+//         }
+//         if pB != nil {
+//             pB = pB.Next
+//         } else {
+//             pB = headA
+//         }
+//     }
+//     return pA
+// }
+
+
 func getIntersectionNode(headA, headB *ListNode) *ListNode {
-    if headA == nil || headB == nil {
-        return nil
-    }
-    pA, pB := headA, headB
-    for pA != pB {
-        if pA != nil {
-            pA = pA.Next
-        } else {
-            pA = headB
-        }
-        if pB != nil {
-            pB = pB.Next
-        } else {
-            pB = headA
-        }
-    }
-    return pA
+p1, p2 := headA, headB
+for p1 != p2 {
+if p1 != nil {
+p1 = p1.Next
+} else {
+p1 = headB
+}
+
+if p2 != nil {
+p2 = p2.Next
+} else {
+p2 = headA
+}
+}
+return p1
 }
 //leetcode submit region end(Prohibit modification and deletion)

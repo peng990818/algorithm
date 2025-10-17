@@ -33,20 +33,60 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
-func getNext(str string) []int {
-// 1、初始化成-1
-next := make([]int, 0, len(str))
-for i := 0; i < len(str); i++ {
-next = append(next, -1)
+// func getNext(str string) []int {
+// // 1、初始化成-1
+// next := make([]int, 0, len(str))
+// for i := 0; i < len(str); i++ {
+// next = append(next, -1)
+// }
+// j := -1
+// for i := 1; i < len(str); i++ {
+// // 2、后缀不等于前缀
+// for j >= 0 && str[i] != str[j+1] {
+// j = next[j]
+// }
+// // 3、后缀等于前缀
+// if str[i] == str[j+1] {
+// j++
+// }
+// next[i] = j
+// }
+// return next
+// }
+//
+// func strStr(haystack string, needle string) int {
+// if len(needle) == 0 {
+// return 0
+// }
+// next := getNext(needle)
+// j := -1
+// for i := 0; i < len(haystack); i++ {
+// for j >= 0 && haystack[i] != needle[j+1] {
+// j = next[j]
+// }
+// if haystack[i] == needle[j+1] {
+// j++
+// }
+// if j == len(needle)-1 {
+// return i - j
+// }
+// }
+// return -1
+// }
+
+
+func getNext(s string) []int {
+next := make([]int, len(s))
+for i:=range next {
+next[i] = -1
 }
+
 j := -1
-for i := 1; i < len(str); i++ {
-// 2、后缀不等于前缀
-for j >= 0 && str[i] != str[j+1] {
+for i:=1;i<len(s);i++ {
+for j >= 0 && s[i] != s[j+1] {
 j = next[j]
 }
-// 3、后缀等于前缀
-if str[i] == str[j+1] {
+if s[i] == s[j+1] {
 j++
 }
 next[i] = j
@@ -60,15 +100,15 @@ return 0
 }
 next := getNext(needle)
 j := -1
-for i := 0; i < len(haystack); i++ {
-for j >= 0 && haystack[i] != needle[j+1] {
+for i:=0;i<len(haystack);i++ {
+for j>=0 && haystack[i] != needle[j+1] {
 j = next[j]
 }
 if haystack[i] == needle[j+1] {
 j++
 }
-if j == len(needle)-1 {
-return i - j
+if j == len(needle) - 1 {
+return i - len(needle) + 1
 }
 }
 return -1

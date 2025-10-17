@@ -106,14 +106,26 @@
 // return index+1
 // }
 
+// func removeElement(nums []int, val int) int {
+// res := -1
+// for i:=0;i<len(nums);i++ {
+// if nums[i] != val {
+// res++
+// nums[res], nums[i] = nums[i], nums[res]
+// }
+// }
+// return res+1
+// }
+
+
 func removeElement(nums []int, val int) int {
-res := -1
-for i:=0;i<len(nums);i++ {
+index := -1
+for i := 0;i<len(nums);i++ {
 if nums[i] != val {
-res++
-nums[res], nums[i] = nums[i], nums[res]
+index++
+nums[index] = nums[i]
 }
 }
-return res+1
+return index+1
 }
 //leetcode submit region end(Prohibit modification and deletion)

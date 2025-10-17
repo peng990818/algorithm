@@ -42,37 +42,68 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+// func repeatedSubstringPattern(s string) bool {
+// sub := []byte{}
+// for i := 0; i < len(s); i++ {
+// sub = append(sub, s[i])
+// if len(s)%len(sub) > 0 {
+// continue
+// }
+// if len(s) == len(sub) {
+// break
+// }
+// j := i + 1
+// bf := false
+// for j < len(s) {
+// flag := false
+// n := j
+// for m := 0; m < len(sub) && n < len(s); m, n = m+1, n+1 {
+// if sub[m] == s[n] {
+// continue
+// }
+// flag = true
+// break
+// }
+// if flag {
+// bf = true
+// break
+// }
+// j += len(sub)
+// }
+// if !bf {
+// return true
+// }
+// }
+// return false
+// }
+
+
+func getNext(s string) []int {
+next := make([]int, len(s))
+for i := range next {
+next[i] = -1
+}
+
+j := -1
+for i:=1;i<len(s);i++ {
+for j>=0 && s[i] != s[j+1] {
+j = next[j]
+}
+if s[i] == s[j+1] {
+j++
+}
+next[i] = j
+}
+return next
+}
+
 func repeatedSubstringPattern(s string) bool {
-sub := []byte{}
-for i := 0; i < len(s); i++ {
-sub = append(sub, s[i])
-if len(s)%len(sub) > 0 {
-continue
+if len(s) == 0 {
+return false
 }
-if len(s) == len(sub) {
-break
-}
-j := i + 1
-bf := false
-for j < len(s) {
-flag := false
-n := j
-for m := 0; m < len(sub) && n < len(s); m, n = m+1, n+1 {
-if sub[m] == s[n] {
-continue
-}
-flag = true
-break
-}
-if flag {
-bf = true
-break
-}
-j += len(sub)
-}
-if !bf {
+next := getNext(s)
+if next[len(s)-1] != -1 && len(s) % (len(s) - (next[len(s)-1]+1)) == 0 {
 return true
-}
 }
 return false
 }

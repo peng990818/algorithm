@@ -137,12 +137,28 @@
 //     return newHead
 // }
 
-func reverseList(head *ListNode) *ListNode {
-if head == nil {
-return nil
-}
+// func reverseList(head *ListNode) *ListNode {
+// if head == nil {
+// return nil
+// }
+//
+// p1, p2 := (*ListNode)(nil), head
+// for p2.Next != nil {
+// p3 := p2.Next
+// p2.Next = p1
+// p1 = p2
+// p2 = p3
+// }
+// p2.Next = p1
+// return p2
+// }
 
+func reverseList(head *ListNode) *ListNode {
+if head == nil || head.Next == nil {
+return head
+}
 p1, p2 := (*ListNode)(nil), head
+
 for p2.Next != nil {
 p3 := p2.Next
 p2.Next = p1

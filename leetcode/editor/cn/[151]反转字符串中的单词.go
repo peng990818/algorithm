@@ -84,34 +84,71 @@
 //     return res
 // }
 
-func reverseWords(s string) string {
-var words [][]byte
-var cur []byte
-for i := 0; i < len(s); i++ {
-if s[i] == ' ' {
-if len(cur) > 0 {
-words = append(words, cur)
-cur = make([]byte, 0)
+// func reverseWords(s string) string {
+// var words [][]byte
+// var cur []byte
+// for i := 0; i < len(s); i++ {
+// if s[i] == ' ' {
+// if len(cur) > 0 {
+// words = append(words, cur)
+// cur = make([]byte, 0)
+// }
+// continue
+// }
+// cur = append(cur, s[i])
+// }
+// if len(cur) > 0 {
+// words = append(words, cur)
+// }
+//
+// for i, j := 0, len(words)-1; i < j; i, j = i+1, j-1 {
+// words[i], words[j] = words[j], words[i]
+// }
+// res := make([]byte, 0)
+// for i, word := range words {
+// res = append(res, word...)
+// if i != len(words)-1 {
+// res = append(res, ' ')
+// }
+// }
+// return string(res)
+// }
+
+func reverseString(s []byte) {
+for i,j:=0,len(s)-1;i<j;i,j=i+1,j-1 {
+s[i], s[j] = s[j], s[i]
 }
-continue
-}
-cur = append(cur, s[i])
-}
-if len(cur) > 0 {
-words = append(words, cur)
 }
 
-for i, j := 0, len(words)-1; i < j; i, j = i+1, j-1 {
-words[i], words[j] = words[j], words[i]
+func reverseWords(s string) string {
+b := []byte(s)
+
+slow := 0
+for i:=0;i<len(b);i++ {
+if b[i] != ' ' {
+if slow != 0 {
+b[slow] = ' '
+slow++
 }
-res := make([]byte, 0)
-for i, word := range words {
-res = append(res, word...)
-if i != len(words)-1 {
-res = append(res, ' ')
+for i<len(b)&&b[i] != ' ' {
+b[slow] = b[i]
+slow++
+i++
 }
 }
-return string(res)
+}
+b = b[:slow]
+
+reverseString(b)
+
+last := 0
+for i:=0;i<=len(b);i++ {
+if i == len(b) || b[i] == ' ' {
+reverseString(b[last:i])
+last = i+1
+}
+}
+return string(b)
 }
 
 //leetcode submit region end(Prohibit modification and deletion)

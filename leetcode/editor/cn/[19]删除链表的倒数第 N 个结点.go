@@ -69,26 +69,44 @@
 //     p1.Next = tmp
 //     return head
 // }
+//
+// func removeNthFromEnd(head *ListNode, n int) *ListNode {
+//     if head == nil {
+//         return head
+//     }
+//     p1, p2 := head, head
+//     for n > 0 && p2 != nil {
+//         p2 = p2.Next
+//         n--
+//     }
+//     if p2 == nil {
+//         // 删除第一个
+//         return head.Next
+//     }
+//     for p2.Next != nil {
+//         p1 = p1.Next
+//         p2 = p2.Next
+//     }
+//     tmp := p1.Next.Next
+//     p1.Next = tmp
+//     return head
+// }
+
 
 func removeNthFromEnd(head *ListNode, n int) *ListNode {
-    if head == nil {
-        return head
-    }
-    p1, p2 := head, head
-    for n > 0 && p2 != nil {
-        p2 = p2.Next
-        n--
-    }
-    if p2 == nil {
-        // 删除第一个
-        return head.Next
-    }
-    for p2.Next != nil {
-        p1 = p1.Next
-        p2 = p2.Next
-    }
-    tmp := p1.Next.Next
-    p1.Next = tmp
-    return head
+dummy := &ListNode{}
+dummy.Next = head
+slow, fast := dummy, dummy
+for n>0 && fast != nil {
+fast = fast.Next
+n--
+}
+fast = fast.Next
+for fast != nil {
+slow = slow.Next
+fast = fast.Next
+}
+slow.Next = slow.Next.Next
+return dummy.Next
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -44,12 +44,32 @@
 //     return string(stack)
 // }
 
+// func removeDuplicates(s string) string {
+// stack := make([]byte, 0)
+// for i := 0; i < len(s); i++ {
+// if len(stack) > 0 && stack[len(stack)-1] == s[i] {
+// stack = stack[:len(stack)-1]
+// continue
+// }
+// stack = append(stack, s[i])
+// }
+// return string(stack)
+// }
+
 func removeDuplicates(s string) string {
+if len(s) == 0 {
+return ""
+}
+
 stack := make([]byte, 0)
-for i := 0; i < len(s); i++ {
-if len(stack) > 0 && stack[len(stack)-1] == s[i] {
+stack = append(stack, s[0])
+for i:=1;i<len(s);i++ {
+if len(stack) > 0 {
+tmp := stack[len(stack)-1]
+if tmp == s[i] {
 stack = stack[:len(stack)-1]
 continue
+}
 }
 stack = append(stack, s[i])
 }

@@ -82,9 +82,50 @@
 // return res
 // }
 
+// func fourSum(nums []int, target int) [][]int {
+// sort.Ints(nums)
+// var res [][]int
+// for i:=0;i<len(nums);i++ {
+// if nums[i] > target && nums[i] >= 0 {
+// break
+// }
+// if i>0 && nums[i] == nums[i-1] {
+// continue
+// }
+// for j:=i+1;j<len(nums);j++ {
+// if nums[i] + nums[j] > target && nums[i]+nums[j] >= 0 {
+// break
+// }
+// if j>i+1 && nums[j] == nums[j-1] {
+// continue
+// }
+// l, r := j+1, len(nums)-1
+// for l < r {
+// if nums[i] + nums[j] + nums[l] + nums[r] < target {
+// l++
+// } else if nums[i] + nums[j] + nums[l] + nums[r] > target {
+// r--
+// } else {
+// res = append(res, []int{nums[i], nums[j], nums[l], nums[r]})
+// for r > l && nums[r] == nums[r-1] {
+// r--
+// }
+// for l < r && nums[l] == nums[l+1] {
+// l++
+// }
+// l++
+// r--
+// }
+// }
+// }
+// }
+// return res
+// }
+
+
 func fourSum(nums []int, target int) [][]int {
-sort.Ints(nums)
 var res [][]int
+sort.Ints(nums)
 for i:=0;i<len(nums);i++ {
 if nums[i] > target && nums[i] >= 0 {
 break
@@ -93,19 +134,15 @@ if i>0 && nums[i] == nums[i-1] {
 continue
 }
 for j:=i+1;j<len(nums);j++ {
-if nums[i] + nums[j] > target && nums[i]+nums[j] >= 0 {
+if nums[i] + nums[j] > target && nums[i] + nums[j] >= 0 {
 break
 }
-if j>i+1 && nums[j] == nums[j-1] {
+if j > i+1 && nums[j] == nums[j-1] {
 continue
 }
 l, r := j+1, len(nums)-1
 for l < r {
-if nums[i] + nums[j] + nums[l] + nums[r] < target {
-l++
-} else if nums[i] + nums[j] + nums[l] + nums[r] > target {
-r--
-} else {
+if nums[i] + nums[j] + nums[l] + nums[r] == target {
 res = append(res, []int{nums[i], nums[j], nums[l], nums[r]})
 for r > l && nums[r] == nums[r-1] {
 r--
@@ -114,6 +151,10 @@ for l < r && nums[l] == nums[l+1] {
 l++
 }
 l++
+r--
+} else if nums[i] + nums[j] + nums[l] + nums[r] < target {
+l++
+} else {
 r--
 }
 }

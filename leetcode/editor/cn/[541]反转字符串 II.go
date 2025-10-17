@@ -42,18 +42,35 @@ s[i], s[j] = s[j], s[i]
 }
 
 // s = "abcdefg", k = 2  2k一组 "bacdfeg"
+// func reverseStr(s string, k int) string {
+// bs := []byte(s)
+// start := 0
+// for start < len(bs) {
+// end := start + k*2
+// if len(bs)-start >= k {
+// reverseString(bs[start : start+k])
+// } else {
+// reverseString(bs[start:])
+// }
+// start = end
+// }
+// return string(bs)
+// }
+
+
 func reverseStr(s string, k int) string {
-bs := []byte(s)
+str := []byte(s)
 start := 0
-for start < len(bs) {
-end := start + k*2
-if len(bs)-start >= k {
-reverseString(bs[start : start+k])
+for start < len(s) {
+end := start + 2 * k
+if len(s) - start >= k {
+reverseString(str[start:start+k])
 } else {
-reverseString(bs[start:])
+reverseString(str[start:])
 }
 start = end
 }
-return string(bs)
+
+return string(str)
 }
 //leetcode submit region end(Prohibit modification and deletion)
